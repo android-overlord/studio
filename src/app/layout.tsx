@@ -1,10 +1,22 @@
 import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
+import { Inter, Gaegu } from 'next/font/google';
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+});
+
+const gaegu = Gaegu({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-gaegu',
+});
 
 export const metadata: Metadata = {
-  title: 'PDF Image Xtractor',
-  description: 'Extract images from your PDFs and view them in a beautiful gallery.',
+  title: 'PDF Pixi Pals',
+  description: 'Transform your PDFs into a whimsical gallery of images with friendly Pixi Pals.',
 };
 
 export default function RootLayout({
@@ -14,12 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
-      </head>
-      <body className="font-body antialiased">
+      <body className={`${inter.variable} ${gaegu.variable} font-sans antialiased`}>
         {children}
         <Toaster />
       </body>

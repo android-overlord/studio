@@ -22,6 +22,7 @@ export type ExtractImagesFromPdfInput = z.infer<typeof ExtractImagesFromPdfInput
 
 const ExtractImagesFromPdfOutputSchema = z.object({
   imageUrls: z.array(z.string()).describe('An array of image URLs extracted from the PDF.'),
+  pdfText: z.string().describe('The text content of the PDF.'),
 });
 export type ExtractImagesFromPdfOutput = z.infer<typeof ExtractImagesFromPdfOutputSchema>;
 
@@ -37,23 +38,28 @@ const extractImagesFromPdfFlow = ai.defineFlow(
   },
   async input => {
     const llmResponse = await generate({
-      model: ai.model,
+      model: 'googleai/gemini-1.5-flash-latest',
       prompt: [
         {
-          text: `Your task is to extract all the images from the following PDF document. Return all the extracted images.`,
+          text: `Your task is to extract all the images and text from the following PDF document. Return all the extracted images and text.`,
         },
         {media: {url: input.pdfDataUri}},
       ],
     });
 
-    const imageUrls = llmResponse.output?.message.content.flatMap(part => {
-      if (part.media) {
-        // The model returns the base64 string directly in the url field for media parts.
-        return [`data:${part.media.contentType};base64,${part.media.url}`]
-      }
-      return []
-    }) ?? []
+    const content = llmResponse.output?.message.content ?? [];
+    const imageUrls: string[] = [];
+    let pdfText = '';
 
-    return { imageUrls };
+    for (const part of content) {
+      if (part.media) {
+        imageUrls.push(`data:${part.media.contentType};base64,${part.media.url}`);
+      }
+      if (part.text) {
+        pdfText += part.text;
+      }
+    }
+
+    return { imageUrls, pdfText };
   }
 );

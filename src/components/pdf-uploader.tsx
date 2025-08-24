@@ -1,7 +1,7 @@
 'use client';
 
-import { type FC, useState, useRef, type DragEvent } from 'react';
-import { UploadCloud, Loader2 } from 'lucide-react';
+import { type FC, useState, useRef, type DragEvent, useEffect } from 'react';
+import { Sparkles, Loader2, UploadCloud } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
@@ -11,10 +11,33 @@ interface PdfUploaderProps {
   isLoading: boolean;
 }
 
+const loadingMessages = [
+  "Summoning Pixi helpers...",
+  "Analyzing your document...",
+  "Extracting enchanting images...",
+  "Searching for hidden wonders...",
+  "Painting with digital watercolors...",
+  "Nearly there, adding extra sparkle!"
+];
+
 const PdfUploader: FC<PdfUploaderProps> = ({ onUpload, isLoading }) => {
   const [isDragging, setIsDragging] = useState(false);
+  const [loadingMessage, setLoadingMessage] = useState(loadingMessages[0]);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (isLoading) {
+      interval = setInterval(() => {
+        setLoadingMessage(prev => {
+          const currentIndex = loadingMessages.indexOf(prev);
+          return loadingMessages[(currentIndex + 1) % loadingMessages.length];
+        });
+      }, 2000);
+    }
+    return () => clearInterval(interval);
+  }, [isLoading]);
 
   const handleFileValidation = (file: File | undefined) => {
     if (!file) return false;
@@ -22,7 +45,7 @@ const PdfUploader: FC<PdfUploaderProps> = ({ onUpload, isLoading }) => {
       toast({
         variant: 'destructive',
         title: 'Invalid File Type',
-        description: 'Please upload a valid PDF file.',
+        description: 'Oops! Only PDF files are allowed.',
       });
       return false;
     }
@@ -79,9 +102,9 @@ const PdfUploader: FC<PdfUploaderProps> = ({ onUpload, isLoading }) => {
       onDrop={handleDrop}
       onClick={handleClick}
       className={cn(
-        'relative flex flex-col items-center justify-center w-full max-w-3xl mx-auto p-8 sm:p-12 border-2 border-dashed rounded-lg transition-colors duration-300 ease-in-out',
-        isLoading ? 'cursor-not-allowed' : 'cursor-pointer',
-        isDragging ? 'border-primary bg-primary/10' : 'border-border hover:border-primary/50'
+        'relative flex flex-col items-center justify-center w-full max-w-3xl mx-auto p-8 sm:p-12 border-2 border-dashed rounded-2xl transition-all duration-300 ease-in-out',
+        isLoading ? 'cursor-wait border-primary/50' : 'cursor-pointer',
+        isDragging ? 'border-primary bg-primary/10 scale-105' : 'border-border hover:border-primary/50 hover:bg-primary/5'
       )}
     >
       <input
@@ -94,21 +117,23 @@ const PdfUploader: FC<PdfUploaderProps> = ({ onUpload, isLoading }) => {
       />
       {isLoading ? (
         <div className="flex flex-col items-center justify-center text-center">
-          <Loader2 className="h-12 w-12 text-primary animate-spin mb-4" />
-          <p className="text-lg font-medium text-foreground">Extracting Images...</p>
-          <p className="text-muted-foreground">Please wait, this may take a moment.</p>
+          <Loader2 className="h-12 w-12 text-primary animate-spin mb-6" />
+          <p className="text-xl font-medium text-foreground font-display">{loadingMessage}</p>
+          <p className="text-muted-foreground mt-2">Please wait, magic is happening!</p>
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center text-center">
-          <UploadCloud className="h-12 w-12 text-muted-foreground mb-4" />
-          <h3 className="text-xl font-semibold text-foreground">Drag & Drop PDF here</h3>
-          <p className="text-muted-foreground mt-2">or</p>
-          <Button variant="outline" className="mt-4 pointer-events-none bg-accent text-accent-foreground">
-            Browse Files
+          <UploadCloud className="h-16 w-16 text-muted-foreground/50 mb-4" />
+          <h3 className="text-2xl font-semibold text-foreground font-display">Drop your PDF here</h3>
+          <p className="text-muted-foreground mt-2 font-display text-lg">or</p>
+          <Button variant="outline" className="mt-4 pointer-events-none bg-secondary text-secondary-foreground hover:bg-secondary/90">
+             Choose a File
           </Button>
-          <p className="text-xs text-muted-foreground mt-4">Only .pdf files are accepted</p>
+          <p className="text-xs text-muted-foreground mt-6">Only .pdf files please!</p>
         </div>
       )}
+       <Sparkles className="absolute -top-3 -right-3 h-8 w-8 text-accent opacity-50 rotate-12" />
+       <Sparkles className="absolute -bottom-4 -left-2 h-6 w-6 text-primary opacity-30 -rotate-12" />
     </div>
   );
 };
