@@ -42,7 +42,6 @@ const ImageItem: FC<{ src: string, index: number }> = ({ src, index }) => {
               height={500}
               sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 20vw"
               className={cn("h-auto w-full object-contain bg-white transition-opacity duration-500", isLoading ? "opacity-0" : "opacity-100")}
-              data-ai-hint="gallery photo"
               onLoad={() => setIsLoading(false)}
             />
          </CardContent>
