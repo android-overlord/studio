@@ -3,13 +3,10 @@ type ImageGridProps = {
 };
 
 export function ImageGrid({ images }: ImageGridProps) {
-  return (
-    <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8">
+  return (<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8">
       {images.map((src, index) => (
-        <div
-          key={index}
-          className="aspect-square overflow-hidden rounded-lg bg-neutral-800"
-        >
+        <div key={index}
+          className="aspect-square overflow-hidden bg-neutral-800">
           <img
             src={src}
             alt={`Image ${index + 1}`}
