@@ -8,6 +8,7 @@
  */
 
 import {ai} from '@/ai/genkit';
+import {generate} from 'genkit';
 import {z} from 'genkit';
 
 const ExtractImagesFromPdfInputSchema = z.object({
@@ -28,18 +29,6 @@ export async function extractImagesFromPdf(input: ExtractImagesFromPdfInput): Pr
   return extractImagesFromPdfFlow(input);
 }
 
-const prompt = ai.definePrompt({
-  name: 'extractImagesFromPdfPrompt',
-  input: {schema: ExtractImagesFromPdfInputSchema},
-  output: {schema: ExtractImagesFromPdfOutputSchema},
-  prompt: `You are an expert at extracting images from PDF documents.
-
-  Given a PDF document, extract all images from it and return an array of data URIs representing the images.
-
-  PDF Document: {{media url=pdfDataUri}}
-  `,
-});
-
 const extractImagesFromPdfFlow = ai.defineFlow(
   {
     name: 'extractImagesFromPdfFlow',
@@ -47,7 +36,26 @@ const extractImagesFromPdfFlow = ai.defineFlow(
     outputSchema: ExtractImagesFromPdfOutputSchema,
   },
   async input => {
-    const {output} = await prompt(input);
-    return output!;
+    const llmResponse = await generate({
+      model: ai.model,
+      prompt: [
+        {
+          text: `
+          Your task is to extract all the images from the following PDF document.
+          Return all the extracted images.
+        `,
+        },
+        {media: {url: input.pdfDataUri}},
+      ],
+    });
+
+    const imageUrls = llmResponse.output?.message.content.flatMap(part => {
+      if (part.media) {
+        return [`data:${part.media.contentType};base64,${part.media.url}`]
+      }
+      return []
+    }) ?? []
+
+    return { imageUrls };
   }
 );
