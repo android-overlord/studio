@@ -1,8 +1,10 @@
+import { ImageGrid } from '@/components/image-grid';
+import { images } from '@/lib/images';
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <h1 className="text-4xl font-bold">Hello, World!</h1>
-      <p className="mt-4 text-lg">Your project has been reset. We have a clean slate.</p>
+    <main className="p-4 sm:p-6 lg:p-8">
+      <ImageGrid images={images} />
     </main>
   );
 }
