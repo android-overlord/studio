@@ -40,10 +40,7 @@ const extractImagesFromPdfFlow = ai.defineFlow(
       model: ai.model,
       prompt: [
         {
-          text: `
-          Your task is to extract all the images from the following PDF document.
-          Return all the extracted images.
-        `,
+          text: `Your task is to extract all the images from the following PDF document. Return all the extracted images.`,
         },
         {media: {url: input.pdfDataUri}},
       ],
@@ -51,6 +48,7 @@ const extractImagesFromPdfFlow = ai.defineFlow(
 
     const imageUrls = llmResponse.output?.message.content.flatMap(part => {
       if (part.media) {
+        // The model returns the base64 string directly in the url field for media parts.
         return [`data:${part.media.contentType};base64,${part.media.url}`]
       }
       return []
