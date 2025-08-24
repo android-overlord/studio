@@ -49,13 +49,12 @@ export default function Home() {
         }
         
         if(result.palsPromise) {
-          result.palsPromise.then((palsResult) => {
-            if(palsResult.pals.length > 0){
-              setAppState('results');
-              setPals(palsResult.pals);
-            }
-            setPalsLoading(false);
-          });
+          const palsResult = await result.palsPromise;
+          if(palsResult.pals.length > 0){
+            setAppState('results');
+            setPals(palsResult.pals);
+          }
+          setPalsLoading(false);
         } else {
           setPalsLoading(false);
         }
