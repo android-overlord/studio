@@ -1,5 +1,5 @@
-// Generate 312 image paths assuming they are in the public/images directory
+// Generate 312 placeholder image paths
 export const images = Array.from(
   { length: 312 },
-  (_, i) => `/images/image-${i + 1}.jpg`
+  (_, i) => `https://placehold.co/400x400.png`
 );
