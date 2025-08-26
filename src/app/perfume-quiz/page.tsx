@@ -1,7 +1,9 @@
+
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import data from './perfume_database_expert_balanced.json';
+import Image from 'next/image';
 
 type Perfume = {
   name: string;
@@ -23,8 +25,26 @@ type Recommendation = {
   alternatives: Perfume[];
 };
 
+const perfumeImages: { [key: string]: string } = {
+  // A mapping of perfume names to image URLs. Using placeholders for now.
+  "Tom Ford Tobacco Vanille": "https://picsum.photos/100/100?random=1",
+  "Tom Ford Ombré Leather": "https://picsum.photos/100/100?random=2",
+  "Dior Sauvage Elixir": "https://picsum.photos/100/100?random=3",
+  "Creed Aventus": "https://picsum.photos/100/100?random=4",
+  // Add more mappings as needed, or generate them dynamically.
+};
+
+const getPerfumeImage = (perfumeName: string) => {
+    // Fallback for perfumes not in the mapping
+    if (perfumeImages[perfumeName]) {
+        return perfumeImages[perfumeName];
+    }
+    const seed = perfumeName.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    return `https://picsum.photos/seed/${seed}/100/100`;
+}
+
+
 const PerfumeQuizPage = () => {
-  const [currentQuestion, setCurrentQuestion] = useState<keyof QuizAnswers>('personality');
   const [answers, setAnswers] = useState<QuizAnswers>({
     personality: null,
     occasion: null,
@@ -33,172 +53,165 @@ const PerfumeQuizPage = () => {
   });
   const [recommendation, setRecommendation] = useState<Recommendation | null>(null);
   const [showResults, setShowResults] = useState(false);
-
-
+  
+  const questions: (keyof QuizAnswers)[] = ['personality', 'occasion', 'climate', 'intensity'];
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const currentQuestion = questions[currentQuestionIndex];
 
   const handleAnswerSelect = (question: keyof QuizAnswers, answer: string) => {
-    setAnswers({ ...answers, [question]: answer });
-    // Move to the next question or show results
-    const questions: (keyof QuizAnswers)[] = ['personality', 'occasion', 'climate', 'intensity'];
-    const currentIndex = questions.indexOf(question);
-    if (currentIndex < questions.length - 1) {
-      setCurrentQuestion(questions[currentIndex + 1]);
-    } else { // Last question, show results
-      // Map answers from `answers` state to perfume categories based on user's mapping rules
-      // e.g., if personality is 'Outgoing', map to Fresh / Citrus / Aquatic
+    const newAnswers = { ...answers, [question]: answer };
+    setAnswers(newAnswers);
 
-      const matchedCategory = mapAnswersToCategory(answers);
-
-      // Filter perfumes from `data` based on the matched category
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    } else {
+      const matchedCategory = mapAnswersToCategory(newAnswers);
       const filteredPerfumes = data.filter(perfume => perfume.family === matchedCategory || perfume.personality.includes(matchedCategory) || perfume.occasions.includes(matchedCategory));
 
-      // Implement the recommendation logic here
-      // Randomly select 1 primary and 2-3 alternatives from `filteredPerfumes`
-      // Ensure there are enough perfumes in the filtered list before selecting
-
       if (filteredPerfumes.length > 0) {
-          const primaryIndex = Math.floor(Math.random() * filteredPerfumes.length);
-          const primary = filteredPerfumes[primaryIndex];
+        const uniquePerfumes = Array.from(new Map(filteredPerfumes.map(p => [p.name, p])).values());
+        
+        const primaryIndex = Math.floor(Math.random() * uniquePerfumes.length);
+        const primary = uniquePerfumes[primaryIndex];
 
-          const alternatives: Perfume[] = [];
-          const alternativeIndices: Set<number> = new Set([primaryIndex]);
+        const alternatives: Perfume[] = [];
+        const alternativeIndices: Set<number> = new Set([primaryIndex]);
 
-          while (alternatives.length < Math.min(filteredPerfumes.length - 1, 3)) {
-              const randomIndex = Math.floor(Math.random() * filteredPerfumes.length);
-              if (!alternativeIndices.has(randomIndex)) {
-                  alternatives.push(filteredPerfumes[randomIndex]);
-                  alternativeIndices.add(randomIndex);
-              }
+        while (alternatives.length < Math.min(uniquePerfumes.length - 1, 3)) {
+          const randomIndex = Math.floor(Math.random() * uniquePerfumes.length);
+          if (!alternativeIndices.has(randomIndex)) {
+            alternatives.push(uniquePerfumes[randomIndex]);
+            alternativeIndices.add(randomIndex);
           }
-
-          setRecommendation({ primary, alternatives });
-          setShowResults(true);
+        }
+        setRecommendation({ primary, alternatives });
       } else {
-          setRecommendation({ primary: null, alternatives: [] });
-          setShowResults(true);
+        setRecommendation({ primary: null, alternatives: [] });
       }
+      setShowResults(true);
     }
   };
 
-  // Placeholder function for mapping answers to categories - IMPLEMENT THIS BASED ON USER'S MAPPING RULES
   const mapAnswersToCategory = (answers: QuizAnswers): string => {
-    // Example mapping (needs to be implemented based on your data and logic)
     if (answers.personality === 'Outgoing' && answers.climate === 'Summer') return 'Fresh / Citrus / Aquatic';
     if (answers.occasion === 'Date' && answers.intensity === 'Strong') return 'Spicy / Oriental';
     if (answers.personality === 'Bold') return 'Spicy / Oriental';
     if (answers.personality === 'Romantic') return 'Floral / Romantic';
     if (answers.personality === 'Calm') return 'Woody / Earthy';
     if (answers.occasion === 'Daily') return 'Fresh / Citrus / Aquatic';
-    return 'Woody / Earthy'; // Default category
+    return 'Woody / Earthy';
   };
 
   const renderQuestion = () => {
+    let questionText = '';
+    let options: string[] = [];
+
     switch (currentQuestion) {
       case 'personality':
-        return (
-          <div>
-            <h2>Personality</h2>
-            <div className="flex flex-wrap gap-2">
-              {['Outgoing', 'Bold', 'Romantic', 'Calm', 'Luxury-focused'].map(option => (
-                <button
-                  key={option}
-                  className={`px-4 py-2 rounded ${answers.personality === option ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}
-                  onClick={() => handleAnswerSelect('personality', option as string)}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
-          </div>
-        );
+        questionText = "Which word best describes your personality?";
+        options = ['Outgoing', 'Bold', 'Romantic', 'Calm', 'Luxury-focused'];
+        break;
       case 'occasion':
-        return (
-          <div>
-            <h2>Occasion</h2>
-            <div className="flex flex-wrap gap-2">
-              {['Daily', 'Office', 'Date', 'Party', 'Special/Luxury'].map(option => (
-                <button
-                  key={option}
-                  className={`px-4 py-2 rounded ${answers.occasion === option ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}
-                  onClick={() => handleAnswerSelect('occasion', option as string)}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
-          </div>
-        );
+        questionText = "What's the primary occasion you'll wear this scent for?";
+        options = ['Daily', 'Office', 'Date', 'Party', 'Special/Luxury'];
+        break;
       case 'climate':
-        return (
-          <div>
-            <h2>Climate</h2>
-            <div className="flex flex-wrap gap-2">
-              {['Summer', 'Winter', 'Humid'].map(option => (
-                <button
-                  key={option}
-                  className={`px-4 py-2 rounded ${answers.climate === option ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}
-                  onClick={() => handleAnswerSelect('climate', option as string)}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
-          </div>
-        );
+        questionText = "What's the climate like where you live?";
+        options = ['Summer', 'Winter', 'Humid'];
+        break;
       case 'intensity':
-        return (
-          <div>
-            <h2>Intensity</h2>
-            <div className="flex flex-wrap gap-2">
-              {['Light', 'Balanced', 'Strong'].map(option => (
-                <button
-                  key={option}
-                  className={`px-4 py-2 rounded ${answers.intensity === option ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}
-                  onClick={() => handleAnswerSelect('intensity', option as string)}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
-          </div>
-        );
+        questionText = "How strong do you like your perfume?";
+        options = ['Light', 'Balanced', 'Strong'];
+        break;
       default:
         return null;
     }
+
+    return (
+      <div className="w-full max-w-2xl text-center">
+        <h2 className="text-2xl md:text-3xl font-bold mb-8">{questionText}</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {options.map(option => (
+            <button
+              key={option}
+              className={`w-full py-4 px-6 rounded-full text-lg font-semibold transition-transform transform hover:scale-105
+                ${answers[currentQuestion] === option 
+                  ? 'bg-pink-500 text-white shadow-lg' 
+                  : 'bg-neutral-800 text-neutral-200 hover:bg-neutral-700'}`}
+              onClick={() => handleAnswerSelect(currentQuestion, option)}
+            >
+              {option}
+            </button>
+          ))}
+        </div>
+      </div>
+    );
   };
+  
+  const progress = ((currentQuestionIndex) / questions.length) * 100;
 
   return (
-    <div className="container mx-auto p-4">
-
-      <h1 className="text-2xl font-bold mb-4">Personalized Perfume Quiz</h1>
-
+    <div className="container mx-auto p-4 flex flex-col items-center justify-center min-h-[calc(100vh-100px)]">
+      
       {!showResults && (
-        <div className="space-y-4">
+        <div className="w-full max-w-2xl">
+          <div className="w-full bg-neutral-700 rounded-full h-2.5 mb-8">
+            <div className="bg-pink-500 h-2.5 rounded-full" style={{ width: `${progress}%`, transition: 'width 0.5s ease-in-out' }}></div>
+          </div>
           {renderQuestion()}
         </div>
       )}
 
-      {showResults && recommendation && (
-        <div className="mt-8">
-          <h2 className="text-xl font-semibold mb-4">Your Perfume Recommendation</h2>
-          {recommendation.primary && (
-            <p className="text-lg mb-2">✨ Your Perfect Match: {recommendation.primary.name}</p>
+      {showResults && (
+        <div className="w-full max-w-3xl text-center bg-neutral-800 p-8 rounded-lg shadow-2xl">
+          <h2 className="text-3xl font-bold mb-6 text-pink-400">Your Personalised Recommendations</h2>
+          {recommendation?.primary ? (
+            <div>
+              <div className="mb-8">
+                <h3 className="text-2xl font-semibold mb-4 border-b border-neutral-700 pb-2">✨ Your Perfect Match</h3>
+                <div className="flex items-center justify-center gap-4 bg-neutral-700 p-4 rounded-lg">
+                   <Image src={getPerfumeImage(recommendation.primary.name)} alt={recommendation.primary.name} width={80} height={80} className="rounded-md" />
+                   <p className="text-xl font-bold">{recommendation.primary.name}</p>
+                </div>
+              </div>
+
+              {recommendation.alternatives.length > 0 && (
+                 <div>
+                   <h3 className="text-2xl font-semibold mb-4 border-b border-neutral-700 pb-2">🌿 Alternatives You’ll Love</h3>
+                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                     {recommendation.alternatives.map(p => (
+                       <div key={p.name} className="flex flex-col items-center gap-2 bg-neutral-700 p-4 rounded-lg">
+                         <Image src={getPerfumeImage(p.name)} alt={p.name} width={60} height={60} className="rounded-md" />
+                         <p className="text-md font-semibold text-center">{p.name}</p>
+                       </div>
+                     ))}
+                   </div>
+                 </div>
+              )}
+            </div>
+          ) : (
+            <div>
+              <h2 className="text-xl font-semibold mb-4">No Recommendation Found</h2>
+              <p>Based on your answers, we couldn't find a perfect match. Please try the quiz again with different preferences.</p>
+            </div>
           )}
-          {recommendation.alternatives.length > 0 && (
-            <p className="text-lg mb-2">🌿 Alternatives You’ll Love: {recommendation.alternatives.map(p => p.name).join(', ')}</p>
-          )}
-          {/* Placeholder for explanation - NEEDS IMPLEMENTATION */}
-          <p className="text-lg italic">💡 Why These Suit You: [Explanation based on matched category and perfume]</p>
+           <button 
+              onClick={() => {
+                setShowResults(false);
+                setCurrentQuestionIndex(0);
+                setAnswers({ personality: null, occasion: null, climate: null, intensity: null });
+                setRecommendation(null);
+              }}
+              className="mt-8 px-8 py-3 bg-pink-500 text-white font-semibold rounded-full shadow-lg hover:bg-pink-600 transition-colors duration-300"
+            >
+              Take the Quiz Again
+            </button>
         </div>
       )}
-       {showResults && !recommendation?.primary && (
-           <div className="mt-8">
-               <h2 className="text-xl font-semibold mb-4">No Recommendation Found</h2>
-               <p>Based on your answers, we couldn't find a perfect match in our current catalogue. Please try again or adjust your preferences.</p>
-           </div>
-       )}
     </div>
   );
 };
 
 export default PerfumeQuizPage;
+
+    
