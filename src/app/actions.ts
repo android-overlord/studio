@@ -33,19 +33,23 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
     } = process.env;
 
     if (!EMAIL_HOST || !EMAIL_PORT || !EMAIL_USER || !EMAIL_PASS || !EMAIL_TO) {
-        console.error('Missing one or more email environment variables. Please ensure EMAIL_HOST, EMAIL_PORT, EMAIL_USER, EMAIL_PASS, and EMAIL_TO are set in your .env.local file.');
+        const errorMessage = 'Missing one or more email environment variables. Please ensure EMAIL_HOST, EMAIL_PORT, EMAIL_USER, EMAIL_PASS, and EMAIL_TO are set in your .env.local file.';
+        console.error(errorMessage);
         throw new Error('Server is not configured to send emails. Please check your environment configuration.');
     }
 
+    const port = parseInt(EMAIL_PORT, 10);
     const transporter = nodemailer.createTransport({
         host: EMAIL_HOST,
-        port: parseInt(EMAIL_PORT, 10),
-        secure: parseInt(EMAIL_PORT, 10) === 465, // true for 465, false for other ports
+        port: port,
+        secure: port === 465, // true for 465, false for other ports
         auth: {
             user: EMAIL_USER,
             pass: EMAIL_PASS,
         },
         tls: {
+            // This is often needed for local development with services like ProtonMail Bridge
+            // that may use self-signed certificates.
             rejectUnauthorized: false
         }
     });
@@ -78,11 +82,14 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
     };
 
     try {
-        await transporter.sendMail(mailOptions);
-        console.log('Order email sent successfully.');
+        console.log('Attempting to send email...');
+        const info = await transporter.sendMail(mailOptions);
+        console.log('Order email sent successfully. Message ID:', info.messageId);
         return { success: true, message: 'Order email sent.' };
     } catch (error) {
+        // Log the detailed error from nodemailer to the server console
         console.error('Error sending order email:', error);
-        throw new Error('Failed to send order notification email.');
+        // Throw a user-friendly error to the client
+        throw new Error('Failed to send order notification email. Please check server logs for details.');
     }
 }
