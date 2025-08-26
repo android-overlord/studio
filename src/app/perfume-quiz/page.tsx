@@ -4,6 +4,7 @@
 import { useState } from 'react';
 import data from './perfume_database_expert_balanced.json';
 import Image from 'next/image';
+import perfumeImages from '@/images.json';
 
 type Perfume = {
   name: string;
@@ -25,20 +26,13 @@ type Recommendation = {
   alternatives: Perfume[];
 };
 
-const perfumeImages: { [key: string]: string } = {
-  // A mapping of perfume names to image URLs. Using placeholders for now.
-  "Tom Ford Tobacco Vanille": "https://picsum.photos/100/100?random=1",
-  "Tom Ford Ombré Leather": "https://picsum.photos/100/100?random=2",
-  "Dior Sauvage Elixir": "https://picsum.photos/100/100?random=3",
-  "Creed Aventus": "https://picsum.photos/100/100?random=4",
-  // Add more mappings as needed, or generate them dynamically.
-};
-
 const getPerfumeImage = (perfumeName: string) => {
-    // Fallback for perfumes not in the mapping
-    if (perfumeImages[perfumeName]) {
-        return perfumeImages[perfumeName];
+    // A safe lookup in the imported JSON, with a fallback to a generic placeholder.
+    const images = perfumeImages as Record<string, string>;
+    if (images[perfumeName]) {
+        return images[perfumeName];
     }
+    // Fallback if a perfume is not in the JSON file.
     const seed = perfumeName.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
     return `https://picsum.photos/seed/${seed}/100/100`;
 }
@@ -213,5 +207,3 @@ const PerfumeQuizPage = () => {
 };
 
 export default PerfumeQuizPage;
-
-    
