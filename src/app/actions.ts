@@ -33,11 +33,10 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
     }
 
     // Configure the Brevo API client
-    const apiClient = brevo.ApiClient.instance;
-    const apiKey = apiClient.authentications['api-key'];
-    apiKey.apiKey = BREVO_API_KEY;
-
-    const api = new brevo.TransactionalEmailsApi();
+    const apiClient = new brevo.ApiClient();
+    apiClient.authentications['api-key'].apiKey = BREVO_API_KEY;
+    
+    const api = new brevo.TransactionalEmailsApi(apiClient);
 
     const itemsListHtml = selectedItems.map(item => `<li>${item.name}</li>`).join('');
 
