@@ -8,6 +8,9 @@ export function Navbar() {
           <a href="/" className="text-2xl font-bold tracking-tighter">
             CRESKI
           </a>
+          <nav className="ml-10 hidden md:flex space-x-4"> 
+ <a href="/start-quiz" className="text-neutral-300 hover:text-white">Perfume Quiz</a>
+          </nav>
         </div>
       </div>
     </header>

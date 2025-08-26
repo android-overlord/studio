@@ -1,0 +1,3000 @@
+[
+  {
+    "name": "Tom Ford Tobacco Vanille",
+    "family": "Spicy / Oriental",
+    "personality": [
+      "Bold",
+      "Confident"
+    ],
+    "occasions": [
+      "Party",
+      "Luxury"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Tom Ford Ombré Leather",
+    "family": "Woody / Earthy",
+    "personality": [
+      "Calm",
+      "Confident"
+    ],
+    "occasions": [
+      "Office",
+      "Daily"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Tom Ford Tubéreuse Nue",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Tom Ford Rose Prick",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Tom Ford Rose Prick",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Tom Ford Electric Cherry",
+    "family": "Sweet / Gourmand",
+    "personality": [
+      "Playful",
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Party"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Tom Ford Ébène Fumé",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Tom Ford Neroli Portofino",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Tom Ford Fucking Fabulous",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Tom Ford Vanille Fatale",
+    "family": "Sweet / Gourmand",
+    "personality": [
+      "Playful",
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Party"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Tom Ford Cherry Smoke",
+    "family": "Sweet / Gourmand",
+    "personality": [
+      "Playful",
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Party"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Tom Ford Lost Cherry",
+    "family": "Sweet / Gourmand",
+    "personality": [
+      "Playful",
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Party"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Tom Ford Oud Wood",
+    "family": "Woody / Earthy",
+    "personality": [
+      "Calm",
+      "Confident"
+    ],
+    "occasions": [
+      "Office",
+      "Daily"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Tom Ford Bitter Peach",
+    "family": "Sweet / Gourmand",
+    "personality": [
+      "Playful",
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Party"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Tom Ford White Suede",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Tom Ford Oud Wood",
+    "family": "Woody / Earthy",
+    "personality": [
+      "Calm",
+      "Confident"
+    ],
+    "occasions": [
+      "Office",
+      "Daily"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Tom Ford Fabulous",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Tom Ford Tobacco Oud",
+    "family": "Woody / Earthy",
+    "personality": [
+      "Calm",
+      "Confident"
+    ],
+    "occasions": [
+      "Office",
+      "Daily"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Tom Ford Rose Exposed",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Tom Ford Myrrhe Mystère",
+    "family": "Spicy / Oriental",
+    "personality": [
+      "Bold",
+      "Confident"
+    ],
+    "occasions": [
+      "Party",
+      "Luxury"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Tom Ford Eau de Ombré Leather",
+    "family": "Woody / Earthy",
+    "personality": [
+      "Calm",
+      "Confident"
+    ],
+    "occasions": [
+      "Office",
+      "Daily"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Tom Ford Ombré Leather",
+    "family": "Woody / Earthy",
+    "personality": [
+      "Calm",
+      "Confident"
+    ],
+    "occasions": [
+      "Office",
+      "Daily"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Tom Ford Black Orchid",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Tom Ford Velvet Orchid",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Tom Ford Soleil Blanc",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Tom Ford Metallique",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Tom Ford Costa Azzurra",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Tom Ford Grey Vetiver",
+    "family": "Woody / Earthy",
+    "personality": [
+      "Calm",
+      "Confident"
+    ],
+    "occasions": [
+      "Office",
+      "Daily"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Tom Ford for Men",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Tom Ford Noir",
+    "family": "Woody / Earthy",
+    "personality": [
+      "Calm",
+      "Confident"
+    ],
+    "occasions": [
+      "Office",
+      "Daily"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Tom Ford Noir Extreme",
+    "family": "Woody / Earthy",
+    "personality": [
+      "Calm",
+      "Confident"
+    ],
+    "occasions": [
+      "Office",
+      "Daily"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Tom Ford Noir Anthracite",
+    "family": "Woody / Earthy",
+    "personality": [
+      "Calm",
+      "Confident"
+    ],
+    "occasions": [
+      "Office",
+      "Daily"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Valentino Uomo Born in Roma Coral Fantasy",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Valentino Uomo Born in Roma",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Valentino Uomo Born in Roma Green Stravaganza",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Valentino Uomo Born in Roma Intense",
+    "family": "Spicy / Oriental",
+    "personality": [
+      "Bold",
+      "Confident"
+    ],
+    "occasions": [
+      "Party",
+      "Luxury"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Giorgio Armani Sì Passione Éclat",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Giorgio Armani Sì",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Giorgio Armani Sì Passione Intense",
+    "family": "Spicy / Oriental",
+    "personality": [
+      "Bold",
+      "Confident"
+    ],
+    "occasions": [
+      "Party",
+      "Luxury"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Giorgio Armani Sì Intense",
+    "family": "Spicy / Oriental",
+    "personality": [
+      "Bold",
+      "Confident"
+    ],
+    "occasions": [
+      "Party",
+      "Luxury"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Armani Code",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Armani Privé Cuir Noir",
+    "family": "Woody / Earthy",
+    "personality": [
+      "Calm",
+      "Confident"
+    ],
+    "occasions": [
+      "Office",
+      "Daily"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Armani Privé Oud Royal",
+    "family": "Woody / Earthy",
+    "personality": [
+      "Calm",
+      "Confident"
+    ],
+    "occasions": [
+      "Office",
+      "Daily"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Armani Privé Magenta Tanzanite",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Emporio Armani Stronger With You",
+    "family": "Sweet / Gourmand",
+    "personality": [
+      "Playful",
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Party"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Emporio Armani Stronger With You Intensely",
+    "family": "Spicy / Oriental",
+    "personality": [
+      "Bold",
+      "Confident"
+    ],
+    "occasions": [
+      "Party",
+      "Luxury"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Emporio Armani Because It's You",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Emporio Armani Stronger With You Oud",
+    "family": "Woody / Earthy",
+    "personality": [
+      "Calm",
+      "Confident"
+    ],
+    "occasions": [
+      "Office",
+      "Daily"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Emporio Armani Stronger With You Tobacco",
+    "family": "Spicy / Oriental",
+    "personality": [
+      "Bold",
+      "Confident"
+    ],
+    "occasions": [
+      "Party",
+      "Luxury"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Emporio Armani Stronger With You Parfum",
+    "family": "Sweet / Gourmand",
+    "personality": [
+      "Playful",
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Party"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Giorgio Armani My Way Parfum",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Giorgio Armani My Way",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Acqua di Giò Eau de Parfum",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Acqua di Giò Parfum",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Acqua di Giò Profumo",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Acqua di Giò",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Dolce & Gabbana K",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Dolce & Gabbana K Intense",
+    "family": "Spicy / Oriental",
+    "personality": [
+      "Bold",
+      "Confident"
+    ],
+    "occasions": [
+      "Party",
+      "Luxury"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Dolce & Gabbana The One",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Dolce & Gabbana Light Blue",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Dolce & Gabbana The Only One",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Dolce & Gabbana The Only One 2",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Dolce & Gabbana Light Blue Summer Vibes",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Dolce & Gabbana Light Blue Summer Vibes Pour Homme",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Hugo Boss Hugo Red",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Hugo Boss Hugo Just Different",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Hugo Boss Hugo Man",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Hugo Boss Boss Oud Saffron",
+    "family": "Woody / Earthy",
+    "personality": [
+      "Calm",
+      "Confident"
+    ],
+    "occasions": [
+      "Office",
+      "Daily"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Hugo Boss Boss Bottled Elixir",
+    "family": "Spicy / Oriental",
+    "personality": [
+      "Bold",
+      "Confident"
+    ],
+    "occasions": [
+      "Party",
+      "Luxury"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Hugo Boss Boss Oud Aromatic",
+    "family": "Woody / Earthy",
+    "personality": [
+      "Calm",
+      "Confident"
+    ],
+    "occasions": [
+      "Office",
+      "Daily"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Montblanc Legend Red",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Montblanc Legend Blue",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Montblanc Signature Absolue",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Montblanc Explorer",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Montblanc Explorer Platinum",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Versace Dylan Purple",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Versace Eros Energy",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Versace Eros Najim",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Versace Eros",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Versace Eros Eau de Parfum",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Versace Eros Parfum",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Versace Eros Eau de Parfum",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Versace Eros Flame",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Versace Pour Homme",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Versace Dylan Blue",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Versace Crystal Noir",
+    "family": "Woody / Earthy",
+    "personality": [
+      "Calm",
+      "Confident"
+    ],
+    "occasions": [
+      "Office",
+      "Daily"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Versace Yellow Diamond",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Versace Bright Crystal",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Tom Ford Black Orchid",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Tom Ford Grey Vetiver",
+    "family": "Woody / Earthy",
+    "personality": [
+      "Calm",
+      "Confident"
+    ],
+    "occasions": [
+      "Office",
+      "Daily"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Tom Ford Black Orchid Parfum",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Paco Rabanne 1 Million Elixir",
+    "family": "Spicy / Oriental",
+    "personality": [
+      "Bold",
+      "Confident"
+    ],
+    "occasions": [
+      "Party",
+      "Luxury"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Rabanne Phantom Intense",
+    "family": "Spicy / Oriental",
+    "personality": [
+      "Bold",
+      "Confident"
+    ],
+    "occasions": [
+      "Party",
+      "Luxury"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Paco Rabanne Fame",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Paco Rabanne Invictus Victory",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Paco Rabanne 1 Million",
+    "family": "Sweet / Gourmand",
+    "personality": [
+      "Playful",
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Party"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Paco Rabanne 1 Million Parfum",
+    "family": "Sweet / Gourmand",
+    "personality": [
+      "Playful",
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Party"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Paco Rabanne 1 Million Royal",
+    "family": "Sweet / Gourmand",
+    "personality": [
+      "Playful",
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Party"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Paco Rabanne 1 Million",
+    "family": "Sweet / Gourmand",
+    "personality": [
+      "Playful",
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Party"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Paco Rabanne Phantom Parfum",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Paco Rabanne Invictus Victory Elixir",
+    "family": "Spicy / Oriental",
+    "personality": [
+      "Bold",
+      "Confident"
+    ],
+    "occasions": [
+      "Party",
+      "Luxury"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Paco Rabanne Phantom",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Rabanne Invictus Parfum",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Bvlgari Le Gemme Garanat",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Bvlgari Le Gemme Gyan",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Bvlgari Le Gemme Tygar",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Bvlgari Man Extreme",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Bvlgari Man Wood Essence",
+    "family": "Woody / Earthy",
+    "personality": [
+      "Calm",
+      "Confident"
+    ],
+    "occasions": [
+      "Office",
+      "Daily"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Bvlgari Man in Black",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Carolina Herrera Good Girl Dazzling Garden",
+    "family": "Sweet / Gourmand",
+    "personality": [
+      "Playful",
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Party"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Carolina Herrera Good Girl Collector Edition",
+    "family": "Sweet / Gourmand",
+    "personality": [
+      "Playful",
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Party"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Carolina Herrera Good Girl Blush Elixir",
+    "family": "Spicy / Oriental",
+    "personality": [
+      "Bold",
+      "Confident"
+    ],
+    "occasions": [
+      "Party",
+      "Luxury"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Carolina Herrera Good Girl",
+    "family": "Sweet / Gourmand",
+    "personality": [
+      "Playful",
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Party"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Carolina Herrera 212 VIP Black",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Carolina Herrera 212 Men NYC",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Yves Saint Laurent La Nuit de L'Homme L'Intense",
+    "family": "Spicy / Oriental",
+    "personality": [
+      "Bold",
+      "Confident"
+    ],
+    "occasions": [
+      "Party",
+      "Luxury"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Yves Saint Laurent La Nuit de L'Homme",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Yves Saint Laurent MYSLF",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Yves Saint Laurent MYSLF Le Parfum",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Yves Saint Laurent Libre L'Eau Nue",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Yves Saint Laurent Libre Le Parfum",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Yves Saint Laurent Libre Eau de Parfum Intense",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Yves Saint Laurent Libre",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Yves Saint Laurent Libre L'Absolu Platine",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Yves Saint Laurent Mon Paris",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Yves Saint Laurent Y",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Yves Saint Laurent Y Eau de Parfum",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Yves Saint Laurent Y Le Parfum",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Yves Saint Laurent Y L'Elixir",
+    "family": "Spicy / Oriental",
+    "personality": [
+      "Bold",
+      "Confident"
+    ],
+    "occasions": [
+      "Party",
+      "Luxury"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Yves Saint Laurent Black Opium Floral Shock",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Yves Saint Laurent Black Opium",
+    "family": "Sweet / Gourmand",
+    "personality": [
+      "Playful",
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Party"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Dior Miss Dior Absolutely Blooming",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Miss Dior Eau de Parfum",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Christian Dior Oud Ispahan",
+    "family": "Woody / Earthy",
+    "personality": [
+      "Calm",
+      "Confident"
+    ],
+    "occasions": [
+      "Office",
+      "Daily"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Dior Sauvage Eau Forte",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Dior Sauvage Elixir",
+    "family": "Spicy / Oriental",
+    "personality": [
+      "Bold",
+      "Confident"
+    ],
+    "occasions": [
+      "Party",
+      "Luxury"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Dior Homme Intense",
+    "family": "Spicy / Oriental",
+    "personality": [
+      "Bold",
+      "Confident"
+    ],
+    "occasions": [
+      "Party",
+      "Luxury"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Dior Sauvage",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Dior Sauvage Eau de Parfum",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Dior Sauvage Parfum",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Dior Poison Girl",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Dior Hypnotic Poison",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Dior J'adore",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Dior Fahrenheit",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Gucci Guilty Pour Femme",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Gucci Guilty Absolute Pour Femme",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Gucci Guilty Pour Homme",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Gucci Guilty Black",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Gucci Guilty",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Gucci The Voice of the Snake",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Gucci Flora Glamorous Magnolia",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Gucci Flora Emerald Gardenia",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Gucci Flora Gorgeous Gardenia",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Gucci Flora Gorgeous Gardenia",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Flora by Gucci Gorgeous Gardenia",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Gucci Flora Gorgeous Orchid",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Gucci Flora Gorgeous Magnolia",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Gucci Flora Gorgeous Jasmine",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Gucci Flora Gorgeous Gardenia",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Gucci Flora",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Gucci Bloom",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Gucci Bloom Intense",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Gucci Bloom Profumo di Fiori",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Gucci Bamboo",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Gucci Bamboo Limited Edition",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Chanel Allure Homme Sport Cologne",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Chanel Allure Homme Sport",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Chanel Allure Homme Édition Blanche",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Bleu de Chanel",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Bleu de Chanel Eau de Parfum",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Bleu de Chanel Parfum",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Bleu de Chanel Parfum",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Chanel Gabrielle Parfum",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Chanel No. 5",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Chanel Coco Mademoiselle Eau de Parfum Intense",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Chanel Coco Mademoiselle",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Chanel Chance Eau Tendre",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Chanel Coco Noir",
+    "family": "Woody / Earthy",
+    "personality": [
+      "Calm",
+      "Confident"
+    ],
+    "occasions": [
+      "Office",
+      "Daily"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Givenchy L'Interdit Eau de Parfum Rouge",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Givenchy L'Interdit Eau de Parfum Intense",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Givenchy Gentleman Society",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Givenchy Gentleman",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Gentleman Givenchy Eau de Parfum",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Gentleman Givenchy Réserve Privée",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Maison Margiela Replica Jazz Club",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Maison Margiela Replica Sailing Day",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Maison Margiela Replica By the Fireplace",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Maison Margiela Replica Lazy Sunday Morning",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Mr. Burberry",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "My Burberry Blush",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "My Burberry Black",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "My Burberry",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Burberry Hero Parfum",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Burberry Hero Eau de Parfum",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Burberry Hero",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Burberry Goddess",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Burberry Her Elixir de Parfum",
+    "family": "Spicy / Oriental",
+    "personality": [
+      "Bold",
+      "Confident"
+    ],
+    "occasions": [
+      "Party",
+      "Luxury"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Le Labo Rose 31",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Le Labo Santal 33",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Le Labo Another 13",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Le Labo Vetiver 46",
+    "family": "Woody / Earthy",
+    "personality": [
+      "Calm",
+      "Confident"
+    ],
+    "occasions": [
+      "Office",
+      "Daily"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Creed Aventus",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Creed Royal Mayfair",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Creed Aventus 10th Anniversary",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Creed Spring Flower",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Creed Viking",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Creed Virgin Island Water",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Creed Aventus Cologne",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Creed Queen of Silk",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Creed Silver Mountain Water",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Kilian Good Girl Gone Bad",
+    "family": "Sweet / Gourmand",
+    "personality": [
+      "Playful",
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Party"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Kilian Bamboo Harmony",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Kilian A Kiss from a Rose",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Kilian Black Phantom '''Memento Mori'''",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Kilian Straight to Heaven",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Roja Parfums Vetiver",
+    "family": "Woody / Earthy",
+    "personality": [
+      "Calm",
+      "Confident"
+    ],
+    "occasions": [
+      "Office",
+      "Daily"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Roja Parfums Danger",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Roja Parfums Scandal",
+    "family": "Sweet / Gourmand",
+    "personality": [
+      "Playful",
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Party"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Roja Parfums Enigma",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Roja Parfums Reckless",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Roja Parfums Elixir",
+    "family": "Spicy / Oriental",
+    "personality": [
+      "Bold",
+      "Confident"
+    ],
+    "occasions": [
+      "Party",
+      "Luxury"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Roja Parfums Elysium",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Roja Parfums Harrods",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Pepe Jeans Life is Now",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Pepe Jeans Celebrate",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Azzaro The Most Wanted",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Azzaro The Most Wanted Eau de Parfum Intense",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Azzaro Wanted by Night",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Azzaro Wanted",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Maison Francis Kurkdjian Oud Silk Mood",
+    "family": "Woody / Earthy",
+    "personality": [
+      "Calm",
+      "Confident"
+    ],
+    "occasions": [
+      "Office",
+      "Daily"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Maison Francis Kurkdjian Baccarat Rouge 540",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Maison Francis Kurkdjian Baccarat Rouge 540",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Guerlain Rose Chérie",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Guerlain Santal Pao Rosa",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Guerlain Néroli Outrenoir",
+    "family": "Woody / Earthy",
+    "personality": [
+      "Calm",
+      "Confident"
+    ],
+    "occasions": [
+      "Office",
+      "Daily"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Viktor & Rolf Spicebomb Infrared",
+    "family": "Spicy / Oriental",
+    "personality": [
+      "Bold",
+      "Confident"
+    ],
+    "occasions": [
+      "Party",
+      "Luxury"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Viktor & Rolf Spicebomb Night Vision",
+    "family": "Spicy / Oriental",
+    "personality": [
+      "Bold",
+      "Confident"
+    ],
+    "occasions": [
+      "Party",
+      "Luxury"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Viktor & Rolf Spicebomb",
+    "family": "Spicy / Oriental",
+    "personality": [
+      "Bold",
+      "Confident"
+    ],
+    "occasions": [
+      "Party",
+      "Luxury"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Marc Jacobs Decadence",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Marc Jacobs Decadence",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Marc Jacobs Daisy Eau So Fresh Pop",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Marc Jacobs Daisy Dream",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Prada Paradoxe",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Prada Paradoxe Intense",
+    "family": "Spicy / Oriental",
+    "personality": [
+      "Bold",
+      "Confident"
+    ],
+    "occasions": [
+      "Party",
+      "Luxury"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Prada Paradoxe Virtual Flower",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Narciso Rodriguez for Her",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Narciso Rodriguez for Her Forever",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Narciso Rodriguez for Her",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Parfums de Marly Oriana",
+    "family": "Sweet / Gourmand",
+    "personality": [
+      "Playful",
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Party"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Parfums de Marly Palatine",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Parfums de Marly Kalan",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Parfums de Marly Pegasus",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Parfums de Marly Layton",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Parfums de Marly Althaïr",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Parfums de Marly Perseus",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Mancera Purple Flowers",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Mancera Velvet Vanilla",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Mancera Roses Vanille",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Mancera Red Tobacco",
+    "family": "Spicy / Oriental",
+    "personality": [
+      "Bold",
+      "Confident"
+    ],
+    "occasions": [
+      "Party",
+      "Luxury"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Louis Vuitton L'Immensité",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Louis Vuitton On The Beach",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Louis Vuitton Nuit de Feu",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Louis Vuitton Apogée",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Louis Vuitton Spell on You",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Louis Vuitton Turbulences",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Louis Vuitton Mille Feux",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Louis Vuitton Les Sables Roses",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Louis Vuitton Attrape-Rêves",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Louis Vuitton Ombre Nomade",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Louis Vuitton Pur Oud",
+    "family": "Woody / Earthy",
+    "personality": [
+      "Calm",
+      "Confident"
+    ],
+    "occasions": [
+      "Office",
+      "Daily"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Louis Vuitton City of Stars",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Louis Vuitton California Dream",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Louis Vuitton Matière Noire",
+    "family": "Woody / Earthy",
+    "personality": [
+      "Calm",
+      "Confident"
+    ],
+    "occasions": [
+      "Office",
+      "Daily"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Louis Vuitton Pacific Chill",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Louis Vuitton Rose des Vents",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Louis Vuitton Le Jour Se Lève",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Hawas for Him",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Hawas for Him Ice",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Hawas for Her",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Calvin Klein CK One",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Calvin Klein CK Be",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Armaf Club de Nuit Intense Man",
+    "family": "Spicy / Oriental",
+    "personality": [
+      "Bold",
+      "Confident"
+    ],
+    "occasions": [
+      "Party",
+      "Luxury"
+    ],
+    "intensity": "Strong"
+  },
+  {
+    "name": "Armaf Club de Nuit Woman",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Armaf Club de Nuit Milestone",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Davidoff Cool Water",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Zarkoperfume The Muse",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Atkinsons 44 Gerrard Street",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Byredo Mojave Ghost",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Byredo Rose of No Man's Land",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Amouage Honour",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Issey Miyake L'Eau d'Issey Pour Homme",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Ralph Lauren Polo Blue",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Moschino Toy 2",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Moschino Toy Boy",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Moschino Toy 2 Pearl",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Lancôme La Vie Est Belle L'Éclat",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Lancôme La Vie Est Belle L'Elixir",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Lancôme Trésor Midnight Rose",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Afnan 9pm",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Afnan 9am Dive",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Hermès Terre d'Hermès",
+    "family": "Woody / Earthy",
+    "personality": [
+      "Calm",
+      "Confident"
+    ],
+    "occasions": [
+      "Office",
+      "Daily"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Tiffany & Co.",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Tiffany & Co. Rose Gold Intense",
+    "family": "Floral / Romantic",
+    "personality": [
+      "Romantic"
+    ],
+    "occasions": [
+      "Date",
+      "Daily"
+    ],
+    "intensity": "Light"
+  },
+  {
+    "name": "Tiffany & Co. & Love for Him",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Diptyque Tam Dao",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Diptyque Tam Dao Eau de Parfum",
+    "family": "Fresh / Citrus / Aquatic",
+    "personality": [
+      "Outgoing",
+      "Confident"
+    ],
+    "occasions": [
+      "Daily",
+      "Party"
+    ],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Diptyque Oyédo",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Diptyque Do Son",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Diptyque Tempo",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Diptyque Vetyverio",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Diptyque Ilio",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  },
+  {
+    "name": "Diptyque Eau Duelle",
+    "family": "Woody / Earthy",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced"
+  }
+]
