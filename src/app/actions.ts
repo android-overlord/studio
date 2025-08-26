@@ -32,7 +32,6 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
         throw new Error('Server is not configured to send emails. Please check your environment configuration.');
     }
 
-    // Correctly instantiate the API and set the key
     const api = new brevo.TransactionalEmailsApi();
     api.setApiKey(brevo.TransactionalEmailsApiApiKeys.apiKey, BREVO_API_KEY);
 
@@ -83,12 +82,17 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
     sendSmtpEmail.textContent = emailText;
 
     try {
-        console.log('Attempting to send email via Brevo...');
-        await api.sendTransacEmail(sendSmtpEmail);
-        console.log('Order email sent successfully via Brevo.');
+        console.log("Sending email with payload:", sendSmtpEmail);
+        const response = await api.sendTransacEmail(sendSmtpEmail);
+        console.log("Brevo response:", response);
         return { success: true, message: 'Order email sent.' };
-    } catch (error) {
-        console.error('Error sending order email via Brevo:', error);
-        throw new Error('Failed to send order notification email. Please check server logs for details.');
+    } catch (error: any) {
+        console.error('Failed to send email via Brevo.');
+        if (error.response) {
+            console.error("Brevo API error response:", error.response.body);
+        } else {
+            console.error("Unknown error:", error);
+        }
+        throw new Error("Failed to send order notification email. Please check server logs for details.");
     }
 }
