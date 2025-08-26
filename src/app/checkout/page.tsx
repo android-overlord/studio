@@ -2,11 +2,10 @@
 'use client';
 
 import { Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import perfumeImages from '@/images.json';
-import Script from 'next/script';
 
 type Perfume = {
     name: string;
@@ -30,6 +29,7 @@ const getPerfumeImage = (perfumeName: string) => {
 
 const CheckoutContent = () => {
     const searchParams = useSearchParams();
+    const router = useRouter();
     const [recommendedPerfumes, setRecommendedPerfumes] = useState<Perfume[]>([]);
     const [selectedPerfumes, setSelectedPerfumes] = useState<Record<string, boolean>>({});
     const [totalPrice, setTotalPrice] = useState(0);
@@ -75,7 +75,7 @@ const CheckoutContent = () => {
         setCustomerDetails(prev => ({ ...prev, [name]: value }));
     };
 
-    const makePayment = async (e: React.FormEvent) => {
+    const proceedToPayment = async (e: React.FormEvent) => {
         e.preventDefault();
 
         // Basic validation
@@ -92,63 +92,17 @@ const CheckoutContent = () => {
             return;
         }
 
-        try {
-            const res = await fetch('/api/create-order', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ amount: totalPrice }),
-            });
+        // Store details and items in sessionStorage to pass to the next page
+        sessionStorage.setItem('customerDetails', JSON.stringify(customerDetails));
+        sessionStorage.setItem('selectedItems', JSON.stringify(selectedItems));
+        sessionStorage.setItem('totalPrice', JSON.stringify(totalPrice));
 
-            if (!res.ok) {
-                throw new Error("Failed to create order");
-            }
-
-            const { order } = await res.json();
-            
-            const options = {
-                key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
-                amount: order.amount,
-                currency: order.currency,
-                name: "Creski Shop",
-                description: "Perfume Purchase",
-                order_id: order.id,
-                handler: function (response: any) {
-                    // Handle successful payment
-                    alert(`Payment successful! Payment ID: ${response.razorpay_payment_id}`);
-                    // Here you would typically save the order to your database
-                },
-                prefill: {
-                    name: customerDetails.name,
-                    email: customerDetails.email,
-                    contact: customerDetails.phone,
-                },
-                notes: {
-                    address: `${customerDetails.address}, ${customerDetails.city}, ${customerDetails.state} - ${customerDetails.zip}`,
-                    selected_perfumes: JSON.stringify(selectedItems.map(p => p.name)),
-                },
-                theme: {
-                    "color": "#e83e8c" // A nice pink shade
-                }
-            };
-            
-            const rzp = new (window as any).Razorpay(options);
-            rzp.open();
-
-        } catch (error) {
-            console.error("Payment Error:", error);
-            alert("There was an error processing your payment. Please try again.");
-        }
+        router.push('/payment');
     };
 
 
     return (
         <div className="container mx-auto p-4 md:p-8">
-            <Script
-                id="razorpay-checkout-js"
-                src="https://checkout.razorpay.com/v1/checkout.js"
-            />
             <h1 className="text-3xl md:text-4xl font-bold text-center mb-8 text-pink-400">Checkout</h1>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -197,7 +151,7 @@ const CheckoutContent = () => {
                 {/* Right Side: Customer Details Form */}
                 <div className="bg-neutral-800 p-6 rounded-lg shadow-xl">
                     <h2 className="text-2xl font-bold mb-6 border-b border-neutral-700 pb-3">3. Shipping Details</h2>
-                    <form onSubmit={makePayment} className="space-y-4">
+                    <form onSubmit={proceedToPayment} className="space-y-4">
                         <input type="text" name="name" placeholder="Full Name" value={customerDetails.name} onChange={handleInputChange} required className="w-full p-3 bg-neutral-700 rounded-md border border-neutral-600 focus:ring-pink-500 focus:border-pink-500" />
                         <input type="email" name="email" placeholder="Email Address" value={customerDetails.email} onChange={handleInputChange} required className="w-full p-3 bg-neutral-700 rounded-md border border-neutral-600 focus:ring-pink-500 focus:border-pink-500" />
                         <input type="tel" name="phone" placeholder="Phone Number" value={customerDetails.phone} onChange={handleInputChange} required className="w-full p-3 bg-neutral-700 rounded-md border border-neutral-600 focus:ring-pink-500 focus:border-pink-500" />
