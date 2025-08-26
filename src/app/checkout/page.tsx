@@ -6,6 +6,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import perfumeImages from '@/images.json';
+import { sendOrderEmail } from '@/app/actions';
 
 type Perfume = {
     name: string;
@@ -33,6 +34,7 @@ const CheckoutContent = () => {
     const [recommendedPerfumes, setRecommendedPerfumes] = useState<Perfume[]>([]);
     const [selectedPerfumes, setSelectedPerfumes] = useState<Record<string, boolean>>({});
     const [totalPrice, setTotalPrice] = useState(0);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [customerDetails, setCustomerDetails] = useState({
         name: '',
         email: '',
@@ -77,11 +79,13 @@ const CheckoutContent = () => {
 
     const proceedToPayment = async (e: React.FormEvent) => {
         e.preventDefault();
+        setIsSubmitting(true);
 
         // Basic validation
         for (const key in customerDetails) {
             if (customerDetails[key as keyof typeof customerDetails].trim() === '') {
                 alert(`Please fill in your ${key}`);
+                setIsSubmitting(false);
                 return;
             }
         }
@@ -89,15 +93,26 @@ const CheckoutContent = () => {
         const selectedItems = recommendedPerfumes.filter(p => selectedPerfumes[p.name]);
         if (selectedItems.length === 0) {
             alert("Please select at least one perfume to order.");
+            setIsSubmitting(false);
             return;
         }
 
-        // Store details and items in sessionStorage to pass to the next page
-        sessionStorage.setItem('customerDetails', JSON.stringify(customerDetails));
-        sessionStorage.setItem('selectedItems', JSON.stringify(selectedItems));
-        sessionStorage.setItem('totalPrice', JSON.stringify(totalPrice));
+        try {
+            await sendOrderEmail({ customerDetails, selectedItems, totalPrice });
+            
+            // Store details and items in sessionStorage to pass to the next page
+            sessionStorage.setItem('customerDetails', JSON.stringify(customerDetails));
+            sessionStorage.setItem('selectedItems', JSON.stringify(selectedItems));
+            sessionStorage.setItem('totalPrice', JSON.stringify(totalPrice));
 
-        router.push('/payment');
+            router.push('/payment');
+
+        } catch (error) {
+            console.error('Failed to send order email:', error);
+            alert('There was an error submitting your order. Please try again.');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
 
@@ -164,10 +179,10 @@ const CheckoutContent = () => {
                         
                         <button 
                             type="submit" 
-                            disabled={totalPrice === 0}
+                            disabled={totalPrice === 0 || isSubmitting}
                             className="w-full py-3 px-6 mt-4 bg-blue-600 text-white font-semibold rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 disabled:bg-neutral-600 disabled:cursor-not-allowed"
                         >
-                            Proceed to Payment (${totalPrice.toFixed(2)})
+                            {isSubmitting ? 'Submitting...' : `Proceed to Payment ($${totalPrice.toFixed(2)})`}
                         </button>
                     </form>
                 </div>

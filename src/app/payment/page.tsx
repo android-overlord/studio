@@ -26,8 +26,8 @@ const PaymentPage = () => {
 
     if (price > 0) {
       // IMPORTANT: Replace with your actual UPI ID and name
-      const upiId = 'your-upi-id@your-bank';
-      const upiName = 'Your Name or Company';
+      const upiId = '9692982344@fam';
+      const upiName = 'Creski';
       const transactionNote = 'Creski Perfume Order';
       
       // Format the UPI string
