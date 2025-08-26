@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import data from './perfume_database_expert_balanced.json';
 import Image from 'next/image';
 import perfumeImages from '@/images.json';
@@ -35,6 +35,7 @@ const getPerfumeImage = (perfumeName: string) => {
     return `/images/${imageName}`;
   }
 
+  // Fallback if no image is found in the JSON
   const seed = perfumeName.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
   return `https://picsum.photos/seed/${seed}/100/100`;
 };
@@ -78,33 +79,23 @@ const PerfumeQuizPage = () => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
+      // Final question answered, calculate recommendations
       const matchedCategory = mapAnswersToCategory(newAnswers);
       const filteredPerfumes = data.filter(perfume => perfume.family === matchedCategory || perfume.personality.includes(matchedCategory) || perfume.occasions.includes(matchedCategory));
 
       if (filteredPerfumes.length > 0) {
         const uniquePerfumes = Array.from(new Map(filteredPerfumes.map(p => [p.name, p])).values());
         
-        let primaryIndex = -1;
-        let primary: Perfume | null = null;
+        const primaryIndex = Math.floor(Math.random() * uniquePerfumes.length);
+        const primary = uniquePerfumes[primaryIndex];
         
-        // Use a client-side only random number
-        useEffect(() => {
-            if (uniquePerfumes.length > 0) {
-                primaryIndex = Math.floor(Math.random() * uniquePerfumes.length);
-                primary = uniquePerfumes[primaryIndex];
-            }
-        }, [uniquePerfumes]);
-
-
         const alternatives: Perfume[] = [];
-        if (primary) {
-            const alternativeIndices: Set<number> = new Set([primaryIndex]);
-            while (alternatives.length < Math.min(uniquePerfumes.length - 1, 3)) {
-                const randomIndex = Math.floor(Math.random() * uniquePerfumes.length);
-                if (!alternativeIndices.has(randomIndex)) {
-                    alternatives.push(uniquePerfumes[randomIndex]);
-                    alternativeIndices.add(randomIndex);
-                }
+        const alternativeIndices: Set<number> = new Set([primaryIndex]);
+        while (alternatives.length < Math.min(uniquePerfumes.length - 1, 3)) {
+            const randomIndex = Math.floor(Math.random() * uniquePerfumes.length);
+            if (!alternativeIndices.has(randomIndex)) {
+                alternatives.push(uniquePerfumes[randomIndex]);
+                alternativeIndices.add(randomIndex);
             }
         }
         
