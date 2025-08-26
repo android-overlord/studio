@@ -199,7 +199,7 @@ const PerfumeQuizPage = () => {
                   setAnswers({ personality: null, occasion: null, climate: null, intensity: null });
                   setRecommendation(null);
                 }}
-                className="px-8 py-3 bg-pink-500 text-white font-semibold rounded-full shadow-lg hover:bg-pink-600 transition-colors duration-300"
+                className="px-8 py-3 border border-pink-500 text-pink-500 font-semibold rounded-full shadow-lg hover:bg-pink-500 hover:text-white transition-colors duration-300"
               >
                 Take the Quiz Again
               </button>
@@ -207,7 +207,7 @@ const PerfumeQuizPage = () => {
                 href="https://www.instagram.com/creski.shop"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-3 bg-purple-600 text-white font-semibold rounded-full shadow-lg hover:bg-purple-700 transition-colors duration-300 inline-flex items-center"
+                className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 inline-flex items-center"
               >
                 Order Now
               </a>
