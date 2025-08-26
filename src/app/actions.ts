@@ -32,13 +32,15 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
         throw new Error('Server is not configured to send emails. Please check your environment configuration.');
     }
 
-    // Configure the Brevo API client
-    const apiClient = new brevo.ApiClient();
-    apiClient.authentications['api-key'].apiKey = BREVO_API_KEY;
+    // Configure the Brevo API client using the default instance
+    const apiClient = brevo.ApiClient.instance;
+    const apiKey = apiClient.authentications['api-key'];
+    apiKey.apiKey = BREVO_API_KEY;
     
-    const api = new brevo.TransactionalEmailsApi(apiClient);
+    const api = new brevo.TransactionalEmailsApi();
 
     const itemsListHtml = selectedItems.map(item => `<li>${item.name}</li>`).join('');
+    const itemsListText = selectedItems.map(item => `- ${item.name}`).join('\n');
 
     const emailHtml = `
         <h1>New CRESKI Order!</h1>
@@ -58,11 +60,30 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
         <p>Please verify the payment and process the order.</p>
     `;
 
+    const emailText = `
+        New CRESKI Order!
+        A new order has been placed.
+
+        Customer Details:
+        - Name: ${customerDetails.name}
+        - Email: ${customerDetails.email}
+        - Phone: ${customerDetails.phone}
+        - Address: ${customerDetails.address}, ${customerDetails.city}, ${customerDetails.state} ${customerDetails.zip}
+
+        Order Items:
+        ${itemsListText}
+
+        Total Price: $${totalPrice.toFixed(2)}
+
+        Please verify the payment and process the order.
+    `;
+
     const sendSmtpEmail = new brevo.SendSmtpEmail();
     sendSmtpEmail.sender = { name: 'CRESKI Orders', email: '7b43cf001@smtp-brevo.com' };
     sendSmtpEmail.to = [{ email: 'sahoo.adarsh@gmail.com', name: 'Adarsh Sahoo' }];
     sendSmtpEmail.subject = `New Order from ${customerDetails.name}`;
     sendSmtpEmail.htmlContent = emailHtml;
+    sendSmtpEmail.textContent = emailText;
 
     try {
         console.log('Attempting to send email via Brevo...');
