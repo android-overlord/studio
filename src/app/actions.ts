@@ -1,7 +1,7 @@
 
 'use server';
 
-import nodemailer from 'nodemailer';
+import * as brevo from '@getbrevo/brevo';
 
 type Perfume = {
     name: string;
@@ -24,35 +24,16 @@ interface SendOrderEmailParams {
 }
 
 export async function sendOrderEmail({ customerDetails, selectedItems, totalPrice }: SendOrderEmailParams) {
-    const { 
-        EMAIL_HOST, 
-        EMAIL_PORT, 
-        EMAIL_USER, 
-        EMAIL_PASS, 
-        EMAIL_TO 
-    } = process.env;
+    const { BREVO_API_KEY } = process.env;
 
-    if (!EMAIL_HOST || !EMAIL_PORT || !EMAIL_USER || !EMAIL_PASS || !EMAIL_TO) {
-        const errorMessage = 'Missing one or more email environment variables. Please ensure EMAIL_HOST, EMAIL_PORT, EMAIL_USER, EMAIL_PASS, and EMAIL_TO are set in your .env.local file.';
+    if (!BREVO_API_KEY) {
+        const errorMessage = 'Missing Brevo API Key. Please ensure BREVO_API_KEY is set in your .env.local file.';
         console.error(errorMessage);
         throw new Error('Server is not configured to send emails. Please check your environment configuration.');
     }
 
-    const port = parseInt(EMAIL_PORT, 10);
-    const transporter = nodemailer.createTransport({
-        host: EMAIL_HOST,
-        port: port,
-        secure: port === 465, // true for 465, false for other ports
-        auth: {
-            user: EMAIL_USER,
-            pass: EMAIL_PASS,
-        },
-        tls: {
-            // This is often needed for local development with services like ProtonMail Bridge
-            // that may use self-signed certificates.
-            rejectUnauthorized: false
-        }
-    });
+    const api = new brevo.TransactionalEmailsApi();
+    api.auth.apiKey = BREVO_API_KEY;
 
     const itemsListHtml = selectedItems.map(item => `<li>${item.name}</li>`).join('');
 
@@ -74,22 +55,19 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
         <p>Please verify the payment and process the order.</p>
     `;
 
-    const mailOptions = {
-        from: `"CRESKI Orders" <${EMAIL_USER}>`,
-        to: EMAIL_TO,
-        subject: `New Order from ${customerDetails.name}`,
-        html: emailHtml,
-    };
+    const sendSmtpEmail = new brevo.SendSmtpEmail();
+    sendSmtpEmail.sender = { name: 'CRESKI Orders', email: '7b43cf001@smtp-brevo.com' };
+    sendSmtpEmail.to = [{ email: 'sahoo.adarsh@gmail.com', name: 'Adarsh Sahoo' }];
+    sendSmtpEmail.subject = `New Order from ${customerDetails.name}`;
+    sendSmtpEmail.htmlContent = emailHtml;
 
     try {
-        console.log('Attempting to send email...');
-        const info = await transporter.sendMail(mailOptions);
-        console.log('Order email sent successfully. Message ID:', info.messageId);
+        console.log('Attempting to send email via Brevo...');
+        await api.sendTransacEmail(sendSmtpEmail);
+        console.log('Order email sent successfully via Brevo.');
         return { success: true, message: 'Order email sent.' };
     } catch (error) {
-        // Log the detailed error from nodemailer to the server console
-        console.error('Error sending order email:', error);
-        // Throw a user-friendly error to the client
+        console.error('Error sending order email via Brevo:', error);
         throw new Error('Failed to send order notification email. Please check server logs for details.');
     }
 }
