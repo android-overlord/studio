@@ -27,15 +27,17 @@ type Recommendation = {
 };
 
 const getPerfumeImage = (perfumeName: string) => {
-    // A safe lookup in the imported JSON, with a fallback to a generic placeholder.
-    const images = perfumeImages as Record<string, string>;
-    if (images[perfumeName]) {
-        return images[perfumeName];
-    }
-    // Fallback if a perfume is not in the JSON file.
-    const seed = perfumeName.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-    return `https://picsum.photos/seed/${seed}/100/100`;
-}
+  const images = perfumeImages as Record<string, string>;
+  const imageName = Object.keys(images).find(key => images[key] === perfumeName);
+
+  if (imageName) {
+    return `/images/${imageName}`;
+  }
+
+  // Fallback if a perfume is not in the JSON file.
+  const seed = perfumeName.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  return `https://picsum.photos/seed/${seed}/100/100`;
+};
 
 
 const PerfumeQuizPage = () => {
