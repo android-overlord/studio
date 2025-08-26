@@ -45,6 +45,9 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
             user: EMAIL_USER,
             pass: EMAIL_PASS,
         },
+        tls: {
+            rejectUnauthorized: false
+        }
     });
 
     const itemsListHtml = selectedItems.map(item => `<li>${item.name}</li>`).join('');
