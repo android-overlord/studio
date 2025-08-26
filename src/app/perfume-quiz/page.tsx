@@ -1,10 +1,11 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import data from './perfume_database_expert_balanced.json';
 import Image from 'next/image';
 import perfumeImages from '@/images.json';
+import { useRouter } from 'next/navigation';
 
 type Perfume = {
   name: string;
@@ -34,7 +35,6 @@ const getPerfumeImage = (perfumeName: string) => {
     return `/images/${imageName}`;
   }
 
-  // Fallback if a perfume is not in the JSON file.
   const seed = perfumeName.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
   return `https://picsum.photos/seed/${seed}/100/100`;
 };
@@ -53,6 +53,23 @@ const PerfumeQuizPage = () => {
   const questions: (keyof QuizAnswers)[] = ['personality', 'occasion', 'climate', 'intensity'];
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const currentQuestion = questions[currentQuestionIndex];
+  const router = useRouter();
+
+
+  const handleOrderNow = () => {
+    if (recommendation) {
+      const perfumesToOrder = [
+        recommendation.primary,
+        ...recommendation.alternatives,
+      ].filter(p => p !== null);
+
+      const params = new URLSearchParams();
+      params.set('perfumes', JSON.stringify(perfumesToOrder));
+      
+      router.push(`/checkout?${params.toString()}`);
+    }
+  };
+
 
   const handleAnswerSelect = (question: keyof QuizAnswers, answer: string) => {
     const newAnswers = { ...answers, [question]: answer };
@@ -67,19 +84,30 @@ const PerfumeQuizPage = () => {
       if (filteredPerfumes.length > 0) {
         const uniquePerfumes = Array.from(new Map(filteredPerfumes.map(p => [p.name, p])).values());
         
-        const primaryIndex = Math.floor(Math.random() * uniquePerfumes.length);
-        const primary = uniquePerfumes[primaryIndex];
+        let primaryIndex = -1;
+        let primary: Perfume | null = null;
+        
+        // Use a client-side only random number
+        useEffect(() => {
+            if (uniquePerfumes.length > 0) {
+                primaryIndex = Math.floor(Math.random() * uniquePerfumes.length);
+                primary = uniquePerfumes[primaryIndex];
+            }
+        }, [uniquePerfumes]);
+
 
         const alternatives: Perfume[] = [];
-        const alternativeIndices: Set<number> = new Set([primaryIndex]);
-
-        while (alternatives.length < Math.min(uniquePerfumes.length - 1, 3)) {
-          const randomIndex = Math.floor(Math.random() * uniquePerfumes.length);
-          if (!alternativeIndices.has(randomIndex)) {
-            alternatives.push(uniquePerfumes[randomIndex]);
-            alternativeIndices.add(randomIndex);
-          }
+        if (primary) {
+            const alternativeIndices: Set<number> = new Set([primaryIndex]);
+            while (alternatives.length < Math.min(uniquePerfumes.length - 1, 3)) {
+                const randomIndex = Math.floor(Math.random() * uniquePerfumes.length);
+                if (!alternativeIndices.has(randomIndex)) {
+                    alternatives.push(uniquePerfumes[randomIndex]);
+                    alternativeIndices.add(randomIndex);
+                }
+            }
         }
+        
         setRecommendation({ primary, alternatives });
       } else {
         setRecommendation({ primary: null, alternatives: [] });
@@ -203,14 +231,12 @@ const PerfumeQuizPage = () => {
               >
                 Take the Quiz Again
               </button>
-              <a
-                href="https://www.instagram.com/creski.shop"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={handleOrderNow}
                 className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 inline-flex items-center"
               >
                 Order Now
-              </a>
+              </button>
           </div>
         </div>
       )}
