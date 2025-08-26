@@ -27,13 +27,17 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
     const { BREVO_API_KEY } = process.env;
 
     if (!BREVO_API_KEY) {
-        const errorMessage = 'Missing Brevo API Key. Please ensure BREVO_API_KEY is set in your .env.local file.';
+        const errorMessage = 'Missing Brevo API Key. Please ensure BREVO_API_KEY is set in your environment.';
         console.error(errorMessage);
         throw new Error('Server is not configured to send emails. Please check your environment configuration.');
     }
 
+    // Configure the Brevo API client
+    const apiClient = brevo.ApiClient.instance;
+    const apiKey = apiClient.authentications['api-key'];
+    apiKey.apiKey = BREVO_API_KEY;
+
     const api = new brevo.TransactionalEmailsApi();
-    api.auth.apiKey = BREVO_API_KEY;
 
     const itemsListHtml = selectedItems.map(item => `<li>${item.name}</li>`).join('');
 
