@@ -33,8 +33,8 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
     } = process.env;
 
     if (!EMAIL_HOST || !EMAIL_PORT || !EMAIL_USER || !EMAIL_PASS || !EMAIL_TO) {
-        console.error('Missing email environment variables');
-        throw new Error('Server is not configured to send emails.');
+        console.error('Missing one or more email environment variables. Please ensure EMAIL_HOST, EMAIL_PORT, EMAIL_USER, EMAIL_PASS, and EMAIL_TO are set in your .env.local file.');
+        throw new Error('Server is not configured to send emails. Please check your environment configuration.');
     }
 
     const transporter = nodemailer.createTransport({
