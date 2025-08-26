@@ -32,12 +32,9 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
         throw new Error('Server is not configured to send emails. Please check your environment configuration.');
     }
 
-    // Configure the Brevo API client using the default instance
-    const apiClient = brevo.ApiClient.instance;
-    const apiKey = apiClient.authentications['api-key'];
-    apiKey.apiKey = BREVO_API_KEY;
-    
+    // Correctly instantiate the API and set the key
     const api = new brevo.TransactionalEmailsApi();
+    api.setApiKey(brevo.TransactionalEmailsApiApiKeys.apiKey, BREVO_API_KEY);
 
     const itemsListHtml = selectedItems.map(item => `<li>${item.name}</li>`).join('');
     const itemsListText = selectedItems.map(item => `- ${item.name}`).join('\n');
