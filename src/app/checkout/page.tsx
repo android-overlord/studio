@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import perfumeImages from '@/images.json';
+import { createRazorpayOrder, verifyRazorpayPayment } from '@/app/actions';
 
 type Perfume = {
   name: string;
@@ -68,39 +69,86 @@ const CheckoutPage = () => {
     setCustomerDetails(prev => ({ ...prev, [name]: value }));
   };
 
+  const loadRazorpayScript = () => {
+    return new Promise(resolve => {
+        const script = document.createElement('script');
+        script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+        script.onload = () => resolve(true);
+        script.onerror = () => resolve(false);
+        document.body.appendChild(script);
+    });
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(null);
+    setIsLoading(true);
 
     const isFormValid = Object.values(customerDetails).every(val => val.trim() !== '');
     if (!isFormValid || selectedItems.length === 0) {
       setError('Please fill out all fields and select at least one item.');
+      setIsLoading(false);
       return;
     }
 
-    setIsLoading(true);
-
-    try {
-      sessionStorage.setItem('customerDetails', JSON.stringify(customerDetails));
-      sessionStorage.setItem('selectedItems', JSON.stringify(selectedItems));
-      sessionStorage.setItem('totalPrice', JSON.stringify(totalPrice));
-
-      // Directly redirect to payment page without sending email
-      router.push('/payment');
-
-    } catch (err: any) {
-      console.error('Order submission error:', err);
-      setError(err.message || 'Failed to process the order. Please try again.');
-    } finally {
-      setIsLoading(false);
+    const scriptLoaded = await loadRazorpayScript();
+    if (!scriptLoaded) {
+        setError("Could not load payment gateway. Please check your connection.");
+        setIsLoading(false);
+        return;
     }
+
+    const orderData = await createRazorpayOrder(totalPrice);
+    if (orderData.error || !orderData.id) {
+        setError(orderData.error || "Failed to create payment order.");
+        setIsLoading(false);
+        return;
+    }
+
+    const options = {
+      key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID, // Use public key if you set one
+      amount: orderData.amount,
+      currency: orderData.currency,
+      name: 'CRESKI',
+      description: 'Perfume Order',
+      order_id: orderData.id,
+      handler: async function (response: any) {
+        const verificationResult = await verifyRazorpayPayment(response);
+        if (verificationResult.success) {
+            sessionStorage.setItem('paymentId', verificationResult.paymentId!);
+            router.push('/thank-you'); // Redirect to a new thank you page
+        } else {
+            setError(verificationResult.error || 'Payment verification failed.');
+            setIsLoading(false);
+        }
+      },
+      prefill: {
+        name: customerDetails.name,
+        email: customerDetails.email,
+        contact: customerDetails.phone,
+      },
+      notes: {
+        address: `${customerDetails.address}, ${customerDetails.city}, ${customerDetails.state} - ${customerDetails.zip}`
+      },
+      theme: {
+        color: '#F472B6'
+      }
+    };
+    
+    // @ts-ignore
+    const rzp = new window.Razorpay(options);
+    rzp.on('payment.failed', function (response: any) {
+        setError(`Payment failed. Code: ${response.error.code}, Description: ${response.error.description}`);
+        setIsLoading(false);
+    });
+    rzp.open();
   };
 
-  if (error) {
+  if (error && !isLoading) {
     return (
         <div className="container mx-auto p-4 flex flex-col items-center justify-center text-center">
-            <p className="text-red-400">{error}</p>
-            <button onClick={() => router.push('/perfume-quiz')} className="mt-4 px-6 py-2 bg-blue-600 rounded-full">Try Quiz Again</button>
+            <p className="text-red-400 mb-4">{error}</p>
+            <button onClick={() => setError(null)} className="px-6 py-2 bg-blue-600 rounded-full">Try Again</button>
         </div>
     );
   }
