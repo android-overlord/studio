@@ -16,7 +16,7 @@ export async function createRazorpayOrder(
     console.error('CRITICAL: Razorpay key ID or secret is missing from environment variables.');
     return { error: 'Payment gateway is not configured correctly on the server.' };
   }
-
+  
   const razorpay = new Razorpay({
       key_id: keyId,
       key_secret: keySecret,
