@@ -81,11 +81,20 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
         <p><strong>- The CRESKI Team</strong></p>
     `;
 
+<<<<<<< HEAD
     const customerEmail = new brevo.SendSmtpEmail();
     customerEmail.subject = 'Your CRESKI Order has been received!';
     customerEmail.htmlContent = emailHtmlForCustomer;
     customerEmail.sender = { name: 'CRESKI', email: BREVO_SENDER_EMAIL! };
     customerEmail.to = [{ email: customerDetails.email }];
+=======
+    const sendSmtpEmail = new brevo.SendSmtpEmail();
+    sendSmtpEmail.sender = { name: 'CRESKI Orders', email: 'creski.help@gmail.com' };
+    sendSmtpEmail.to = [{ email: 'sahoo.adarsh@gmail.com', name: 'Adarsh Sahoo' }];
+    sendSmtpEmail.subject = `New Order from ${customerDetails.name}`;
+    sendSmtpEmail.htmlContent = emailHtml;
+    sendSmtpEmail.textContent = emailText;
+>>>>>>> a682c01 (i am sending fromc creski.help@gmail.com)
 
     try {
         console.log("Sending emails via Brevo...");
