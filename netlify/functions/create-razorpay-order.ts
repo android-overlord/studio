@@ -12,7 +12,7 @@ export const handler: Handler = async (event) => {
   try {
     const { amount, customerDetails, items } = JSON.parse(event.body);
     
-    const keyId = process.env.RAZORPAY_KEY!;
+    const keyId = process.env.RAZORPAY_KEY_ID!;
     const keySecret = process.env.RAZORPAY_KEY_SECRET!;
 
     if (!keyId || !keySecret) {
@@ -58,5 +58,3 @@ export const handler: Handler = async (event) => {
     };
   }
 };
-
-    
