@@ -10,6 +10,9 @@ export function Footer() {
           &copy; {currentYear} CRESKI. All rights reserved.
         </p>
         <nav className="flex space-x-4">
+          <Link href="/about-us" className="text-sm hover:text-white transition-colors">
+            About Us
+          </Link>
           <Link href="/terms-of-service" className="text-sm hover:text-white transition-colors">
             Terms of Service
           </Link>
