@@ -27,7 +27,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
     <div className="container mx-auto max-w-4xl px-4 py-8 md:py-12">
       <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
         <div className="flex items-center justify-center">
-            <div className="aspect-square w-full max-w-md bg-neutral-800 rounded-lg flex items-center justify-center">
+            <div className="aspect-square w-full max-w-md bg-neutral-800 rounded-lg flex items-center justify-center p-4 shadow-2xl">
                 <Image
                     src={imageUrl}
                     alt={perfume.name}
@@ -73,7 +73,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               href="https://www.instagram.com/creski.shop"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full inline-flex items-center justify-center py-3 px-6 font-semibold rounded-full shadow-lg transition-colors duration-300 bg-white/10 backdrop-blur-lg border border-white/20 hover:bg-white/20 text-white"
+              className="w-full inline-flex items-center justify-center py-3 px-6 font-semibold rounded-full shadow-lg transition-colors duration-300 bg-white/10 backdrop-blur-xl border border-white/20 hover:bg-white/20 text-white"
             >
               <ShoppingCart className="mr-2 h-5 w-5" />
               Order on Instagram
