@@ -1,8 +1,9 @@
 import { ImageGrid } from '@/components/image-grid';
 import perfumeData from './perfume-quiz/perfume_database_expert_balanced.json';
 import perfumeImages from '@/images.json';
+import { slugify } from '@/lib/utils';
 
-type Perfume = {
+export type Perfume = {
   name: string;
   family: string;
   personality: string[];
@@ -10,6 +11,7 @@ type Perfume = {
   intensity: string;
   price: number;
   image: string;
+  slug: string;
 };
 
 export default function Home() {
@@ -23,11 +25,12 @@ export default function Home() {
   const perfumesWithImages: Perfume[] = perfumeData.map(perfume => ({
     ...perfume,
     image: imageNameToPath[perfume.name] || `https://picsum.photos/seed/${perfume.name}/400/400`,
-  })).filter(p => p.image); // Filter out any perfumes that didn't have a matching image
+    slug: slugify(perfume.name),
+  })).filter(p => p.image);
 
   // Remove duplicates by name, keeping the first one.
   const uniquePerfumes = perfumesWithImages.reduce((acc, current) => {
-    if (!acc.find(item => item.name === current.name)) {
+    if (!acc.find(item => item.slug === current.slug)) {
       acc.push(current);
     }
     return acc;
