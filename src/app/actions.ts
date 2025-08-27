@@ -23,7 +23,6 @@ interface SendOrderEmailParams {
     totalPrice: number;
 }
 
-<<<<<<< HEAD
 interface EmailResult {
     success: boolean;
     message: string;
@@ -36,17 +35,12 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
     const missingEnvVars = Object.entries(requiredEnvVars)
         .filter(([_, value]) => !value)
         .map(([key]) => key);
-=======
-export async function sendOrderEmail({ customerDetails, selectedItems, totalPrice }: SendOrderEmailParams) {
-    const { BREVO_API_KEY } = process.env;
->>>>>>> parent of 94a34ef (ohk how do i start)
 
     if (missingEnvVars.length > 0) {
         const errorMessage = `Email service is not configured. Missing environment variables: ${missingEnvVars.join(', ')}.`;
         console.error(errorMessage);
         return { success: false, message: 'The email service is currently unavailable. Please contact support.' };
     }
-<<<<<<< HEAD
     
     const apiClient = new brevo.ApiClient();
     apiClient.authentications['api-key'].apiKey = BREVO_API_KEY!;
@@ -55,16 +49,6 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
     const itemsListHtml = selectedItems.map(item => `<li>${item.name}</li>`).join('');
 
     const emailHtmlForOwner = `
-=======
-
-    const api = new brevo.TransactionalEmailsApi();
-    api.setApiKey(brevo.TransactionalEmailsApiApiKeys.apiKey, BREVO_API_KEY);
-
-    const itemsListHtml = selectedItems.map(item => `<li>${item.name}</li>`).join('');
-    const itemsListText = selectedItems.map(item => `- ${item.name}`).join('\n');
-
-    const emailHtml = `
->>>>>>> parent of 94a34ef (ohk how do i start)
         <h1>New CRESKI Order!</h1>
         <p>A new order has been placed.</p>
         <h2>Customer Details:</h2>
@@ -82,7 +66,6 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
         <p>Please verify the payment and process the order.</p>
     `;
 
-<<<<<<< HEAD
     const ownerEmail = new brevo.SendSmtpEmail();
     ownerEmail.subject = `New Order from ${customerDetails.name}`;
     ownerEmail.htmlContent = emailHtmlForOwner;
@@ -120,45 +103,5 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
         console.error('Brevo API Error:', errorMessage);
         console.error('Full Error:', JSON.stringify(error, null, 2));
         return { success: false, message: `Failed to send order notification. Reason: ${errorMessage}` };
-=======
-    const emailText = `
-        New CRESKI Order!
-        A new order has been placed.
-
-        Customer Details:
-        - Name: ${customerDetails.name}
-        - Email: ${customerDetails.email}
-        - Phone: ${customerDetails.phone}
-        - Address: ${customerDetails.address}, ${customerDetails.city}, ${customerDetails.state} ${customerDetails.zip}
-
-        Order Items:
-        ${itemsListText}
-
-        Total Price: $${totalPrice.toFixed(2)}
-
-        Please verify the payment and process the order.
-    `;
-
-    const sendSmtpEmail = new brevo.SendSmtpEmail();
-    sendSmtpEmail.sender = { name: 'CRESKI Orders', email: 'creski.help@gmail.com' };
-    sendSmtpEmail.to = [{ email: 'sahoo.adarsh@gmail.com', name: 'Adarsh Sahoo' }];
-    sendSmtpEmail.subject = `New Order from ${customerDetails.name}`;
-    sendSmtpEmail.htmlContent = emailHtml;
-    sendSmtpEmail.textContent = emailText;
-
-    try {
-        console.log("Sending email with payload:", sendSmtpEmail);
-        const response = await api.sendTransacEmail(sendSmtpEmail);
-        console.log("Brevo response:", response);
-        return { success: true, message: 'Order email sent.' };
-    } catch (error: any) {
-        console.error('Failed to send email via Brevo.');
-        if (error.response) {
-            console.error("Brevo API error response:", error.response.body);
-        } else {
-            console.error("Unknown error:", error);
-        }
-        throw new Error("Failed to send order notification email. Please check server logs for details.");
->>>>>>> parent of 94a34ef (ohk how do i start)
     }
 }
