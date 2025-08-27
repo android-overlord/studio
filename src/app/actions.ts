@@ -75,7 +75,7 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
     `;
 
     const sendSmtpEmail = new brevo.SendSmtpEmail();
-    sendSmtpEmail.sender = { name: 'CRESKI Orders', email: '7b43cf001@smtp-brevo.com' };
+    sendSmtpEmail.sender = { name: 'CRESKI Orders', email: 'creski.help@gmail.com' };
     sendSmtpEmail.to = [{ email: 'sahoo.adarsh@gmail.com', name: 'Adarsh Sahoo' }];
     sendSmtpEmail.subject = `New Order from ${customerDetails.name}`;
     sendSmtpEmail.htmlContent = emailHtml;
