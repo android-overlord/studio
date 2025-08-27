@@ -34,39 +34,39 @@ const CheckoutPage = () => {
   const router = useRouter();
   const { cart, clearCart } = useCart();
   const { toast } = useToast();
-  const [itemsFromQuiz, setItemsFromQuiz] = useState<Perfume[]>([]);
   const [selectedItems, setSelectedItems] = useState<Perfume[]>([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [customerDetails, setCustomerDetails] = useState<CustomerDetails>({
     name: '', email: '', phone: '', address: '', city: '', state: '', zip: ''
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [allAvailableItems, setAllAvailableItems] = useState<Perfume[]>([]);
 
   useEffect(() => {
+    // This effect runs once on mount to combine items from the quiz and the cart.
+    let quizItems: Perfume[] = [];
     try {
       const primary = JSON.parse(sessionStorage.getItem('primaryRecommendation') || 'null');
       const alternatives = JSON.parse(sessionStorage.getItem('alternativeRecommendations') || '[]');
-      const allQuizItems = [primary, ...alternatives].filter(Boolean);
-      setItemsFromQuiz(allQuizItems);
-
-      // Combine quiz items and cart items, ensuring no duplicates
-      const combinedItems = [...allQuizItems, ...cart];
-      const uniqueItems = Array.from(new Map(combinedItems.map(item => [item.name, item])).values());
-      
-      setSelectedItems(uniqueItems);
+      quizItems = [primary, ...alternatives].filter(Boolean);
     } catch (e) {
       console.error("Failed to parse recommendations from session storage", e);
-      // Fallback to only cart items if session storage fails
-      setSelectedItems(cart);
+      // If storage fails, quizItems remains empty, and we just use the cart.
     }
-  }, [cart]);
+    
+    // Combine quiz items and cart items, ensuring no duplicates by name.
+    const combined = [...quizItems, ...cart];
+    const unique = Array.from(new Map(combined.map(item => [item.name, item])).values());
+    
+    setAllAvailableItems(unique);
+    setSelectedItems(unique); // Initially, all items are selected.
+  }, [cart]); // Dependency on cart ensures it updates if cart changes.
 
   useEffect(() => {
+    // This effect recalculates the total price whenever the selection changes.
     const newTotalPrice = selectedItems.reduce((acc, item) => acc + (item.price || 0), 0);
     setTotalPrice(newTotalPrice);
   }, [selectedItems]);
-
-  const allAvailableItems = Array.from(new Map([...itemsFromQuiz, ...cart].map(item => [item.name, item])).values());
 
   const handleSelectionChange = (item: Perfume, isSelected: boolean) => {
     if (isSelected) {
@@ -146,17 +146,15 @@ const CheckoutPage = () => {
         if (verificationResult.success && verificationResult.paymentId) {
             sessionStorage.setItem('paymentId', verificationResult.paymentId);
 
-            // Don't wait for the email to be sent before redirecting.
-            // Fire and forget.
+            // Fire and forget: don't wait for the email before redirecting.
             sendOrderConfirmationEmail(fullCustomerDetails, selectedItems, verificationResult.paymentId)
               .then(emailResult => {
                   if (emailResult.error) {
-                    console.error("Email sending failed:", emailResult.error);
-                    // This can be logged to a monitoring service.
+                    console.error("Email sending failed on the server:", emailResult.error);
                   }
               });
 
-            // Clear cart and session storage, then redirect immediately.
+            // Clear cart/storage and redirect immediately for better UX.
             clearCart();
             sessionStorage.removeItem('primaryRecommendation');
             sessionStorage.removeItem('alternativeRecommendations');
@@ -271,3 +269,5 @@ const CheckoutPage = () => {
 };
 
 export default CheckoutPage;
+
+    
