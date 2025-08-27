@@ -22,7 +22,6 @@ export function ImageGrid({ perfumes }: ImageGridProps) {
           <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-60 opacity-0 transition-opacity duration-300 group-hover:opacity-100 p-2">
             <div className="text-center text-white">
               <p className="font-semibold text-sm">{perfume.name}</p>
-              <p className="text-md font-bold">₹{perfume.price.toFixed(2)}</p>
             </div>
           </div>
         </Link>
