@@ -4,9 +4,10 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import perfumeImages from '@/images.json';
-import { createRazorpayOrder, verifyRazorpayPayment } from '@/app/actions';
+import { createRazorpayOrder, verifyRazorpayPayment, sendOrderConfirmationEmail } from '@/app/actions';
 import { useCart } from '@/hooks/use-cart';
 import { Trash2 } from 'lucide-react';
+import { useToast } from '@/components/ui/use-toast';
 
 type Perfume = {
   name: string;
@@ -32,6 +33,7 @@ const getPerfumeImage = (perfumeName: string) => {
 const CheckoutPage = () => {
   const router = useRouter();
   const { cart, clearCart } = useCart();
+  const { toast } = useToast();
   const [itemsFromQuiz, setItemsFromQuiz] = useState<Perfume[]>([]);
   const [selectedItems, setSelectedItems] = useState<Perfume[]>([]);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -131,10 +133,22 @@ const CheckoutPage = () => {
       order_id: orderData.id,
       handler: async function (response: any) {
         const verificationResult = await verifyRazorpayPayment(response);
-        if (verificationResult.success) {
-            sessionStorage.setItem('paymentId', verificationResult.paymentId!);
+        if (verificationResult.success && verificationResult.paymentId) {
+            sessionStorage.setItem('paymentId', verificationResult.paymentId);
+
+            // Send email with order details
+            const emailResult = await sendOrderConfirmationEmail(fullCustomerDetails, selectedItems, verificationResult.paymentId);
+            if (emailResult.error) {
+              // Non-critical error, so we just log it and maybe show a toast
+              console.error("Email sending failed:", emailResult.error);
+              toast({
+                variant: "destructive",
+                title: "Email Notification Failed",
+                description: "Could not send order confirmation. Please check server logs.",
+              });
+            }
             
-            // Clear only cart items, not quiz recommendations
+            // Clear cart and session storage, then redirect
             clearCart();
             sessionStorage.removeItem('primaryRecommendation');
             sessionStorage.removeItem('alternativeRecommendations');
@@ -150,8 +164,9 @@ const CheckoutPage = () => {
         contact: customerDetails.phone,
       },
       theme: {
-        color: '#3B82F6'
-      }
+        color: '#E11D48' // A pink/rose color to match the theme
+      },
+      notes: orderData.notes
     };
     
     // @ts-ignore
@@ -175,7 +190,7 @@ const CheckoutPage = () => {
     return (
         <div className="container mx-auto p-4 flex flex-col items-center justify-center text-center">
             <p className="text-red-400 mb-4">{error}</p>
-            <button onClick={() => setError(null)} className="px-6 py-2 bg-blue-600 rounded-full">Try Again</button>
+            <button onClick={() => { setError(null); setIsLoading(false); }} className="px-6 py-2 bg-pink-600 rounded-full">Try Again</button>
         </div>
     );
   }

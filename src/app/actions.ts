@@ -31,7 +31,10 @@ export async function createRazorpayOrder(
     currency: 'INR',
     receipt: `receipt_order_${new Date().getTime()}`,
     notes: {
-        ...customerDetails,
+        customer_name: customerDetails.name,
+        customer_email: customerDetails.email,
+        customer_phone: customerDetails.phone,
+        customer_address: customerDetails.address,
         items: JSON.stringify(items.map(item => item.name)), // Store item names as a JSON string
     }
   };
@@ -63,9 +66,6 @@ export async function verifyRazorpayPayment(data: {
         .digest('hex');
 
     if (expectedSignature === razorpay_signature) {
-        // Here you could fetch the order details from Razorpay to get the notes
-        // const order = await razorpay.orders.fetch(razorpay_order_id);
-        // await sendOrderConfirmationEmail(order.notes, ...);
         return { success: true, paymentId: razorpay_payment_id };
     } else {
         return { success: false, error: 'Payment verification failed.' };
@@ -74,11 +74,12 @@ export async function verifyRazorpayPayment(data: {
 
 export async function sendOrderConfirmationEmail(
   customerDetails: { [key: string]: any }, // More flexible type
-  items: { name: string; price: number }[]
+  items: { name: string; price: number }[],
+  paymentId: string
 ) {
   if (!brevoHost || !brevoUser || !brevoKey || !emailTo) {
-    console.error('Missing Brevo SMTP credentials in .env file.');
-    return { error: 'Email configuration is incomplete.' };
+    console.error('Missing Brevo SMTP credentials in .env file. Cannot send email.');
+    return { error: 'Email configuration is incomplete on the server.' };
   }
 
   const transporter = nodemailer.createTransport({
@@ -95,11 +96,12 @@ export async function sendOrderConfirmationEmail(
   const total = items.reduce((acc, item) => acc + item.price, 0);
 
   const mailOptions = {
-    from: `"${brevoUser}" <${brevoUser}>`,
+    from: `"CRESKI Orders" <${brevoUser}>`,
     to: emailTo,
-    subject: `New Order from ${customerDetails.name}`,
+    subject: `New Order Received from ${customerDetails.name} - #${paymentId.slice(-6)}`,
     html: `
       <h1>New Order Received!</h1>
+      <p><strong>Payment ID:</strong> ${paymentId}</p>
       <h2>Customer Details:</h2>
       <ul>
         <li><strong>Name:</strong> ${customerDetails.name}</li>
@@ -112,6 +114,8 @@ export async function sendOrderConfirmationEmail(
         ${itemsHtml}
       </ul>
       <h3>Total: ₹${total.toFixed(2)}</h3>
+      <hr>
+      <p>This is an automated notification. Please process the order.</p>
     `,
   };
 
