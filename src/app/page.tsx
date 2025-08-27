@@ -28,15 +28,6 @@ export default function Home() {
     slug: slugify(perfume.name),
   })).filter(p => p.image);
 
-  // Remove duplicates by name, keeping the first one.
-  const uniquePerfumes = perfumesWithImages.reduce((acc, current) => {
-    if (!acc.find(item => item.name === current.name)) {
-      acc.push(current);
-    }
-    return acc;
-  }, [] as Perfume[]);
-
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-4 sm:p-6 lg:p-8">
       {/* Perfume Quiz Call to Action */}
@@ -51,7 +42,7 @@ export default function Home() {
         </a>
       </section>
 
-      <ImageGrid perfumes={uniquePerfumes} />
+      <ImageGrid perfumes={perfumesWithImages} />
     </main>
   );
 }

@@ -49,19 +49,6 @@
     "price": 3000
   },
   {
-    "name": "Tom Ford Rose Prick",
-    "family": "Floral / Romantic",
-    "personality": [
-      "Romantic"
-    ],
-    "occasions": [
-      "Date",
-      "Daily"
-    ],
-    "intensity": "Light",
-    "price": 3000
-  },
-  {
     "name": "Tom Ford Electric Cherry",
     "family": "Sweet / Gourmand",
     "personality": [
@@ -178,20 +165,6 @@
     "price": 3000
   },
   {
-    "name": "Tom Ford Oud Wood",
-    "family": "Woody / Earthy",
-    "personality": [
-      "Calm",
-      "Confident"
-    ],
-    "occasions": [
-      "Office",
-      "Daily"
-    ],
-    "intensity": "Balanced",
-    "price": 3000
-  },
-  {
     "name": "Tom Ford Fabulous",
     "family": "Woody / Earthy",
     "personality": [],
@@ -242,20 +215,6 @@
   },
   {
     "name": "Tom Ford Eau de Ombré Leather",
-    "family": "Woody / Earthy",
-    "personality": [
-      "Calm",
-      "Confident"
-    ],
-    "occasions": [
-      "Office",
-      "Daily"
-    ],
-    "intensity": "Balanced",
-    "price": 3000
-  },
-  {
-    "name": "Tom Ford Ombré Leather",
     "family": "Woody / Earthy",
     "personality": [
       "Calm",
@@ -913,20 +872,6 @@
     "price": 2200
   },
   {
-    "name": "Versace Eros Eau de Parfum",
-    "family": "Fresh / Citrus / Aquatic",
-    "personality": [
-      "Outgoing",
-      "Confident"
-    ],
-    "occasions": [
-      "Daily",
-      "Party"
-    ],
-    "intensity": "Balanced",
-    "price": 2200
-  },
-  {
     "name": "Versace Eros Flame",
     "family": "Woody / Earthy",
     "personality": [],
@@ -991,33 +936,6 @@
     "occasions": [],
     "intensity": "Balanced",
     "price": 2200
-  },
-  {
-    "name": "Tom Ford Black Orchid",
-    "family": "Floral / Romantic",
-    "personality": [
-      "Romantic"
-    ],
-    "occasions": [
-      "Date",
-      "Daily"
-    ],
-    "intensity": "Light",
-    "price": 3000
-  },
-  {
-    "name": "Tom Ford Grey Vetiver",
-    "family": "Woody / Earthy",
-    "personality": [
-      "Calm",
-      "Confident"
-    ],
-    "occasions": [
-      "Office",
-      "Daily"
-    ],
-    "intensity": "Balanced",
-    "price": 3000
   },
   {
     "name": "Tom Ford Black Orchid Parfum",
@@ -1106,20 +1024,6 @@
   },
   {
     "name": "Paco Rabanne 1 Million Royal",
-    "family": "Sweet / Gourmand",
-    "personality": [
-      "Playful",
-      "Romantic"
-    ],
-    "occasions": [
-      "Date",
-      "Party"
-    ],
-    "intensity": "Strong",
-    "price": 2200
-  },
-  {
-    "name": "Paco Rabanne 1 Million",
     "family": "Sweet / Gourmand",
     "personality": [
       "Playful",
@@ -1702,19 +1606,6 @@
     "price": 2500
   },
   {
-    "name": "Gucci Flora Gorgeous Gardenia",
-    "family": "Floral / Romantic",
-    "personality": [
-      "Romantic"
-    ],
-    "occasions": [
-      "Date",
-      "Daily"
-    ],
-    "intensity": "Light",
-    "price": 2500
-  },
-  {
     "name": "Flora by Gucci Gorgeous Gardenia",
     "family": "Floral / Romantic",
     "personality": [
@@ -1741,33 +1632,7 @@
     "price": 2500
   },
   {
-    "name": "Gucci Flora Gorgeous Magnolia",
-    "family": "Floral / Romantic",
-    "personality": [
-      "Romantic"
-    ],
-    "occasions": [
-      "Date",
-      "Daily"
-    ],
-    "intensity": "Light",
-    "price": 2500
-  },
-  {
     "name": "Gucci Flora Gorgeous Jasmine",
-    "family": "Floral / Romantic",
-    "personality": [
-      "Romantic"
-    ],
-    "occasions": [
-      "Date",
-      "Daily"
-    ],
-    "intensity": "Light",
-    "price": 2500
-  },
-  {
-    "name": "Gucci Flora Gorgeous Gardenia",
     "family": "Floral / Romantic",
     "personality": [
       "Romantic"
@@ -1902,14 +1767,6 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced",
-    "price": 2500
-  },
-  {
-    "name": "Bleu de Chanel Parfum",
-    "family": "Woody / Earthy",
-    "personality": [],
-    "occasions": [],
     "intensity": "Balanced",
     "price": 2500
   },
@@ -2493,14 +2350,6 @@
     "price": 3000
   },
   {
-    "name": "Maison Francis Kurkdjian Baccarat Rouge 540",
-    "family": "Woody / Earthy",
-    "personality": [],
-    "occasions": [],
-    "intensity": "Balanced",
-    "price": 3000
-  },
-  {
     "name": "Guerlain Rose Chérie",
     "family": "Floral / Romantic",
     "personality": [
@@ -2586,14 +2435,6 @@
     "price": 2200
   },
   {
-    "name": "Marc Jacobs Decadence",
-    "family": "Woody / Earthy",
-    "personality": [],
-    "occasions": [],
-    "intensity": "Balanced",
-    "price": 2200
-  },
-  {
     "name": "Marc Jacobs Daisy Eau So Fresh Pop",
     "family": "Fresh / Citrus / Aquatic",
     "personality": [
@@ -2660,14 +2501,6 @@
   },
   {
     "name": "Narciso Rodriguez for Her Forever",
-    "family": "Woody / Earthy",
-    "personality": [],
-    "occasions": [],
-    "intensity": "Balanced",
-    "price": 2200
-  },
-  {
-    "name": "Narciso Rodriguez for Her",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],

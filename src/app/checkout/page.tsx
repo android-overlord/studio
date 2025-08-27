@@ -41,7 +41,6 @@ const CheckoutPage = () => {
     name: '', email: '', phone: '', address: '', city: '', state: '', zip: ''
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     try {
@@ -94,19 +93,26 @@ const CheckoutPage = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError(null);
     setIsLoading(true);
 
     const isFormValid = Object.values(customerDetails).every(val => val.trim() !== '');
     if (!isFormValid || selectedItems.length === 0) {
-      setError('Please fill out all fields and select at least one item.');
+      toast({
+        variant: 'destructive',
+        title: 'Validation Error',
+        description: 'Please fill out all fields and select at least one item.',
+      });
       setIsLoading(false);
       return;
     }
 
     const scriptLoaded = await loadRazorpayScript();
     if (!scriptLoaded) {
-        setError("Could not load payment gateway. Please check your connection.");
+        toast({
+          variant: 'destructive',
+          title: 'Payment Error',
+          description: "Could not load payment gateway. Please check your connection.",
+        });
         setIsLoading(false);
         return;
     }
@@ -119,7 +125,11 @@ const CheckoutPage = () => {
     const orderData = await createRazorpayOrder(totalPrice, fullCustomerDetails, selectedItems);
 
     if (orderData.error || !orderData.id) {
-        setError(orderData.error || "Failed to create payment order.");
+        toast({
+          variant: 'destructive',
+          title: 'Order Error',
+          description: orderData.error || "Failed to create payment order.",
+        });
         setIsLoading(false);
         return;
     }
@@ -152,7 +162,11 @@ const CheckoutPage = () => {
             sessionStorage.removeItem('alternativeRecommendations');
             router.push('/thank-you');
         } else {
-            setError(verificationResult.error || 'Payment verification failed.');
+            toast({
+              variant: 'destructive',
+              title: 'Payment Failed',
+              description: verificationResult.error || 'Payment verification failed.',
+            });
             setIsLoading(false);
         }
       },
@@ -170,7 +184,11 @@ const CheckoutPage = () => {
     // @ts-ignore
     const rzp = new window.Razorpay(options);
     rzp.on('payment.failed', function (response: any) {
-        setError(`Payment failed. Code: ${response.error.code}, Description: ${response.error.description}`);
+        toast({
+          variant: 'destructive',
+          title: 'Payment Failed',
+          description: `Code: ${response.error.code}, Description: ${response.error.description}`,
+        });
         setIsLoading(false);
     });
     rzp.open();
@@ -183,15 +201,6 @@ const CheckoutPage = () => {
     sessionStorage.removeItem('alternativeRecommendations');
     setSelectedItems([]);
   };
-
-  if (error && !isLoading) {
-    return (
-        <div className="container mx-auto p-4 flex flex-col items-center justify-center text-center">
-            <p className="text-red-400 mb-4">{error}</p>
-            <button onClick={() => { setError(null); setIsLoading(false); }} className="px-6 py-2 bg-pink-600 rounded-full">Try Again</button>
-        </div>
-    );
-  }
 
   return (
     <div className="container mx-auto p-4 md:p-8">
