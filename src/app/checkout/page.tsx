@@ -118,7 +118,7 @@ const CheckoutPage = () => {
     };
 
     // Call the Netlify serverless function to create the order
-    const orderResponse = await fetch('/.netlify/functions/create-razorpay-order', {
+    const orderResponse = await fetch('/api/create-razorpay-order', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -153,7 +153,7 @@ const CheckoutPage = () => {
         setIsLoading(true);
 
         // Call the Netlify serverless function to verify the payment
-        const verificationResponse = await fetch('/.netlify/functions/verify-razorpay-payment', {
+        const verificationResponse = await fetch('/api/verify-razorpay-payment', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(response),
@@ -165,7 +165,7 @@ const CheckoutPage = () => {
             sessionStorage.setItem('paymentId', verificationResult.paymentId);
             
             // Fire-and-forget the email sending by calling the Netlify function
-            fetch('/.netlify/functions/send-order-confirmation-email', {
+            fetch('/api/send-order-confirmation-email', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
@@ -291,5 +291,3 @@ const CheckoutPage = () => {
 };
 
 export default CheckoutPage;
-
-    
