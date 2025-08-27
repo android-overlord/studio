@@ -26,14 +26,16 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
   return (
     <div className="container mx-auto max-w-4xl px-4 py-8 md:py-12">
       <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-        <div className="flex items-center justify-center bg-neutral-800 rounded-lg p-4">
-          <Image
-            src={imageUrl}
-            alt={perfume.name}
-            width={500}
-            height={500}
-            className="rounded-lg object-cover"
-          />
+        <div className="flex items-center justify-center">
+            <div className="aspect-square w-full max-w-md bg-neutral-800 rounded-lg flex items-center justify-center p-4">
+                <Image
+                    src={imageUrl}
+                    alt={perfume.name}
+                    width={500}
+                    height={500}
+                    className="rounded-lg object-contain h-full w-full"
+                />
+            </div>
         </div>
         <div className="flex flex-col justify-center">
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight">{perfume.name}</h1>
