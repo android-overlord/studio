@@ -12,8 +12,8 @@ export async function createRazorpayOrder(
   try {
     const Razorpay = (await import('razorpay')).default;
     
-    const keyId = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
-    const keySecret = process.env.RAZORPAY_KEY_SECRET;
+    const keyId = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!;
+    const keySecret = process.env.RAZORPAY_KEY_SECRET!;
 
     if (!keyId || !keySecret) {
       console.error('CRITICAL: Razorpay key ID or secret is missing from environment variables.');
@@ -59,7 +59,7 @@ export async function verifyRazorpayPayment(data: {
     try {
         const crypto = (await import('crypto'));
         const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = data;
-        const keySecret = process.env.RAZORPAY_KEY_SECRET;
+        const keySecret = process.env.RAZORPAY_KEY_SECRET!;
 
         if (!keySecret) {
              console.error('Razorpay key secret is not available for verification.');
@@ -92,12 +92,12 @@ export async function sendOrderConfirmationEmail(
   try {
     const nodemailer = (await import('nodemailer')).default;
 
-    const brevoHost = process.env.BREVO_SMTP_HOST;
-    const brevoUser = process.env.BREVO_SMTP_USER;
-    const brevoKey = process.env.BREVO_SMTP_KEY;
-    const brevoPort = process.env.BREVO_SMTP_PORT;
-    const brevoSender = process.env.BREVO_SENDER_EMAIL || 'creski.shop@gmail.com';
-    const emailTo = process.env.EMAIL_TO || 'creski.shop@gmail.com';
+    const brevoHost = process.env.BREVO_SMTP_HOST!;
+    const brevoUser = process.env.BREVO_SMTP_USER!;
+    const brevoKey = process.env.BREVO_SMTP_KEY!;
+    const brevoPort = process.env.BREVO_SMTP_PORT!;
+    const brevoSender = process.env.BREVO_SENDER_EMAIL! || 'creski.shop@gmail.com';
+    const emailTo = process.env.EMAIL_TO! || 'creski.shop@gmail.com';
 
     if (!brevoHost || !brevoUser || !brevoKey || !brevoPort) {
       console.error('CRITICAL: Missing Brevo SMTP credentials in .env file. Cannot send email.');
