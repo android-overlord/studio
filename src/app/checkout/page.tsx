@@ -120,11 +120,12 @@ const CheckoutPage = () => {
 
     const orderData = await createRazorpayOrder(totalPrice, fullCustomerDetails, selectedItems);
 
+    // This is where we handle the structured error from the server.
     if (orderData.error || !orderData.id) {
         toast({
           variant: 'destructive',
           title: 'Order Error',
-          description: orderData.error || "Failed to create payment order.",
+          description: orderData.error || "Failed to create payment order on the server.",
         });
         setIsLoading(false);
         return;
@@ -138,22 +139,22 @@ const CheckoutPage = () => {
       description: 'Perfume Order',
       order_id: orderData.id,
       handler: async function (response: any) {
+        setIsLoading(true); // Keep loading while we verify and send email
         const verificationResult = await verifyRazorpayPayment(response);
+        
         if (verificationResult.success && verificationResult.paymentId) {
             sessionStorage.setItem('paymentId', verificationResult.paymentId);
             
-            // This is the critical change.
-            // 1. Immediately clear local state and redirect.
+            // Fire-and-forget the email sending. The user doesn't wait for this.
+            // The server action has its own try/catch, so it won't crash the flow.
+            sendOrderConfirmationEmail(fullCustomerDetails, selectedItems, verificationResult.paymentId);
+
+            // Immediately clear local state and redirect for a fast user experience.
             clearCart();
             sessionStorage.removeItem('primaryRecommendation');
             sessionStorage.removeItem('alternativeRecommendations');
             router.push('/thank-you');
             
-            // 2. Call the email action in a "fire-and-forget" manner.
-            // The user is already on the thank-you page, so they don't wait for this.
-            // A try-catch on the server will prevent crashes.
-            sendOrderConfirmationEmail(fullCustomerDetails, selectedItems, verificationResult.paymentId);
-
         } else {
             toast({
               variant: 'destructive',
@@ -176,6 +177,7 @@ const CheckoutPage = () => {
     
     // @ts-ignore
     const rzp = new window.Razorpay(options);
+    
     rzp.on('payment.failed', function (response: any) {
         toast({
           variant: 'destructive',
@@ -184,7 +186,10 @@ const CheckoutPage = () => {
         });
         setIsLoading(false);
     });
+
     rzp.open();
+    // After rzp.open(), the user interacts with the popup. We should stop loading here.
+    setIsLoading(false);
   };
   
   const handleClearCart = () => {

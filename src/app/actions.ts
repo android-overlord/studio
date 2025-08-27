@@ -16,19 +16,30 @@ const emailTo = process.env.EMAIL_TO || 'creski.shop@gmail.com';
 
 
 if (!keyId || !keySecret) {
-  throw new Error('Missing Razorpay API keys. Please set NEXT_PUBLIC_RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET in your .env file.');
+  // This log helps debug missing environment variables on the server.
+  console.error('CRITICAL: Missing Razorpay API keys. Please set NEXT_PUBLIC_RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET in your environment variables.');
 }
 
-const razorpay = new Razorpay({
-  key_id: keyId,
-  key_secret: keySecret,
-});
+// Initialize Razorpay, but handle potential missing keys gracefully
+let razorpay: Razorpay | null = null;
+if (keyId && keySecret) {
+    razorpay = new Razorpay({
+        key_id: keyId,
+        key_secret: keySecret,
+    });
+}
 
 export async function createRazorpayOrder(
     amount: number, 
     customerDetails: { [key: string]: string }, 
     items: {name: string, price: number}[]
 ) {
+  // This is the main protection against the 500 error.
+  if (!razorpay) {
+    console.error('Razorpay instance is not initialized. Check your API keys.');
+    return { error: 'Payment gateway is not configured on the server.' };
+  }
+
   const options = {
     amount: amount * 100, // Amount in the smallest currency unit (e.g., paisa for INR)
     currency: 'INR',
@@ -38,7 +49,7 @@ export async function createRazorpayOrder(
         customer_email: customerDetails.email,
         customer_phone: customerDetails.phone,
         customer_address: customerDetails.address,
-        items: JSON.stringify(items.map(item => item.name)), // Store item names as a JSON string
+        items: JSON.stringify(items.map(item => item.name)),
     }
   };
 
@@ -50,8 +61,10 @@ export async function createRazorpayOrder(
         amount: order.amount,
         notes: order.notes,
     };
-  } catch (error) {
-    console.error('Error creating Razorpay order:', error);
+  } catch (error: any) {
+    // This will log the actual error from Razorpay to your Netlify function logs.
+    console.error('Error creating Razorpay order:', error.message);
+    // This returns a structured error to the frontend instead of crashing.
     return { error: 'Could not create order. Please try again.' };
   }
 }
@@ -62,10 +75,16 @@ export async function verifyRazorpayPayment(data: {
     razorpay_signature: string;
 }) {
     const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = data;
+
+    if (!keySecret) {
+         console.error('Razorpay key secret is not available for verification.');
+         return { success: false, error: 'Cannot verify payment on server.' };
+    }
+
     const body = razorpay_order_id + "|" + razorpay_payment_id;
 
     const expectedSignature = crypto
-        .createHmac('sha256', keySecret!)
+        .createHmac('sha256', keySecret)
         .update(body.toString())
         .digest('hex');
 
@@ -81,6 +100,7 @@ export async function sendOrderConfirmationEmail(
   items: { name: string; price: number }[],
   paymentId: string
 ) {
+  // This is the robust try/catch for email sending you requested.
   try {
     if (!brevoHost || !brevoUser || !brevoKey || !emailTo || !brevoSender || !brevoPort) {
       console.error('Missing Brevo SMTP credentials in .env file. Cannot send email.');
@@ -128,10 +148,9 @@ export async function sendOrderConfirmationEmail(
     await transporter.sendMail(mailOptions);
     return { success: true };
   } catch (error: any) {
-    // This is the most important part.
-    // We catch ANY error during email sending, log it, and return success.
-    // This prevents the serverless function from crashing and hanging the UI.
+    // This logs the specific SMTP error to Netlify logs.
     console.error('CRITICAL: Failed to send order confirmation email. The payment was successful, but the email notification failed. Error:', error.message);
+    // The function returns success so it doesn't break the client flow.
     return { success: true, error: 'Failed to send order confirmation email, but payment was processed.' };
   }
 }
