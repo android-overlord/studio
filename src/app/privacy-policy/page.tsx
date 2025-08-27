@@ -46,7 +46,7 @@ export default function PrivacyPolicyPage() {
 
         <h2 className="text-2xl font-semibold mt-6">Contact Us</h2>
         <p>
-          If you have any questions about this Privacy Policy, please contact us by email: <a href="mailto:support@creski.shop" className="text-pink-400 hover:text-pink-300">support@creski.shop</a>.
+          If you have any questions about this Privacy Policy, please contact us by email: <a href="mailto:creski.help@gmail.com" className="text-pink-400 hover:text-pink-300">creski.help@gmail.com</a>.
         </p>
       </div>
     </div>

@@ -9,7 +9,7 @@ export default function CancellationPolicyPage() {
 
         <h2 className="text-2xl font-semibold mt-6">1. Order Cancellation</h2>
         <p>
-          You can cancel your order at any time before the item has been shipped. Once the order is shipped, it cannot be canceled. To cancel your order, please contact our customer support team with your order number at <a href="mailto:support@creski.shop" className="text-pink-400 hover:text-pink-300">support@creski.shop</a>.
+          Once an order is placed, it cannot be canceled. We begin processing orders immediately to ensure the fastest possible delivery.
         </p>
         
         <h2 className="text-2xl font-semibold mt-6">2. Refund Policy</h2>
@@ -22,7 +22,7 @@ export default function CancellationPolicyPage() {
 
         <h2 className="text-2xl font-semibold mt-6">3. How to Report a Damaged Item</h2>
         <p>
-          To report a damaged or incorrect item, please email us at <a href="mailto:support@creski.shop" className="text-pink-400 hover:text-pink-300">support@creski.shop</a> with the following information:
+          To report a damaged or incorrect item, please email us at <a href="mailto:creski.help@gmail.com" className="text-pink-400 hover:text-pink-300">creski.help@gmail.com</a> with the following information:
         </p>
         <ul>
             <li>Your order number</li>
@@ -35,7 +35,7 @@ export default function CancellationPolicyPage() {
 
         <h2 className="text-2xl font-semibold mt-6">Contact Us</h2>
         <p>
-          If you have any questions about our Cancellation and Refund Policy, please contact us at <a href="mailto:support@creski.shop" className="text-pink-400 hover:text-pink-300">support@creski.shop</a>.
+          If you have any questions about our Cancellation and Refund Policy, please contact us at <a href="mailto:creski.help@gmail.com" className="text-pink-400 hover:text-pink-300">creski.help@gmail.com</a>.
         </p>
       </div>
     </div>

@@ -18,7 +18,7 @@ export default function ContactUsPage() {
         <h2 className="text-2xl font-semibold mt-6">Email Us</h2>
         <p>
           For any inquiries, please email us at:<br />
-          <a href="mailto:support@creski.shop" className="text-pink-400 hover:text-pink-300">support@creski.shop</a>
+          <a href="mailto:creski.help@gmail.com" className="text-pink-400 hover:text-pink-300">creski.help@gmail.com</a>
         </p>
 
         <h2 className="text-2xl font-semibold mt-6">Follow Us</h2>
