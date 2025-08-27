@@ -99,21 +99,21 @@ const CheckoutContent = () => {
         try {
             const result = await sendOrderEmail({ customerDetails, selectedItems, totalPrice });
 
-            if (!result || !result.success) {
+            if (result?.success) {
+                // If the primary notification (Telegram) was sent, proceed to payment.
+                sessionStorage.setItem('customerDetails', JSON.stringify(customerDetails));
+                sessionStorage.setItem('selectedItems', JSON.stringify(selectedItems));
+                sessionStorage.setItem('totalPrice', JSON.stringify(totalPrice));
+                router.push('/payment');
+            } else {
+                // If it failed, show the error message from the server.
                 alert(result?.message || 'There was an error submitting your order. Please try again.');
-                setIsSubmitting(false);
-                return;
             }
-            
-            sessionStorage.setItem('customerDetails', JSON.stringify(customerDetails));
-            sessionStorage.setItem('selectedItems', JSON.stringify(selectedItems));
-            sessionStorage.setItem('totalPrice', JSON.stringify(totalPrice));
-
-            router.push('/payment');
 
         } catch (error) {
             console.error('Failed to process order:', error);
             alert('An unexpected error occurred. Please check the console and try again.');
+        } finally {
             setIsSubmitting(false);
         }
     };
