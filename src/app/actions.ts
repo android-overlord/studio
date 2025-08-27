@@ -10,6 +10,7 @@ const keySecret = process.env.RAZORPAY_KEY_SECRET;
 const brevoHost = process.env.BREVO_SMTP_HOST;
 const brevoUser = process.env.BREVO_SMTP_USER;
 const brevoKey = process.env.BREVO_SMTP_KEY;
+const brevoPort = process.env.BREVO_SMTP_PORT;
 const brevoSender = process.env.BREVO_SENDER_EMAIL;
 const emailTo = process.env.EMAIL_TO;
 
@@ -80,14 +81,14 @@ export async function sendOrderConfirmationEmail(
   items: { name: string; price: number }[],
   paymentId: string
 ) {
-  if (!brevoHost || !brevoUser || !brevoKey || !emailTo || !brevoSender) {
+  if (!brevoHost || !brevoUser || !brevoKey || !emailTo || !brevoSender || !brevoPort) {
     console.error('Missing Brevo SMTP credentials in .env file. Cannot send email.');
     return { error: 'Email configuration is incomplete on the server.' };
   }
 
   const transporter = nodemailer.createTransport({
     host: brevoHost,
-    port: 587,
+    port: Number(brevoPort),
     secure: false, // true for 465, false for other ports
     auth: {
       user: brevoUser,
@@ -127,6 +128,7 @@ export async function sendOrderConfirmationEmail(
     return { success: true };
   } catch (error) {
     console.error('Error sending email:', error);
+    // Return success to the client even if email fails, but log the error for debugging.
     return { error: 'Failed to send order confirmation email.' };
   }
 }
