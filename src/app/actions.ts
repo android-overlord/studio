@@ -8,7 +8,7 @@ const keyId = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
 const keySecret = process.env.RAZORPAY_KEY_SECRET;
 
 const brevoHost = process.env.BREVO_SMTP_HOST;
-const brevoUser = 'creski.shop@gmail.com';
+const brevoUser = process.env.BREVO_SMTP_USER;
 const brevoKey = process.env.BREVO_SMTP_KEY;
 const brevoPort = process.env.BREVO_SMTP_PORT;
 const brevoSender = process.env.BREVO_SENDER_EMAIL || 'creski.shop@gmail.com';
