@@ -63,6 +63,9 @@ export async function verifyRazorpayPayment(data: {
         .digest('hex');
 
     if (expectedSignature === razorpay_signature) {
+        // Here you could fetch the order details from Razorpay to get the notes
+        // const order = await razorpay.orders.fetch(razorpay_order_id);
+        // await sendOrderConfirmationEmail(order.notes, ...);
         return { success: true, paymentId: razorpay_payment_id };
     } else {
         return { success: false, error: 'Payment verification failed.' };
@@ -70,7 +73,7 @@ export async function verifyRazorpayPayment(data: {
 }
 
 export async function sendOrderConfirmationEmail(
-  customerDetails: { [key: string]: string },
+  customerDetails: { [key: string]: any }, // More flexible type
   items: { name: string; price: number }[]
 ) {
   if (!brevoHost || !brevoUser || !brevoKey || !emailTo) {
