@@ -1,20 +1,32 @@
-type ImageGridProps = {
-  images: string[];
+type Perfume = {
+  name: string;
+  image: string;
+  price: number;
 };
 
-export function ImageGrid({ images }: ImageGridProps) {
-  return (<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8">
-      {images.map((src, index) => (
-        <div key={index}
-          className="aspect-square overflow-hidden bg-neutral-800">
+type ImageGridProps = {
+  perfumes: Perfume[];
+};
+
+export function ImageGrid({ perfumes }: ImageGridProps) {
+  return (
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8">
+      {perfumes.map((perfume) => (
+        <div key={perfume.name} className="group relative aspect-square overflow-hidden bg-neutral-800">
           <img
-            src={src}
-            alt={`Image ${index + 1}`}
-            className="h-full w-full object-cover transition-transform duration-300 ease-in-out hover:scale-105"
+            src={perfume.image}
+            alt={perfume.name}
+            className="h-full w-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
             width={400}
             height={400}
             loading="lazy"
           />
+          <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            <div className="text-center text-white">
+              <p className="font-semibold">{perfume.name}</p>
+              <p className="text-lg font-bold">₹{perfume.price.toFixed(2)}</p>
+            </div>
+          </div>
         </div>
       ))}
     </div>

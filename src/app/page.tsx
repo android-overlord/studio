@@ -1,7 +1,39 @@
 import { ImageGrid } from '@/components/image-grid';
-import { images } from '@/lib/images';
+import perfumeData from './perfume-quiz/perfume_database_expert_balanced.json';
+import perfumeImages from '@/images.json';
+
+type Perfume = {
+  name: string;
+  family: string;
+  personality: string[];
+  occasions: string[];
+  intensity: string;
+  price: number;
+  image: string;
+};
 
 export default function Home() {
+  const imagesMap = perfumeImages as Record<string, string>;
+  const imageNameToPath: { [key: string]: string } = {};
+  for (const path in imagesMap) {
+    const perfumeName = imagesMap[path];
+    imageNameToPath[perfumeName] = `/images/${path}`;
+  }
+
+  const perfumesWithImages: Perfume[] = perfumeData.map(perfume => ({
+    ...perfume,
+    image: imageNameToPath[perfume.name] || `https://picsum.photos/seed/${perfume.name}/400/400`,
+  })).filter(p => p.image); // Filter out any perfumes that didn't have a matching image
+
+  // Remove duplicates by name, keeping the first one.
+  const uniquePerfumes = perfumesWithImages.reduce((acc, current) => {
+    if (!acc.find(item => item.name === current.name)) {
+      acc.push(current);
+    }
+    return acc;
+  }, [] as Perfume[]);
+
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-4 sm:p-6 lg:p-8">
       {/* Perfume Quiz Call to Action */}
@@ -16,7 +48,7 @@ export default function Home() {
         </a>
       </section>
 
-      <ImageGrid images={images} /> {/* Your existing ImageGrid component */}
+      <ImageGrid perfumes={uniquePerfumes} />
     </main>
   );
 }
