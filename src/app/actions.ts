@@ -79,7 +79,6 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
         return { success: false, message: 'Server is not configured to send emails. Please check your environment configuration.' };
     }
     
-    // --- Step 1: Send notification to your own email and Telegram ---
     const api = new brevo.TransactionalEmailsApi();
     api.setApiKey(brevo.TransactionalEmailsApiApiKeys.apiKey, BREVO_API_KEY);
 

@@ -81,7 +81,6 @@ const CheckoutContent = () => {
         e.preventDefault();
         setIsSubmitting(true);
 
-        // Basic validation
         for (const key in customerDetails) {
             if (customerDetails[key as keyof typeof customerDetails].trim() === '') {
                 alert(`Please fill in your ${key}`);
@@ -100,13 +99,12 @@ const CheckoutContent = () => {
         try {
             const result = await sendOrderEmail({ customerDetails, selectedItems, totalPrice });
 
-            if (result && !result.success) {
-                alert(result.message || 'There was an error submitting your order. Please try again.');
+            if (!result || !result.success) {
+                alert(result?.message || 'There was an error submitting your order. Please try again.');
                 setIsSubmitting(false);
                 return;
             }
             
-            // Store details and items in sessionStorage to pass to the next page
             sessionStorage.setItem('customerDetails', JSON.stringify(customerDetails));
             sessionStorage.setItem('selectedItems', JSON.stringify(selectedItems));
             sessionStorage.setItem('totalPrice', JSON.stringify(totalPrice));
@@ -114,9 +112,8 @@ const CheckoutContent = () => {
             router.push('/payment');
 
         } catch (error) {
-            console.error('Failed to send order email:', error);
-            alert('There was an error submitting your order. Please try again.');
-        } finally {
+            console.error('Failed to process order:', error);
+            alert('An unexpected error occurred. Please check the console and try again.');
             setIsSubmitting(false);
         }
     };
@@ -206,5 +203,3 @@ const CheckoutPage = () => (
 
 
 export default CheckoutPage;
-
-    
