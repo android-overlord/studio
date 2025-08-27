@@ -6,8 +6,8 @@ import {
   sendOrderConfirmationEmail as sendEmail
 } from '@/lib/server-actions';
 
-// This file is now a safe "pass-through" to the actual server logic.
-// It contains no secrets or sensitive modules.
+// This file is a safe "pass-through" to the actual server logic.
+// It contains no secrets or sensitive modules, making it safe for the build scanner.
 
 export async function createRazorpayOrder(
     amount: number, 
@@ -36,7 +36,7 @@ export async function sendOrderConfirmationEmail(
     await sendEmail(customerDetails, items, paymentId);
   } catch (error) {
     // The error is logged on the server by the secure action.
-    // We do nothing here to prevent crashes.
+    // We do nothing here to prevent crashes on the client.
   }
   return { success: true };
 }

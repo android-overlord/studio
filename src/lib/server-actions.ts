@@ -107,7 +107,7 @@ export async function sendOrderConfirmationEmail(
     
     const transporter = nodemailer.createTransport({
       host: brevoHost,
-      port: Number(brevoPort),
+      port: Number(brevoPort), // Ensure port is a number
       secure: Number(brevoPort) === 465, // true for 465, false for other ports
       auth: {
         user: brevoUser,
