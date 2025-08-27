@@ -1,0 +1,9 @@
+# Tells Netlify where to find the serverless functions.
+[functions]
+  directory = "netlify/functions/"
+
+# Redirects requests from a clean URL to the underlying function.
+[[redirects]]
+  from = "/.netlify/functions/*"
+  to = "/.netlify/functions/:splat"
+  status = 200

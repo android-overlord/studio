@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import perfumeImages from '@/images.json';
-import { createRazorpayOrder, verifyRazorpayPayment, sendOrderConfirmationEmail } from '@/app/actions';
 import { useCart } from '@/hooks/use-cart';
 import { Trash2 } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
@@ -118,9 +117,22 @@ const CheckoutPage = () => {
       address: `${customerDetails.address}, ${customerDetails.city}, ${customerDetails.state} - ${customerDetails.zip}`
     };
 
-    const orderData = await createRazorpayOrder(totalPrice, fullCustomerDetails, selectedItems);
+    // Call the Netlify serverless function to create the order
+    const orderResponse = await fetch('/.netlify/functions/create-razorpay-order', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        amount: totalPrice,
+        customerDetails: fullCustomerDetails,
+        items: selectedItems,
+      }),
+    });
 
-    if (orderData.error || !orderData.id) {
+    const orderData = await orderResponse.json();
+
+    if (!orderResponse.ok || orderData.error || !orderData.id) {
         toast({
           variant: 'destructive',
           title: 'Order Error',
@@ -139,13 +151,29 @@ const CheckoutPage = () => {
       order_id: orderData.id,
       handler: async function (response: any) {
         setIsLoading(true);
-        const verificationResult = await verifyRazorpayPayment(response);
+
+        // Call the Netlify serverless function to verify the payment
+        const verificationResponse = await fetch('/.netlify/functions/verify-razorpay-payment', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(response),
+        });
+        
+        const verificationResult = await verificationResponse.json();
         
         if (verificationResult.success && verificationResult.paymentId) {
             sessionStorage.setItem('paymentId', verificationResult.paymentId);
             
-            // Fire-and-forget the email sending. The user doesn't wait for this.
-            sendOrderConfirmationEmail(fullCustomerDetails, selectedItems, verificationResult.paymentId);
+            // Fire-and-forget the email sending by calling the Netlify function
+            fetch('/.netlify/functions/send-order-confirmation-email', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                customerDetails: fullCustomerDetails,
+                items: selectedItems,
+                paymentId: verificationResult.paymentId
+              })
+            });
 
             // Immediately clear local state and redirect for a fast user experience.
             clearCart();

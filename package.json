@@ -24,6 +24,7 @@
     "zustand": "^4.5.4"
   },
   "devDependencies": {
+    "@netlify/functions": "^2.8.1",
     "@types/node": "^20",
     "@types/nodemailer": "^6.4.15",
     "@types/qrcode": "^1.5.5",
