@@ -141,17 +141,10 @@ const CheckoutPage = () => {
         const verificationResult = await verifyRazorpayPayment(response);
         if (verificationResult.success && verificationResult.paymentId) {
             sessionStorage.setItem('paymentId', verificationResult.paymentId);
+            
+            // This will now be handled correctly, without crashing.
+            await sendOrderConfirmationEmail(fullCustomerDetails, selectedItems, verificationResult.paymentId);
 
-            // Fire and forget: don't wait for the email before redirecting.
-            sendOrderConfirmationEmail(fullCustomerDetails, selectedItems, verificationResult.paymentId)
-              .then(emailResult => {
-                  if (emailResult.error) {
-                    // Log to console for client-side debugging if needed
-                    console.error("Email sending failed:", emailResult.error);
-                  }
-              });
-
-            // Clear cart/storage and redirect immediately for better UX.
             clearCart();
             sessionStorage.removeItem('primaryRecommendation');
             sessionStorage.removeItem('alternativeRecommendations');

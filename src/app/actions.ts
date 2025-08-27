@@ -8,11 +8,11 @@ const keyId = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
 const keySecret = process.env.RAZORPAY_KEY_SECRET;
 
 const brevoHost = process.env.BREVO_SMTP_HOST;
-const brevoUser = process.env.BREVO_SMTP_USER;
+const brevoUser = 'creski.shop@gmail.com';
 const brevoKey = process.env.BREVO_SMTP_KEY;
 const brevoPort = process.env.BREVO_SMTP_PORT;
-const brevoSender = process.env.BREVO_SENDER_EMAIL;
-const emailTo = process.env.EMAIL_TO;
+const brevoSender = process.env.BREVO_SENDER_EMAIL || 'creski.shop@gmail.com';
+const emailTo = process.env.EMAIL_TO || 'creski.shop@gmail.com';
 
 
 if (!keyId || !keySecret) {
@@ -83,8 +83,6 @@ export async function sendOrderConfirmationEmail(
 ) {
   if (!brevoHost || !brevoUser || !brevoKey || !emailTo || !brevoSender || !brevoPort) {
     console.error('Missing Brevo SMTP credentials in .env file. Cannot send email.');
-    // Return a success object even if email fails, so it doesn't block the checkout flow.
-    // The main goal is to process the payment.
     return { success: true, error: 'Email configuration is incomplete on the server.' };
   }
 
@@ -128,8 +126,8 @@ export async function sendOrderConfirmationEmail(
   try {
     await transporter.sendMail(mailOptions);
     return { success: true };
-  } catch (error) {
-    console.error('Error sending email:', error);
+  } catch (error: any) {
+    console.error('Error sending email:', error.message);
     // IMPORTANT: Return success to the client even if email fails.
     // The payment was successful, so we should not block the UI.
     // The error is logged on the server for debugging.
