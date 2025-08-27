@@ -136,19 +136,17 @@ const CheckoutPage = () => {
         if (verificationResult.success && verificationResult.paymentId) {
             sessionStorage.setItem('paymentId', verificationResult.paymentId);
 
-            // Send email with order details
-            const emailResult = await sendOrderConfirmationEmail(fullCustomerDetails, selectedItems, verificationResult.paymentId);
-            if (emailResult.error) {
-              // Non-critical error, so we just log it and maybe show a toast
-              console.error("Email sending failed:", emailResult.error);
-              toast({
-                variant: "destructive",
-                title: "Email Notification Failed",
-                description: "Could not send order confirmation. Please check server logs.",
+            // Don't wait for the email to be sent before redirecting.
+            // Fire and forget.
+            sendOrderConfirmationEmail(fullCustomerDetails, selectedItems, verificationResult.paymentId)
+              .then(emailResult => {
+                  if (emailResult.error) {
+                    console.error("Email sending failed:", emailResult.error);
+                    // This can be logged to a monitoring service.
+                  }
               });
-            }
-            
-            // Clear cart and session storage, then redirect
+
+            // Clear cart and session storage, then redirect immediately.
             clearCart();
             sessionStorage.removeItem('primaryRecommendation');
             sessionStorage.removeItem('alternativeRecommendations');
