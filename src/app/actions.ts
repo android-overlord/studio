@@ -9,33 +9,33 @@ export async function createRazorpayOrder(
     customerDetails: { [key: string]: string }, 
     items: {name: string, price: number}[]
 ) {
-  const keyId = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
-  const keySecret = process.env.RAZORPAY_KEY_SECRET;
-
-  if (!keyId || !keySecret) {
-    console.error('CRITICAL: Razorpay key ID or secret is missing from environment variables.');
-    return { error: 'Payment gateway is not configured correctly on the server.' };
-  }
-  
-  const razorpay = new Razorpay({
-      key_id: keyId,
-      key_secret: keySecret,
-  });
-
-  const options = {
-    amount: amount * 100, // Amount in the smallest currency unit (e.g., paisa for INR)
-    currency: 'INR',
-    receipt: `receipt_order_${new Date().getTime()}`,
-    notes: {
-        customer_name: customerDetails.name,
-        customer_email: customerDetails.email,
-        customer_phone: customerDetails.phone,
-        customer_address: customerDetails.address,
-        items: JSON.stringify(items.map(item => item.name)),
-    }
-  };
-
   try {
+    const keyId = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
+    const keySecret = process.env.RAZORPAY_KEY_SECRET;
+
+    if (!keyId || !keySecret) {
+      console.error('CRITICAL: Razorpay key ID or secret is missing from environment variables.');
+      return { error: 'Payment gateway is not configured correctly on the server.' };
+    }
+    
+    const razorpay = new Razorpay({
+        key_id: keyId,
+        key_secret: keySecret,
+    });
+
+    const options = {
+      amount: amount * 100, // Amount in the smallest currency unit (e.g., paisa for INR)
+      currency: 'INR',
+      receipt: `receipt_order_${new Date().getTime()}`,
+      notes: {
+          customer_name: customerDetails.name,
+          customer_email: customerDetails.email,
+          customer_phone: customerDetails.phone,
+          customer_address: customerDetails.address,
+          items: JSON.stringify(items.map(item => item.name)),
+      }
+    };
+
     const order = await razorpay.orders.create(options);
     return {
         id: order.id,
@@ -81,24 +81,24 @@ export async function sendOrderConfirmationEmail(
   items: { name: string; price: number }[],
   paymentId: string
 ) {
-  const brevoHost = process.env.BREVO_SMTP_HOST;
-  const brevoUser = process.env.BREVO_SMTP_USER;
-  const brevoKey = process.env.BREVO_SMTP_KEY;
-  const brevoPort = process.env.BREVO_SMTP_PORT;
-  const brevoSender = process.env.BREVO_SENDER_EMAIL || 'creski.shop@gmail.com';
-  const emailTo = process.env.EMAIL_TO || 'creski.shop@gmail.com';
-
-  if (!brevoHost || !brevoUser || !brevoKey || !brevoPort) {
-    console.error('CRITICAL: Missing Brevo SMTP credentials in .env file. Cannot send email.');
-    // Return success because this should not block the user flow.
-    return { success: true, error: 'Email configuration is incomplete on the server.' };
-  }
-
   try {
+    const brevoHost = process.env.BREVO_SMTP_HOST;
+    const brevoUser = process.env.BREVO_SMTP_USER;
+    const brevoKey = process.env.BREVO_SMTP_KEY;
+    const brevoPort = process.env.BREVO_SMTP_PORT;
+    const brevoSender = process.env.BREVO_SENDER_EMAIL || 'creski.shop@gmail.com';
+    const emailTo = process.env.EMAIL_TO || 'creski.shop@gmail.com';
+
+    if (!brevoHost || !brevoUser || !brevoKey || !brevoPort) {
+      console.error('CRITICAL: Missing Brevo SMTP credentials in .env file. Cannot send email.');
+      // Return success because this should not block the user flow.
+      return { success: true, error: 'Email configuration is incomplete on the server.' };
+    }
+    
     const transporter = nodemailer.createTransport({
       host: brevoHost,
       port: Number(brevoPort),
-      secure: false, // true for 465, false for other ports
+      secure: Number(brevoPort) === 465, // true for 465, false for other ports
       auth: {
         user: brevoUser,
         pass: brevoKey,
