@@ -1,4 +1,3 @@
-
 'use server';
 
 import * as Brevo from '@getbrevo/brevo';
@@ -102,5 +101,3 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
         return { success: false, message: 'Failed to send order confirmation emails.' };
     }
 }
-
-    
