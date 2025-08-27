@@ -30,13 +30,13 @@ async function sendTelegramNotification({ customerDetails, selectedItems, totalP
 
     if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
         console.error('Telegram bot token or chat ID is not configured.');
-        return; // Don't block the main flow if Telegram isn't set up
+        // Return a failure status but don't throw, to allow email to proceed if desired.
+        return { success: false, message: 'Telegram integration is not configured on the server.' };
     }
 
     const bot = new TelegramBot(TELEGRAM_BOT_TOKEN);
     const itemsList = selectedItems.map(item => `- ${item.name}`).join('\n');
     
-    // Hidden metadata in the message to be used by the webhook later
     const metadata = {
         customerEmail: customerDetails.email,
         customerName: customerDetails.name
@@ -64,19 +64,29 @@ ${hiddenMetadata}
     try {
         await bot.sendMessage(TELEGRAM_CHAT_ID, message, { parse_mode: 'Markdown' });
         console.log('✅ Order notification sent to Telegram.');
+        return { success: true };
     } catch (error) {
         console.error('❌ Failed to send Telegram notification:', error);
+        return { success: false, message: 'Failed to send Telegram notification.' };
     }
 }
 
 
 export async function sendOrderEmail({ customerDetails, selectedItems, totalPrice }: SendOrderEmailParams) {
-    const { BREVO_API_KEY } = process.env;
+    // --- Step 1: Always try to send the Telegram notification first ---
+    const telegramResult = await sendTelegramNotification({ customerDetails, selectedItems, totalPrice });
 
+    // If Telegram fails, we can stop here as it's the primary notification channel for the owner.
+    if (!telegramResult.success) {
+        return { success: false, message: telegramResult.message || 'Failed to send order notification.' };
+    }
+
+    // --- Step 2: Try to send the backup email notification to the owner ---
+    const { BREVO_API_KEY } = process.env;
     if (!BREVO_API_KEY) {
-        const errorMessage = 'Missing Brevo API Key. Please ensure BREVO_API_KEY is set in your environment.';
-        console.error(errorMessage);
-        return { success: false, message: 'Server is not configured to send emails. Please check your environment configuration.' };
+        console.warn('Brevo API Key is missing. Skipping owner email notification.');
+        // Return success because the main Telegram notification worked.
+        return { success: true, message: 'Order notification sent via Telegram. Owner email skipped.' };
     }
     
     const api = new brevo.TransactionalEmailsApi();
@@ -92,7 +102,7 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
             <li><strong>Name:</strong> ${customerDetails.name}</li>
             <li><strong>Email:</strong> ${customerDetails.email}</li>
             <li><strong>Phone:</strong> ${customerDetails.phone}</li>
-            <li><strong>Address:</strong> ${customerDetails.address}, ${customerDetails.city}, ${customerDetails.state} ${customerDetails.zip}</li>
+            <li><strong>Address:</strong> ${customerDetails.address}, ${customerDetails.city}, ${customerDetails.state}, ${customerDetails.zip}</li>
         </ul>
         <h2>Order Items:</h2>
         <ul>
@@ -109,27 +119,24 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
     sendSmtpEmail.htmlContent = emailHtmlForOwner;
 
     try {
-        console.log("Sending email with payload:", sendSmtpEmail);
-        const response = await api.sendTransacEmail(sendSmtpEmail);
-        console.log("Brevo response:", response);
-
-        // Also send notification to Telegram
-        await sendTelegramNotification({ customerDetails, selectedItems, totalPrice });
-
-        return { success: true, message: 'Order notification sent.' };
+        await api.sendTransacEmail(sendSmtpEmail);
+        console.log("✅ Backup owner email sent via Brevo.");
     } catch (error: any) {
-        console.error('Failed to send email via Brevo.');
+        console.error('Failed to send backup email via Brevo.');
         if (error.response) {
             console.error("Brevo API error response:", error.response.body);
         } else {
             console.error("Unknown error:", error);
         }
-        return { success: false, message: 'Failed to send order notification email. Please check server logs for details.' };
+        // Do not return failure here, as the main notification (Telegram) succeeded.
     }
+    
+    // Return success as the primary notification was sent.
+    return { success: true, message: 'Order notification sent.' };
 }
 
 
-// --- Step 2: This function will be called by our future webhook ---
+// --- This function will be called by our webhook ---
 export async function sendConfirmationEmailToCustomer({ name, email }: { name: string, email: string }) {
     const { BREVO_API_KEY } = process.env;
      if (!BREVO_API_KEY) {
