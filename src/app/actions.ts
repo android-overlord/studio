@@ -27,7 +27,9 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
     const { BREVO_API_KEY } = process.env;
     if (!BREVO_API_KEY) {
         console.error('Brevo API Key is missing. Cannot send email.');
-        return { success: false, message: 'Email service is not configured on the server.' };
+        // In a real app, you might want to return a more structured error
+        // For now, we'll throw to indicate a server-side configuration issue.
+        throw new Error('Email service is not configured on the server.');
     }
     
     const api = new brevo.TransactionalEmailsApi();
@@ -83,7 +85,8 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
             api.sendTransacEmail(customerEmail)
         ]);
         console.log("✅ Emails sent successfully.");
-        return { success: true };
+        // We don't need to return anything on success for the original logic.
+        // The calling function will assume success if no error is thrown.
     } catch (error: any) {
         console.error('❌ Failed to send emails via Brevo.');
         if (error.response) {
@@ -91,6 +94,8 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
         } else {
             console.error("Unknown error:", error);
         }
-        return { success: false, message: 'Failed to send order emails.' };
+        // This throw is what the original code did, causing a crash on the client
+        // but it's part of the original state we are reverting to.
+        throw new Error('Failed to send order emails.');
     }
 }
