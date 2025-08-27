@@ -9,16 +9,21 @@ export async function createRazorpayOrder(
     customerDetails: { [key: string]: string }, 
     items: {name: string, price: number}[]
 ) {
+  // --- DEBUGGING LOGS START ---
+  console.log("Attempting to create Razorpay order...");
+  console.log("RAZORPAY_KEY_SECRET available:", !!process.env.RAZORPAY_KEY_SECRET);
+  console.log("NEXT_PUBLIC_RAZORPAY_KEY_ID available:", !!process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID);
+  // --- DEBUGGING LOGS END ---
+
   const keyId = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
   const keySecret = process.env.RAZORPAY_KEY_SECRET;
 
-  // More specific logging for debugging on Netlify
   if (!keyId) {
-    console.error('CRITICAL: Missing Razorpay Key ID. Check NEXT_PUBLIC_RAZORPAY_KEY_ID in Netlify environment variables.');
-    return { error: 'Payment gateway is not configured correctly (missing Key ID).' };
+    console.error('CRITICAL: Missing Razorpay Key ID. The NEXT_PUBLIC_RAZORPAY_KEY_ID environment variable is not set on the server.');
+    return { error: 'Payment gateway is not configured correctly (missing Public Key ID).' };
   }
   if (!keySecret) {
-    console.error('CRITICAL: Missing Razorpay Key Secret. Check RAZORPAY_KEY_SECRET in Netlify environment variables.');
+    console.error('CRITICAL: Missing Razorpay Key Secret. The RAZORPAY_KEY_SECRET environment variable is not set on the server.');
     return { error: 'Payment gateway is not configured correctly (missing Key Secret).' };
   }
 
@@ -94,15 +99,16 @@ export async function sendOrderConfirmationEmail(
     const brevoSender = process.env.BREVO_SENDER_EMAIL || 'creski.shop@gmail.com';
     const emailTo = process.env.EMAIL_TO || 'creski.shop@gmail.com';
 
-    if (!brevoHost || !brevoUser || !brevoKey || !brevoPort || !brevoSender || !emailTo) {
+    if (!brevoHost || !brevoUser || !brevoKey || !brevoPort) {
       console.error('Missing Brevo SMTP credentials in .env file. Cannot send email.');
+      // Return success because the payment went through. Email is a secondary concern for the user.
       return { success: true, error: 'Email configuration is incomplete on the server.' };
     }
 
     const transporter = nodemailer.createTransport({
       host: brevoHost,
       port: Number(brevoPort),
-      secure: false, 
+      secure: false, // true for 465, false for other ports
       auth: {
         user: brevoUser,
         pass: brevoKey,
@@ -140,6 +146,8 @@ export async function sendOrderConfirmationEmail(
     return { success: true };
   } catch (error: any) {
     console.error('CRITICAL: Failed to send order confirmation email. The payment was successful, but the email notification failed. Error:', error.message);
+    // Important: Still return success=true so the user flow isn't broken.
+    // The error is logged for debugging.
     return { success: true, error: 'Failed to send order confirmation email, but payment was processed.' };
   }
 }
