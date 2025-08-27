@@ -12,13 +12,9 @@ export async function createRazorpayOrder(
   const keyId = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
   const keySecret = process.env.RAZORPAY_KEY_SECRET;
 
-  if (!keyId) {
-    console.error('CRITICAL: Missing Razorpay Key ID. The NEXT_PUBLIC_RAZORPAY_KEY_ID environment variable is not set on the server.');
-    return { error: 'Payment gateway is not configured correctly (missing Public Key ID).' };
-  }
-  if (!keySecret) {
-    console.error('CRITICAL: Missing Razorpay Key Secret. The RAZORPAY_KEY_SECRET environment variable is not set on the server.');
-    return { error: 'Payment gateway is not configured correctly (missing Key Secret).' };
+  if (!keyId || !keySecret) {
+    console.error('CRITICAL: Razorpay key ID or secret is missing from environment variables.');
+    return { error: 'Payment gateway is not configured correctly on the server.' };
   }
 
   const razorpay = new Razorpay({
@@ -85,20 +81,20 @@ export async function sendOrderConfirmationEmail(
   items: { name: string; price: number }[],
   paymentId: string
 ) {
+  const brevoHost = process.env.BREVO_SMTP_HOST;
+  const brevoUser = process.env.BREVO_SMTP_USER;
+  const brevoKey = process.env.BREVO_SMTP_KEY;
+  const brevoPort = process.env.BREVO_SMTP_PORT;
+  const brevoSender = process.env.BREVO_SENDER_EMAIL || 'creski.shop@gmail.com';
+  const emailTo = process.env.EMAIL_TO || 'creski.shop@gmail.com';
+
+  if (!brevoHost || !brevoUser || !brevoKey || !brevoPort) {
+    console.error('CRITICAL: Missing Brevo SMTP credentials in .env file. Cannot send email.');
+    // Return success because this should not block the user flow.
+    return { success: true, error: 'Email configuration is incomplete on the server.' };
+  }
+
   try {
-    const brevoHost = process.env.BREVO_SMTP_HOST;
-    const brevoUser = process.env.BREVO_SMTP_USER;
-    const brevoKey = process.env.BREVO_SMTP_KEY;
-    const brevoPort = process.env.BREVO_SMTP_PORT;
-    const brevoSender = process.env.BREVO_SENDER_EMAIL || 'creski.shop@gmail.com';
-    const emailTo = process.env.EMAIL_TO || 'creski.shop@gmail.com';
-
-    if (!brevoHost || !brevoUser || !brevoKey || !brevoPort) {
-      console.error('Missing Brevo SMTP credentials in .env file. Cannot send email.');
-      // Return success because the payment went through. Email is a secondary concern for the user.
-      return { success: true, error: 'Email configuration is incomplete on the server.' };
-    }
-
     const transporter = nodemailer.createTransport({
       host: brevoHost,
       port: Number(brevoPort),
@@ -139,8 +135,8 @@ export async function sendOrderConfirmationEmail(
     await transporter.sendMail(mailOptions);
     return { success: true };
   } catch (error: any) {
-    console.error('CRITICAL: Failed to send order confirmation email. The payment was successful, but the email notification failed. Error:', error.message);
-    // Important: Still return success=true so the user flow isn't broken.
+    console.error('CRITICAL: Failed to send order confirmation email. Payment was successful but email failed.', error.message);
+    // Important: Still return success so the user flow isn't broken.
     // The error is logged for debugging.
     return { success: true, error: 'Failed to send order confirmation email, but payment was processed.' };
   }
