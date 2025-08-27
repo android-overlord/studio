@@ -100,8 +100,9 @@ const CheckoutContent = () => {
         try {
             const result = await sendOrderEmail({ customerDetails, selectedItems, totalPrice });
 
-            if (!result.success) {
+            if (result && !result.success) {
                 alert(result.message || 'There was an error submitting your order. Please try again.');
+                setIsSubmitting(false);
                 return;
             }
             
@@ -205,3 +206,5 @@ const CheckoutPage = () => (
 
 
 export default CheckoutPage;
+
+    
