@@ -30,7 +30,7 @@ export default function Home() {
 
   // Remove duplicates by name, keeping the first one.
   const uniquePerfumes = perfumesWithImages.reduce((acc, current) => {
-    if (!acc.find(item => item.slug === current.slug)) {
+    if (!acc.find(item => item.name === current.name)) {
       acc.push(current);
     }
     return acc;
