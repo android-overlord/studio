@@ -106,7 +106,7 @@ const CheckoutPage = () => {
     }
 
     const options = {
-      key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID, // Use public key if you set one
+      key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
       amount: orderData.amount,
       currency: orderData.currency,
       name: 'CRESKI',
@@ -116,7 +116,7 @@ const CheckoutPage = () => {
         const verificationResult = await verifyRazorpayPayment(response);
         if (verificationResult.success) {
             sessionStorage.setItem('paymentId', verificationResult.paymentId!);
-            router.push('/thank-you'); // Redirect to a new thank you page
+            router.push('/thank-you');
         } else {
             setError(verificationResult.error || 'Payment verification failed.');
             setIsLoading(false);
@@ -131,7 +131,7 @@ const CheckoutPage = () => {
         address: `${customerDetails.address}, ${customerDetails.city}, ${customerDetails.state} - ${customerDetails.zip}`
       },
       theme: {
-        color: '#F472B6'
+        color: '#3B82F6'
       }
     };
     
