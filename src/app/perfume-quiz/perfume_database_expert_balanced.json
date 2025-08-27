@@ -3302,6 +3302,14 @@
     "price": 2500
   },
   {
+    "name": "Test Box",
+    "family": "Testing",
+    "personality": [],
+    "occasions": [],
+    "intensity": "Balanced",
+    "price": 1
+  },
+  {
     "name": "Diptyque Eau Duelle",
     "family": "Woody / Earthy",
     "personality": [],
