@@ -9,12 +9,6 @@ export async function createRazorpayOrder(
     customerDetails: { [key: string]: string }, 
     items: {name: string, price: number}[]
 ) {
-  // --- DEBUGGING LOGS START ---
-  console.log("Attempting to create Razorpay order...");
-  console.log("RAZORPAY_KEY_SECRET available:", !!process.env.RAZORPAY_KEY_SECRET);
-  console.log("NEXT_PUBLIC_RAZORPAY_KEY_ID available:", !!process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID);
-  // --- DEBUGGING LOGS END ---
-
   const keyId = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
   const keySecret = process.env.RAZORPAY_KEY_SECRET;
 
