@@ -1,6 +1,7 @@
+
 'use server';
 
-import * as Brevo from '@getbrevo/brevo';
+import * as brevo from '@getbrevo/brevo';
 
 type Perfume = {
     name: string;
@@ -22,27 +23,32 @@ interface SendOrderEmailParams {
     totalPrice: number;
 }
 
-export async function sendOrderEmail({ customerDetails, selectedItems, totalPrice }: SendOrderEmailParams) {
-    const { BREVO_API_KEY, BREVO_FROM_EMAIL, OWNER_EMAIL } = process.env;
+interface EmailResult {
+    success: boolean;
+    message: string;
+}
 
-    const requiredEnvVars = { BREVO_API_KEY, BREVO_FROM_EMAIL, OWNER_EMAIL };
+export async function sendOrderEmail({ customerDetails, selectedItems, totalPrice }: SendOrderEmailParams): Promise<EmailResult> {
+    const { BREVO_API_KEY, BREVO_SENDER_EMAIL, OWNER_EMAIL } = process.env;
+
+    const requiredEnvVars = { BREVO_API_KEY, BREVO_SENDER_EMAIL, OWNER_EMAIL };
     const missingEnvVars = Object.entries(requiredEnvVars)
         .filter(([_, value]) => !value)
         .map(([key]) => key);
 
     if (missingEnvVars.length > 0) {
-        const errorMessage = `Brevo environment variables are not fully configured. Missing: ${missingEnvVars.join(', ')}. Cannot send email.`;
+        const errorMessage = `Email service is not configured. Missing environment variables: ${missingEnvVars.join(', ')}.`;
         console.error(errorMessage);
-        return { success: false, message: 'Email service is not configured on the server.' };
+        return { success: false, message: 'The email service is currently unavailable. Please contact support.' };
     }
-
-    const api = new Brevo.TransactionalEmailsApi();
-    api.setApiKey(Brevo.TransactionalEmailsApiApiKeys.apiKey, BREVO_API_KEY!);
+    
+    const apiClient = new brevo.ApiClient();
+    apiClient.authentications['api-key'].apiKey = BREVO_API_KEY;
+    const transactionalEmailsApi = new brevo.TransactionalEmailsApi(apiClient);
 
     const itemsListHtml = selectedItems.map(item => `<li>${item.name}</li>`).join('');
 
-    // --- Email to Owner ---
-    const ownerEmailHtml = `
+    const emailHtmlForOwner = `
         <h1>New CRESKI Order!</h1>
         <p>A new order has been placed.</p>
         <h2>Customer Details:</h2>
@@ -60,14 +66,13 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
         <p>Please verify the payment and process the order.</p>
     `;
 
-    const ownerEmail = new Brevo.SendSmtpEmail();
-    ownerEmail.sender = { name: 'CRESKI Orders', email: BREVO_FROM_EMAIL! };
-    ownerEmail.to = [{ email: OWNER_EMAIL! }];
+    const ownerEmail = new brevo.SendSmtpEmail();
     ownerEmail.subject = `New Order from ${customerDetails.name}`;
-    ownerEmail.htmlContent = ownerEmailHtml;
+    ownerEmail.htmlContent = emailHtmlForOwner;
+    ownerEmail.sender = { name: 'CRESKI', email: BREVO_SENDER_EMAIL! };
+    ownerEmail.to = [{ email: OWNER_EMAIL! }];
 
-    // --- Email to Customer ---
-    const customerEmailHtml = `
+    const emailHtmlForCustomer = `
         <h1>Your CRESKI Order is Received!</h1>
         <p>Hi ${customerDetails.name},</p>
         <p>Thank you for your order! We have received it and will notify you as soon as it has been shipped after payment verification.</p>
@@ -76,28 +81,28 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
         <p><strong>- The CRESKI Team</strong></p>
     `;
 
-    const customerEmail = new Brevo.SendSmtpEmail();
-    customerEmail.sender = { name: 'CRESKI', email: BREVO_FROM_EMAIL! };
-    customerEmail.to = [{ email: customerDetails.email, name: customerDetails.name }];
-    customerEmail.subject = `Your CRESKI Order has been received!`;
-    customerEmail.htmlContent = customerEmailHtml;
-
+    const customerEmail = new brevo.SendSmtpEmail();
+    customerEmail.subject = 'Your CRESKI Order has been received!';
+    customerEmail.htmlContent = emailHtmlForCustomer;
+    customerEmail.sender = { name: 'CRESKI', email: BREVO_SENDER_EMAIL! };
+    customerEmail.to = [{ email: customerDetails.email }];
 
     try {
         console.log("Sending emails via Brevo...");
-        // Send both emails
-        await Promise.all([
-            api.sendTransacEmail(ownerEmail),
-            api.sendTransacEmail(customerEmail)
-        ]);
+        const ownerEmailPromise = transactionalEmailsApi.sendTransacEmail(ownerEmail);
+        const customerEmailPromise = transactionalEmailsApi.sendTransacEmail(customerEmail);
+
+        await Promise.all([ownerEmailPromise, customerEmailPromise]);
+        
         console.log("✅ Emails sent successfully via Brevo.");
-        return { success: true };
+        return { success: true, message: 'Emails sent successfully.' };
 
     } catch (error: any) {
         console.error('❌ Failed to send emails via Brevo.');
-        // Brevo errors often have a detailed body
-        console.error('Brevo Error Body:', error.body);
-        console.error('Full Error:', error);
-        return { success: false, message: 'Failed to send order confirmation emails.' };
+        // Brevo SDK might wrap the actual error response in `response.body`
+        const errorMessage = error.response?.body?.message || error.message || 'An unknown error occurred.';
+        console.error('Brevo API Error:', errorMessage);
+        console.error('Full Error:', JSON.stringify(error, null, 2));
+        return { success: false, message: `Failed to send order notification. Reason: ${errorMessage}` };
     }
 }

@@ -78,37 +78,40 @@ const CheckoutContent = () => {
 
     const proceedToPayment = async (e: React.FormEvent) => {
         e.preventDefault();
-        setIsSubmitting(true);
-
-        for (const key in customerDetails) {
-            if (customerDetails[key as keyof typeof customerDetails].trim() === '') {
-                alert(`Please fill in your ${key}`);
-                setIsSubmitting(false);
-                return;
-            }
-        }
         
         const selectedItems = recommendedPerfumes.filter(p => selectedPerfumes[p.name]);
         if (selectedItems.length === 0) {
             alert("Please select at least one perfume to order.");
-            setIsSubmitting(false);
             return;
         }
 
+        // Simple form validation
+        for (const key in customerDetails) {
+            if (customerDetails[key as keyof typeof customerDetails].trim() === '') {
+                alert(`Please fill in your ${key}`);
+                return;
+            }
+        }
+
+        setIsSubmitting(true);
+
         try {
             const result = await sendOrderEmail({ customerDetails, selectedItems, totalPrice });
-
+            
             if (result.success) {
+                // Only proceed if the email was sent successfully
                 sessionStorage.setItem('customerDetails', JSON.stringify(customerDetails));
                 sessionStorage.setItem('selectedItems', JSON.stringify(selectedItems));
                 sessionStorage.setItem('totalPrice', JSON.stringify(totalPrice));
                 router.push('/payment');
             } else {
-                alert(result.message || 'An unexpected error occurred. Please try again.');
+                // Show the specific error message from the server
+                alert(`Failed to process order: ${result.message}`);
             }
 
         } catch (error: any) {
-            console.error('Failed to process order:', error);
+            // This will catch unexpected network errors or if the action itself throws
+            console.error('An unexpected error occurred:', error);
             alert(error.message || 'An unexpected error occurred. Please try again.');
         } finally {
             setIsSubmitting(false);
