@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import perfumeImages from '@/images.json';
-import { createRazorpayOrder, verifyRazorpayPayment } from '@/app/actions';
+import { createRazorpayOrder, verifyRazorpayPayment, sendOrderConfirmationEmail } from '@/app/actions';
 import { useCart } from '@/hooks/use-cart';
 import { Trash2 } from 'lucide-react';
 
@@ -133,6 +133,10 @@ const CheckoutPage = () => {
         const verificationResult = await verifyRazorpayPayment(response);
         if (verificationResult.success) {
             sessionStorage.setItem('paymentId', verificationResult.paymentId!);
+            
+            // Send email confirmation
+            await sendOrderConfirmationEmail(fullCustomerDetails, selectedItems);
+            
             // Clear only cart items, not quiz recommendations
             clearCart();
             sessionStorage.removeItem('primaryRecommendation');

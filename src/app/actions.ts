@@ -2,9 +2,15 @@
 
 import Razorpay from 'razorpay';
 import crypto from 'crypto';
+import nodemailer from 'nodemailer';
 
 const keyId = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
 const keySecret = process.env.RAZORPAY_KEY_SECRET;
+
+const brevoHost = process.env.BREVO_SMTP_HOST;
+const brevoUser = process.env.BREVO_SMTP_USER;
+const brevoKey = process.env.BREVO_SMTP_KEY;
+const emailTo = process.env.EMAIL_TO;
 
 if (!keyId || !keySecret) {
   throw new Error('Missing Razorpay API keys. Please set NEXT_PUBLIC_RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET in your .env file.');
@@ -61,4 +67,56 @@ export async function verifyRazorpayPayment(data: {
     } else {
         return { success: false, error: 'Payment verification failed.' };
     }
+}
+
+export async function sendOrderConfirmationEmail(
+  customerDetails: { [key: string]: string },
+  items: { name: string; price: number }[]
+) {
+  if (!brevoHost || !brevoUser || !brevoKey || !emailTo) {
+    console.error('Missing Brevo SMTP credentials in .env file.');
+    return { error: 'Email configuration is incomplete.' };
+  }
+
+  const transporter = nodemailer.createTransport({
+    host: brevoHost,
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: brevoUser,
+      pass: brevoKey,
+    },
+  });
+
+  const itemsHtml = items.map(item => `<li>${item.name} - ₹${item.price.toFixed(2)}</li>`).join('');
+  const total = items.reduce((acc, item) => acc + item.price, 0);
+
+  const mailOptions = {
+    from: `"${brevoUser}" <${brevoUser}>`,
+    to: emailTo,
+    subject: `New Order from ${customerDetails.name}`,
+    html: `
+      <h1>New Order Received!</h1>
+      <h2>Customer Details:</h2>
+      <ul>
+        <li><strong>Name:</strong> ${customerDetails.name}</li>
+        <li><strong>Email:</strong> ${customerDetails.email}</li>
+        <li><strong>Phone:</strong> ${customerDetails.phone}</li>
+        <li><strong>Address:</strong> ${customerDetails.address}</li>
+      </ul>
+      <h2>Order Items:</h2>
+      <ul>
+        ${itemsHtml}
+      </ul>
+      <h3>Total: ₹${total.toFixed(2)}</h3>
+    `,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    return { success: true };
+  } catch (error) {
+    console.error('Error sending email:', error);
+    return { error: 'Failed to send order confirmation email.' };
+  }
 }
