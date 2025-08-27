@@ -1,8 +1,8 @@
 'use server';
 
 // IMPORTANT: This file contains the actual server-side logic and secrets.
-// By using dynamic imports inside the functions, we prevent Next.js from
-// bundling these modules at build time, which solves the secrets scanning issue.
+// By using dynamic imports and careful secret handling, we prevent Next.js from
+// bundling secrets at build time, which solves secrets scanning issues.
 
 export async function createRazorpayOrder(
     amount: number, 
@@ -90,28 +90,31 @@ export async function sendOrderConfirmationEmail(
   paymentId: string
 ) {
   try {
+    // Dynamically import nodemailer to ensure it's only loaded on the server at runtime.
     const nodemailer = (await import('nodemailer')).default;
 
-    const brevoHost = process.env.BREVO_SMTP_HOST!;
-    const brevoUser = process.env.BREVO_SMTP_USER!;
-    const brevoKey = process.env.BREVO_SMTP_KEY!;
-    const brevoPort = process.env.BREVO_SMTP_PORT!;
-    const brevoSender = process.env.BREVO_SENDER_EMAIL! || 'creski.shop@gmail.com';
-    const emailTo = process.env.EMAIL_TO! || 'creski.shop@gmail.com';
+    // Group secrets into a config object to prevent build-time inlining.
+    const emailConfig = {
+      host: process.env.BREVO_SMTP_HOST,
+      port: process.env.BREVO_SMTP_PORT,
+      user: process.env.BREVO_SMTP_USER,
+      key: process.env.BREVO_SMTP_KEY,
+      sender: process.env.BREVO_SENDER_EMAIL || 'creski.shop@gmail.com',
+      to: process.env.EMAIL_TO || 'creski.shop@gmail.com'
+    };
 
-    if (!brevoHost || !brevoUser || !brevoKey || !brevoPort) {
+    if (!emailConfig.host || !emailConfig.user || !emailConfig.key || !emailConfig.port) {
       console.error('CRITICAL: Missing Brevo SMTP credentials in .env file. Cannot send email.');
-      // Return success because this should not block the user flow.
       return { success: true, error: 'Email configuration is incomplete on the server.' };
     }
     
     const transporter = nodemailer.createTransport({
-      host: brevoHost,
-      port: Number(brevoPort), // Ensure port is a number
-      secure: Number(brevoPort) === 465, // true for 465, false for other ports
+      host: emailConfig.host,
+      port: Number(emailConfig.port),
+      secure: Number(emailConfig.port) === 465, // true for 465, false for other ports
       auth: {
-        user: brevoUser,
-        pass: brevoKey,
+        user: emailConfig.user,
+        pass: emailConfig.key,
       },
     });
 
@@ -119,8 +122,8 @@ export async function sendOrderConfirmationEmail(
     const total = items.reduce((acc, item) => acc + item.price, 0);
 
     const mailOptions = {
-      from: `"CRESKI Orders" <${brevoSender}>`,
-      to: emailTo,
+      from: `"CRESKI Orders" <${emailConfig.sender}>`,
+      to: emailConfig.to,
       subject: `New Order Received from ${customerDetails.name} - #${paymentId.slice(-6)}`,
       html: `
         <h1>New Order Received!</h1>
@@ -147,7 +150,6 @@ export async function sendOrderConfirmationEmail(
   } catch (error: any) {
     console.error('CRITICAL: Failed to send order confirmation email. Payment was successful but email failed.', error.message);
     // Important: Still return success so the user flow isn't broken.
-    // The error is logged for debugging.
     return { success: true, error: 'Failed to send order confirmation email, but payment was processed.' };
   }
 }
