@@ -77,12 +77,13 @@ export async function verifyRazorpayPayment(data: {
 }
 
 export async function sendOrderConfirmationEmail(
-  customerDetails: { [key: string]: any }, // More flexible type
+  customerDetails: { [key: string]: any },
   items: { name: string; price: number }[],
   paymentId: string
 ) {
   if (!brevoHost || !brevoUser || !brevoKey || !emailTo || !brevoSender || !brevoPort) {
     console.error('Missing Brevo SMTP credentials in .env file. Cannot send email.');
+    // Return an error object but don't throw, so the client knows something went wrong.
     return { error: 'Email configuration is incomplete on the server.' };
   }
 
@@ -128,7 +129,7 @@ export async function sendOrderConfirmationEmail(
     return { success: true };
   } catch (error) {
     console.error('Error sending email:', error);
-    // Return success to the client even if email fails, but log the error for debugging.
+    // Return an error so the caller can be aware, but don't crash the main thread.
     return { error: 'Failed to send order confirmation email.' };
   }
 }

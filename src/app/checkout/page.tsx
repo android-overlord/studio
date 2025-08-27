@@ -43,7 +43,6 @@ const CheckoutPage = () => {
   const [allAvailableItems, setAllAvailableItems] = useState<Perfume[]>([]);
 
   useEffect(() => {
-    // This effect runs once on mount to combine items from the quiz and the cart.
     let quizItems: Perfume[] = [];
     try {
       const primary = JSON.parse(sessionStorage.getItem('primaryRecommendation') || 'null');
@@ -51,19 +50,16 @@ const CheckoutPage = () => {
       quizItems = [primary, ...alternatives].filter(Boolean);
     } catch (e) {
       console.error("Failed to parse recommendations from session storage", e);
-      // If storage fails, quizItems remains empty, and we just use the cart.
     }
     
-    // Combine quiz items and cart items, ensuring no duplicates by name.
     const combined = [...quizItems, ...cart];
     const unique = Array.from(new Map(combined.map(item => [item.name, item])).values());
     
     setAllAvailableItems(unique);
-    setSelectedItems(unique); // Initially, all items are selected.
-  }, [cart]); // Dependency on cart ensures it updates if cart changes.
+    setSelectedItems(unique);
+  }, [cart]);
 
   useEffect(() => {
-    // This effect recalculates the total price whenever the selection changes.
     const newTotalPrice = selectedItems.reduce((acc, item) => acc + (item.price || 0), 0);
     setTotalPrice(newTotalPrice);
   }, [selectedItems]);
@@ -150,7 +146,8 @@ const CheckoutPage = () => {
             sendOrderConfirmationEmail(fullCustomerDetails, selectedItems, verificationResult.paymentId)
               .then(emailResult => {
                   if (emailResult.error) {
-                    console.error("Email sending failed on the server:", emailResult.error);
+                    // Log to console for client-side debugging if needed
+                    console.error("Email sending failed:", emailResult.error);
                   }
               });
 
@@ -194,7 +191,6 @@ const CheckoutPage = () => {
   
   const handleClearCart = () => {
     clearCart();
-    // Also clear quiz recommendations if they are in the selected items
     sessionStorage.removeItem('primaryRecommendation');
     sessionStorage.removeItem('alternativeRecommendations');
     setSelectedItems([]);
@@ -269,5 +265,3 @@ const CheckoutPage = () => {
 };
 
 export default CheckoutPage;
-
-    
