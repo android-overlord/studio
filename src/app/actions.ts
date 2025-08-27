@@ -1,7 +1,7 @@
 
 'use server';
 
-import * as brevo from '@getbrevo/brevo';
+import nodemailer from 'nodemailer';
 
 type Perfume = {
     name: string;
@@ -24,19 +24,25 @@ interface SendOrderEmailParams {
 }
 
 export async function sendOrderEmail({ customerDetails, selectedItems, totalPrice }: SendOrderEmailParams) {
-    const { BREVO_API_KEY } = process.env;
-    if (!BREVO_API_KEY) {
-        console.error('Brevo API Key is missing. Cannot send email.');
-        // In a real app, you might want to return a more structured error
-        // For now, we'll throw to indicate a server-side configuration issue.
+    const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_FROM_EMAIL, OWNER_EMAIL } = process.env;
+
+    if (!SMTP_HOST || !SMTP_PORT || !SMTP_USER || !SMTP_PASS || !SMTP_FROM_EMAIL || !OWNER_EMAIL) {
+        console.error('SMTP environment variables are not fully configured. Cannot send email.');
         throw new Error('Email service is not configured on the server.');
     }
-    
-    const api = new brevo.TransactionalEmailsApi();
-    api.setApiKey(brevo.TransactionalEmailsApiApiKeys.apiKey, BREVO_API_KEY);
+
+    const transporter = nodemailer.createTransport({
+        host: SMTP_HOST,
+        port: parseInt(SMTP_PORT, 10),
+        secure: parseInt(SMTP_PORT, 10) === 465, // true for 465, false for other ports
+        auth: {
+            user: SMTP_USER,
+            pass: SMTP_PASS,
+        },
+    });
 
     const itemsListHtml = selectedItems.map(item => `<li>${item.name}</li>`).join('');
-    
+
     // --- Email to Owner ---
     const emailHtmlForOwner = `
         <h1>New CRESKI Order!</h1>
@@ -56,11 +62,12 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
         <p>Please verify the payment and process the order.</p>
     `;
 
-    const ownerEmail = new brevo.SendSmtpEmail();
-    ownerEmail.sender = { name: 'CRESKI Orders', email: 'creski.help@gmail.com' };
-    ownerEmail.to = [{ email: 'sahoo.adarsh@gmail.com', name: 'Adarsh Sahoo' }];
-    ownerEmail.subject = `New Order from ${customerDetails.name}`;
-    ownerEmail.htmlContent = emailHtmlForOwner;
+    const ownerEmailOptions = {
+        from: `"CRESKI Orders" <${SMTP_FROM_EMAIL}>`,
+        to: OWNER_EMAIL,
+        subject: `New Order from ${customerDetails.name}`,
+        html: emailHtmlForOwner,
+    };
 
     // --- Email to Customer ---
     const emailHtmlForCustomer = `
@@ -72,30 +79,28 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
         <p><strong>- The CRESKI Team</strong></p>
     `;
 
-    const customerEmail = new brevo.SendSmtpEmail();
-    customerEmail.sender = { name: 'CRESKI', email: 'creski.help@gmail.com' };
-    customerEmail.to = [{ email: customerDetails.email, name: customerDetails.name }];
-    customerEmail.subject = `Your CRESKI Order has been received!`;
-    customerEmail.htmlContent = emailHtmlForCustomer;
+    const customerEmailOptions = {
+        from: `"CRESKI" <${SMTP_FROM_EMAIL}>`,
+        to: customerDetails.email,
+        subject: `Your CRESKI Order has been received!`,
+        html: emailHtmlForCustomer,
+    };
 
     try {
-        console.log("Sending emails...");
-        await Promise.all([
-            api.sendTransacEmail(ownerEmail),
-            api.sendTransacEmail(customerEmail)
-        ]);
+        console.log("Sending emails via SMTP...");
+        const ownerEmailPromise = transporter.sendMail(ownerEmailOptions);
+        const customerEmailPromise = transporter.sendMail(customerEmailOptions);
+        
+        await Promise.all([ownerEmailPromise, customerEmailPromise]);
+        
         console.log("✅ Emails sent successfully.");
-        // We don't need to return anything on success for the original logic.
-        // The calling function will assume success if no error is thrown.
     } catch (error: any) {
-        console.error('❌ Failed to send emails via Brevo.');
-        if (error.response) {
-            console.error("Brevo API error response:", error.response.body);
-        } else {
-            console.error("Unknown error:", error);
-        }
-        // This throw is what the original code did, causing a crash on the client
-        // but it's part of the original state we are reverting to.
+        console.error('❌ Failed to send emails via SMTP.');
+        // Log detailed error information from nodemailer
+        console.error('Error Code:', error.code);
+        console.error('Error Response:', error.response);
+        console.error('Error Response Code:', error.responseCode);
+        console.error('Full Error:', error);
         throw new Error('Failed to send order emails.');
     }
 }
