@@ -10,7 +10,8 @@
       "Party",
       "Luxury"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 3000
   },
   {
     "name": "Tom Ford Ombré Leather",
@@ -23,14 +24,16 @@
       "Office",
       "Daily"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Tom Ford Tubéreuse Nue",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Tom Ford Rose Prick",
@@ -42,7 +45,8 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 3000
   },
   {
     "name": "Tom Ford Rose Prick",
@@ -54,7 +58,8 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 3000
   },
   {
     "name": "Tom Ford Electric Cherry",
@@ -67,28 +72,32 @@
       "Date",
       "Party"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 3000
   },
   {
     "name": "Tom Ford Ébène Fumé",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Tom Ford Neroli Portofino",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Tom Ford Fucking Fabulous",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Tom Ford Vanille Fatale",
@@ -101,7 +110,8 @@
       "Date",
       "Party"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 3000
   },
   {
     "name": "Tom Ford Cherry Smoke",
@@ -114,7 +124,8 @@
       "Date",
       "Party"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 3000
   },
   {
     "name": "Tom Ford Lost Cherry",
@@ -127,7 +138,8 @@
       "Date",
       "Party"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 3000
   },
   {
     "name": "Tom Ford Oud Wood",
@@ -140,7 +152,8 @@
       "Office",
       "Daily"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Tom Ford Bitter Peach",
@@ -153,14 +166,16 @@
       "Date",
       "Party"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 3000
   },
   {
     "name": "Tom Ford White Suede",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Tom Ford Oud Wood",
@@ -173,14 +188,16 @@
       "Office",
       "Daily"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Tom Ford Fabulous",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Tom Ford Tobacco Oud",
@@ -193,7 +210,8 @@
       "Office",
       "Daily"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Tom Ford Rose Exposed",
@@ -205,7 +223,8 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 3000
   },
   {
     "name": "Tom Ford Myrrhe Mystère",
@@ -218,7 +237,8 @@
       "Party",
       "Luxury"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 3000
   },
   {
     "name": "Tom Ford Eau de Ombré Leather",
@@ -231,7 +251,8 @@
       "Office",
       "Daily"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Tom Ford Ombré Leather",
@@ -244,7 +265,8 @@
       "Office",
       "Daily"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Tom Ford Black Orchid",
@@ -256,7 +278,8 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 3000
   },
   {
     "name": "Tom Ford Velvet Orchid",
@@ -268,28 +291,32 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 3000
   },
   {
     "name": "Tom Ford Soleil Blanc",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Tom Ford Metallique",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Tom Ford Costa Azzurra",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Tom Ford Grey Vetiver",
@@ -302,14 +329,16 @@
       "Office",
       "Daily"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Tom Ford for Men",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Tom Ford Noir",
@@ -322,7 +351,8 @@
       "Office",
       "Daily"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Tom Ford Noir Extreme",
@@ -335,7 +365,8 @@
       "Office",
       "Daily"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Tom Ford Noir Anthracite",
@@ -348,28 +379,32 @@
       "Office",
       "Daily"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Valentino Uomo Born in Roma Coral Fantasy",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Valentino Uomo Born in Roma",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Valentino Uomo Born in Roma Green Stravaganza",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Valentino Uomo Born in Roma Intense",
@@ -382,21 +417,24 @@
       "Party",
       "Luxury"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 2500
   },
   {
     "name": "Giorgio Armani Sì Passione Éclat",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Giorgio Armani Sì",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Giorgio Armani Sì Passione Intense",
@@ -409,7 +447,8 @@
       "Party",
       "Luxury"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 2500
   },
   {
     "name": "Giorgio Armani Sì Intense",
@@ -422,14 +461,16 @@
       "Party",
       "Luxury"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 2500
   },
   {
     "name": "Armani Code",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Armani Privé Cuir Noir",
@@ -442,7 +483,8 @@
       "Office",
       "Daily"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Armani Privé Oud Royal",
@@ -455,14 +497,16 @@
       "Office",
       "Daily"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Armani Privé Magenta Tanzanite",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Emporio Armani Stronger With You",
@@ -475,7 +519,8 @@
       "Date",
       "Party"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 2500
   },
   {
     "name": "Emporio Armani Stronger With You Intensely",
@@ -488,14 +533,16 @@
       "Party",
       "Luxury"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 2500
   },
   {
     "name": "Emporio Armani Because It's You",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Emporio Armani Stronger With You Oud",
@@ -508,7 +555,8 @@
       "Office",
       "Daily"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Emporio Armani Stronger With You Tobacco",
@@ -521,7 +569,8 @@
       "Party",
       "Luxury"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 2500
   },
   {
     "name": "Emporio Armani Stronger With You Parfum",
@@ -534,21 +583,24 @@
       "Date",
       "Party"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 2500
   },
   {
     "name": "Giorgio Armani My Way Parfum",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Giorgio Armani My Way",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Acqua di Giò Eau de Parfum",
@@ -561,7 +613,8 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Acqua di Giò Parfum",
@@ -574,7 +627,8 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Acqua di Giò Profumo",
@@ -587,7 +641,8 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Acqua di Giò",
@@ -600,14 +655,16 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Dolce & Gabbana K",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Dolce & Gabbana K Intense",
@@ -620,14 +677,16 @@
       "Party",
       "Luxury"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 2200
   },
   {
     "name": "Dolce & Gabbana The One",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Dolce & Gabbana Light Blue",
@@ -640,21 +699,24 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Dolce & Gabbana The Only One",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Dolce & Gabbana The Only One 2",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Dolce & Gabbana Light Blue Summer Vibes",
@@ -667,7 +729,8 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Dolce & Gabbana Light Blue Summer Vibes Pour Homme",
@@ -680,28 +743,32 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Hugo Boss Hugo Red",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Hugo Boss Hugo Just Different",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Hugo Boss Hugo Man",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Hugo Boss Boss Oud Saffron",
@@ -714,7 +781,8 @@
       "Office",
       "Daily"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Hugo Boss Boss Bottled Elixir",
@@ -727,7 +795,8 @@
       "Party",
       "Luxury"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 2200
   },
   {
     "name": "Hugo Boss Boss Oud Aromatic",
@@ -740,14 +809,16 @@
       "Office",
       "Daily"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Montblanc Legend Red",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Montblanc Legend Blue",
@@ -760,56 +831,64 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Montblanc Signature Absolue",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Montblanc Explorer",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Montblanc Explorer Platinum",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Versace Dylan Purple",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Versace Eros Energy",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Versace Eros Najim",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Versace Eros",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Versace Eros Eau de Parfum",
@@ -822,14 +901,16 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Versace Eros Parfum",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Versace Eros Eau de Parfum",
@@ -842,14 +923,16 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Versace Eros Flame",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Versace Pour Homme",
@@ -862,7 +945,8 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Versace Dylan Blue",
@@ -875,7 +959,8 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Versace Crystal Noir",
@@ -888,21 +973,24 @@
       "Office",
       "Daily"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Versace Yellow Diamond",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Versace Bright Crystal",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Tom Ford Black Orchid",
@@ -914,7 +1002,8 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 3000
   },
   {
     "name": "Tom Ford Grey Vetiver",
@@ -927,7 +1016,8 @@
       "Office",
       "Daily"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Tom Ford Black Orchid Parfum",
@@ -939,7 +1029,8 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 3000
   },
   {
     "name": "Paco Rabanne 1 Million Elixir",
@@ -952,7 +1043,8 @@
       "Party",
       "Luxury"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 2500
   },
   {
     "name": "Rabanne Phantom Intense",
@@ -965,21 +1057,24 @@
       "Party",
       "Luxury"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 2500
   },
   {
     "name": "Paco Rabanne Fame",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Paco Rabanne Invictus Victory",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Paco Rabanne 1 Million",
@@ -992,7 +1087,8 @@
       "Date",
       "Party"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 2200
   },
   {
     "name": "Paco Rabanne 1 Million Parfum",
@@ -1005,7 +1101,8 @@
       "Date",
       "Party"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 2200
   },
   {
     "name": "Paco Rabanne 1 Million Royal",
@@ -1018,7 +1115,8 @@
       "Date",
       "Party"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 2200
   },
   {
     "name": "Paco Rabanne 1 Million",
@@ -1031,14 +1129,16 @@
       "Date",
       "Party"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 2200
   },
   {
     "name": "Paco Rabanne Phantom Parfum",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Paco Rabanne Invictus Victory Elixir",
@@ -1051,49 +1151,56 @@
       "Party",
       "Luxury"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 2500
   },
   {
     "name": "Paco Rabanne Phantom",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Rabanne Invictus Parfum",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Bvlgari Le Gemme Garanat",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Bvlgari Le Gemme Gyan",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Bvlgari Le Gemme Tygar",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Bvlgari Man Extreme",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Bvlgari Man Wood Essence",
@@ -1106,14 +1213,16 @@
       "Office",
       "Daily"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Bvlgari Man in Black",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Carolina Herrera Good Girl Dazzling Garden",
@@ -1126,7 +1235,8 @@
       "Date",
       "Party"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 2500
   },
   {
     "name": "Carolina Herrera Good Girl Collector Edition",
@@ -1139,7 +1249,8 @@
       "Date",
       "Party"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 2500
   },
   {
     "name": "Carolina Herrera Good Girl Blush Elixir",
@@ -1152,7 +1263,8 @@
       "Party",
       "Luxury"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 2500
   },
   {
     "name": "Carolina Herrera Good Girl",
@@ -1165,21 +1277,24 @@
       "Date",
       "Party"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 2500
   },
   {
     "name": "Carolina Herrera 212 VIP Black",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Carolina Herrera 212 Men NYC",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Yves Saint Laurent La Nuit de L'Homme L'Intense",
@@ -1192,42 +1307,48 @@
       "Party",
       "Luxury"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 2500
   },
   {
     "name": "Yves Saint Laurent La Nuit de L'Homme",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Yves Saint Laurent MYSLF",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Yves Saint Laurent MYSLF Le Parfum",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Yves Saint Laurent Libre L'Eau Nue",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Yves Saint Laurent Libre Le Parfum",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Yves Saint Laurent Libre Eau de Parfum Intense",
@@ -1240,21 +1361,24 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Yves Saint Laurent Libre",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Yves Saint Laurent Libre L'Absolu Platine",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Yves Saint Laurent Mon Paris",
@@ -1266,14 +1390,16 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 2500
   },
   {
     "name": "Yves Saint Laurent Y",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Yves Saint Laurent Y Eau de Parfum",
@@ -1286,14 +1412,16 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Yves Saint Laurent Y Le Parfum",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Yves Saint Laurent Y L'Elixir",
@@ -1306,7 +1434,8 @@
       "Party",
       "Luxury"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 2500
   },
   {
     "name": "Yves Saint Laurent Black Opium Floral Shock",
@@ -1318,7 +1447,8 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 2500
   },
   {
     "name": "Yves Saint Laurent Black Opium",
@@ -1331,7 +1461,8 @@
       "Date",
       "Party"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 2500
   },
   {
     "name": "Dior Miss Dior Absolutely Blooming",
@@ -1343,7 +1474,8 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 2500
   },
   {
     "name": "Miss Dior Eau de Parfum",
@@ -1356,7 +1488,8 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Christian Dior Oud Ispahan",
@@ -1369,14 +1502,16 @@
       "Office",
       "Daily"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Dior Sauvage Eau Forte",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Dior Sauvage Elixir",
@@ -1389,7 +1524,8 @@
       "Party",
       "Luxury"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 2500
   },
   {
     "name": "Dior Homme Intense",
@@ -1402,14 +1538,16 @@
       "Party",
       "Luxury"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 2500
   },
   {
     "name": "Dior Sauvage",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Dior Sauvage Eau de Parfum",
@@ -1422,28 +1560,32 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Dior Sauvage Parfum",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Dior Poison Girl",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Dior Hypnotic Poison",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Dior J'adore",
@@ -1455,28 +1597,32 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 2500
   },
   {
     "name": "Dior Fahrenheit",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Gucci Guilty Pour Femme",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Gucci Guilty Absolute Pour Femme",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Gucci Guilty Pour Homme",
@@ -1489,28 +1635,32 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Gucci Guilty Black",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Gucci Guilty",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Gucci The Voice of the Snake",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Gucci Flora Glamorous Magnolia",
@@ -1522,7 +1672,8 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 2500
   },
   {
     "name": "Gucci Flora Emerald Gardenia",
@@ -1534,7 +1685,8 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 2500
   },
   {
     "name": "Gucci Flora Gorgeous Gardenia",
@@ -1546,7 +1698,8 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 2500
   },
   {
     "name": "Gucci Flora Gorgeous Gardenia",
@@ -1558,7 +1711,8 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 2500
   },
   {
     "name": "Flora by Gucci Gorgeous Gardenia",
@@ -1570,7 +1724,8 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 2500
   },
   {
     "name": "Gucci Flora Gorgeous Orchid",
@@ -1582,7 +1737,8 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 2500
   },
   {
     "name": "Gucci Flora Gorgeous Magnolia",
@@ -1594,7 +1750,8 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 2500
   },
   {
     "name": "Gucci Flora Gorgeous Jasmine",
@@ -1606,7 +1763,8 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 2500
   },
   {
     "name": "Gucci Flora Gorgeous Gardenia",
@@ -1618,7 +1776,8 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 2500
   },
   {
     "name": "Gucci Flora",
@@ -1630,7 +1789,8 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 2500
   },
   {
     "name": "Gucci Bloom",
@@ -1642,7 +1802,8 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 2500
   },
   {
     "name": "Gucci Bloom Intense",
@@ -1654,7 +1815,8 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 2500
   },
   {
     "name": "Gucci Bloom Profumo di Fiori",
@@ -1666,21 +1828,24 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 2500
   },
   {
     "name": "Gucci Bamboo",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Gucci Bamboo Limited Edition",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Chanel Allure Homme Sport Cologne",
@@ -1693,7 +1858,8 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Chanel Allure Homme Sport",
@@ -1706,21 +1872,24 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Chanel Allure Homme Édition Blanche",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Bleu de Chanel",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Bleu de Chanel Eau de Parfum",
@@ -1733,35 +1902,40 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Bleu de Chanel Parfum",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Bleu de Chanel Parfum",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Chanel Gabrielle Parfum",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Chanel No. 5",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Chanel Coco Mademoiselle Eau de Parfum Intense",
@@ -1774,21 +1948,24 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Chanel Coco Mademoiselle",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Chanel Chance Eau Tendre",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Chanel Coco Noir",
@@ -1801,7 +1978,8 @@
       "Office",
       "Daily"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Givenchy L'Interdit Eau de Parfum Rouge",
@@ -1814,7 +1992,8 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Givenchy L'Interdit Eau de Parfum Intense",
@@ -1827,21 +2006,24 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Givenchy Gentleman Society",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Givenchy Gentleman",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Gentleman Givenchy Eau de Parfum",
@@ -1854,77 +2036,88 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Gentleman Givenchy Réserve Privée",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Maison Margiela Replica Jazz Club",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Maison Margiela Replica Sailing Day",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Maison Margiela Replica By the Fireplace",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Maison Margiela Replica Lazy Sunday Morning",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Mr. Burberry",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "My Burberry Blush",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "My Burberry Black",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "My Burberry",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Burberry Hero Parfum",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Burberry Hero Eau de Parfum",
@@ -1937,21 +2130,24 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Burberry Hero",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Burberry Goddess",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Burberry Her Elixir de Parfum",
@@ -1964,7 +2160,8 @@
       "Party",
       "Luxury"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 2200
   },
   {
     "name": "Le Labo Rose 31",
@@ -1976,21 +2173,24 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 2500
   },
   {
     "name": "Le Labo Santal 33",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Le Labo Another 13",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Le Labo Vetiver 46",
@@ -2003,28 +2203,32 @@
       "Office",
       "Daily"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Creed Aventus",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Creed Royal Mayfair",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Creed Aventus 10th Anniversary",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Creed Spring Flower",
@@ -2036,42 +2240,48 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 3000
   },
   {
     "name": "Creed Viking",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Creed Virgin Island Water",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Creed Aventus Cologne",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Creed Queen of Silk",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Creed Silver Mountain Water",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Kilian Good Girl Gone Bad",
@@ -2084,14 +2294,16 @@
       "Date",
       "Party"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 3000
   },
   {
     "name": "Kilian Bamboo Harmony",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Kilian A Kiss from a Rose",
@@ -2103,21 +2315,24 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 3000
   },
   {
     "name": "Kilian Black Phantom '''Memento Mori'''",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Kilian Straight to Heaven",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Roja Parfums Vetiver",
@@ -2130,14 +2345,16 @@
       "Office",
       "Daily"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Roja Parfums Danger",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Roja Parfums Scandal",
@@ -2150,21 +2367,24 @@
       "Date",
       "Party"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 3000
   },
   {
     "name": "Roja Parfums Enigma",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Roja Parfums Reckless",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Roja Parfums Elixir",
@@ -2177,42 +2397,48 @@
       "Party",
       "Luxury"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 3000
   },
   {
     "name": "Roja Parfums Elysium",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Roja Parfums Harrods",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Pepe Jeans Life is Now",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Pepe Jeans Celebrate",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Azzaro The Most Wanted",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Azzaro The Most Wanted Eau de Parfum Intense",
@@ -2225,21 +2451,24 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Azzaro Wanted by Night",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Azzaro Wanted",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Maison Francis Kurkdjian Oud Silk Mood",
@@ -2252,21 +2481,24 @@
       "Office",
       "Daily"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Maison Francis Kurkdjian Baccarat Rouge 540",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Maison Francis Kurkdjian Baccarat Rouge 540",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Guerlain Rose Chérie",
@@ -2278,14 +2510,16 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 2500
   },
   {
     "name": "Guerlain Santal Pao Rosa",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Guerlain Néroli Outrenoir",
@@ -2298,7 +2532,8 @@
       "Office",
       "Daily"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Viktor & Rolf Spicebomb Infrared",
@@ -2311,7 +2546,8 @@
       "Party",
       "Luxury"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 2500
   },
   {
     "name": "Viktor & Rolf Spicebomb Night Vision",
@@ -2324,7 +2560,8 @@
       "Party",
       "Luxury"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 2500
   },
   {
     "name": "Viktor & Rolf Spicebomb",
@@ -2337,21 +2574,24 @@
       "Party",
       "Luxury"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 2500
   },
   {
     "name": "Marc Jacobs Decadence",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Marc Jacobs Decadence",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Marc Jacobs Daisy Eau So Fresh Pop",
@@ -2364,21 +2604,24 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Marc Jacobs Daisy Dream",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Prada Paradoxe",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Prada Paradoxe Intense",
@@ -2391,7 +2634,8 @@
       "Party",
       "Luxury"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 2500
   },
   {
     "name": "Prada Paradoxe Virtual Flower",
@@ -2403,28 +2647,32 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 2500
   },
   {
     "name": "Narciso Rodriguez for Her",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Narciso Rodriguez for Her Forever",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Narciso Rodriguez for Her",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Parfums de Marly Oriana",
@@ -2437,49 +2685,56 @@
       "Date",
       "Party"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 3000
   },
   {
     "name": "Parfums de Marly Palatine",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Parfums de Marly Kalan",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Parfums de Marly Pegasus",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Parfums de Marly Layton",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Parfums de Marly Althaïr",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Parfums de Marly Perseus",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Mancera Purple Flowers",
@@ -2491,14 +2746,16 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 2200
   },
   {
     "name": "Mancera Velvet Vanilla",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Mancera Roses Vanille",
@@ -2510,7 +2767,8 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 2200
   },
   {
     "name": "Mancera Red Tobacco",
@@ -2523,7 +2781,8 @@
       "Party",
       "Luxury"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 2200
   },
   {
     "name": "Louis Vuitton L'Immensité",
@@ -2536,49 +2795,56 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Louis Vuitton On The Beach",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Louis Vuitton Nuit de Feu",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Louis Vuitton Apogée",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Louis Vuitton Spell on You",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Louis Vuitton Turbulences",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Louis Vuitton Mille Feux",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Louis Vuitton Les Sables Roses",
@@ -2590,21 +2856,24 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 3000
   },
   {
     "name": "Louis Vuitton Attrape-Rêves",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Louis Vuitton Ombre Nomade",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Louis Vuitton Pur Oud",
@@ -2617,21 +2886,24 @@
       "Office",
       "Daily"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Louis Vuitton City of Stars",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Louis Vuitton California Dream",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Louis Vuitton Matière Noire",
@@ -2644,14 +2916,16 @@
       "Office",
       "Daily"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Louis Vuitton Pacific Chill",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Louis Vuitton Rose des Vents",
@@ -2663,35 +2937,40 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 3000
   },
   {
     "name": "Louis Vuitton Le Jour Se Lève",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Hawas for Him",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Hawas for Him Ice",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Hawas for Her",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Calvin Klein CK One",
@@ -2704,7 +2983,8 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Calvin Klein CK Be",
@@ -2717,7 +2997,8 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Armaf Club de Nuit Intense Man",
@@ -2730,21 +3011,24 @@
       "Party",
       "Luxury"
     ],
-    "intensity": "Strong"
+    "intensity": "Strong",
+    "price": 2200
   },
   {
     "name": "Armaf Club de Nuit Woman",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Armaf Club de Nuit Milestone",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Davidoff Cool Water",
@@ -2757,28 +3041,32 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Zarkoperfume The Muse",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Atkinsons 44 Gerrard Street",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Byredo Mojave Ghost",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Byredo Rose of No Man's Land",
@@ -2790,14 +3078,16 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 2500
   },
   {
     "name": "Amouage Honour",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 3000
   },
   {
     "name": "Issey Miyake L'Eau d'Issey Pour Homme",
@@ -2810,7 +3100,8 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Ralph Lauren Polo Blue",
@@ -2823,28 +3114,32 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Moschino Toy 2",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Moschino Toy Boy",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Moschino Toy 2 Pearl",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Lancôme La Vie Est Belle L'Éclat",
@@ -2856,7 +3151,8 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 2200
   },
   {
     "name": "Lancôme La Vie Est Belle L'Elixir",
@@ -2868,7 +3164,8 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 2200
   },
   {
     "name": "Lancôme Trésor Midnight Rose",
@@ -2880,21 +3177,24 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 2200
   },
   {
     "name": "Afnan 9pm",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Afnan 9am Dive",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Hermès Terre d'Hermès",
@@ -2907,14 +3207,16 @@
       "Office",
       "Daily"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Tiffany & Co.",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Tiffany & Co. Rose Gold Intense",
@@ -2926,21 +3228,24 @@
       "Date",
       "Daily"
     ],
-    "intensity": "Light"
+    "intensity": "Light",
+    "price": 2200
   },
   {
     "name": "Tiffany & Co. & Love for Him",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2200
   },
   {
     "name": "Diptyque Tam Dao",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Diptyque Tam Dao Eau de Parfum",
@@ -2953,48 +3258,55 @@
       "Daily",
       "Party"
     ],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Diptyque Oyédo",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Diptyque Do Son",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Diptyque Tempo",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Diptyque Vetyverio",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Diptyque Ilio",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   },
   {
     "name": "Diptyque Eau Duelle",
     "family": "Woody / Earthy",
     "personality": [],
     "occasions": [],
-    "intensity": "Balanced"
+    "intensity": "Balanced",
+    "price": 2500
   }
 ]
