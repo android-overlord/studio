@@ -95,12 +95,12 @@ export async function sendOrderConfirmationEmail(
 
     // Group secrets into a config object to prevent build-time inlining.
     const emailConfig = {
-      host: process.env.BREVO_SMTP_HOST,
-      port: process.env.BREVO_SMTP_PORT,
-      user: process.env.BREVO_SMTP_USER,
-      key: process.env.BREVO_SMTP_KEY,
-      sender: process.env.BREVO_SENDER_EMAIL || 'creski.shop@gmail.com',
-      to: process.env.EMAIL_TO || 'creski.shop@gmail.com'
+      host: process.env.BREVO_SMTP_HOST!,
+      port: Number(process.env.BREVO_SMTP_PORT!),
+      user: process.env.BREVO_SMTP_USER!,
+      key: process.env.BREVO_SMTP_KEY!,
+      sender: process.env.BREVO_SENDER_EMAIL! || 'creski.shop@gmail.com',
+      to: process.env.EMAIL_TO! || 'creski.shop@gmail.com'
     };
 
     if (!emailConfig.host || !emailConfig.user || !emailConfig.key || !emailConfig.port) {
@@ -110,8 +110,8 @@ export async function sendOrderConfirmationEmail(
     
     const transporter = nodemailer.createTransport({
       host: emailConfig.host,
-      port: Number(emailConfig.port),
-      secure: Number(emailConfig.port) === 465, // true for 465, false for other ports
+      port: emailConfig.port,
+      secure: emailConfig.port === 465, // true for 465, false for other ports
       auth: {
         user: emailConfig.user,
         pass: emailConfig.key,
