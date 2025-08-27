@@ -55,7 +55,6 @@ const CheckoutContent = () => {
                 setRecommendedPerfumes(parsedPerfumes);
             } catch (error) {
                 console.error("Failed to parse perfumes from URL", error);
-                // Handle error, maybe redirect or show a message
             }
         }
     }, [searchParams]);
@@ -97,23 +96,16 @@ const CheckoutContent = () => {
         }
 
         try {
-            const result = await sendOrderEmail({ customerDetails, selectedItems, totalPrice });
+            await sendOrderEmail({ customerDetails, selectedItems, totalPrice });
 
-            if (result.success) {
-                // If it succeeds, store info and redirect.
-                sessionStorage.setItem('customerDetails', JSON.stringify(customerDetails));
-                sessionStorage.setItem('selectedItems', JSON.stringify(selectedItems));
-                sessionStorage.setItem('totalPrice', JSON.stringify(totalPrice));
-                router.push('/payment');
-            } else {
-                // If it fails, show the error message from the server.
-                alert(result.message);
-            }
+            sessionStorage.setItem('customerDetails', JSON.stringify(customerDetails));
+            sessionStorage.setItem('selectedItems', JSON.stringify(selectedItems));
+            sessionStorage.setItem('totalPrice', JSON.stringify(totalPrice));
+            router.push('/payment');
 
         } catch (error: any) {
-            // This will catch unexpected network errors or issues with the server action itself
             console.error('Failed to process order:', error);
-            alert('An unexpected error occurred. Please try again.');
+            alert(error.message || 'An unexpected error occurred. Please try again.');
         } finally {
             setIsSubmitting(false);
         }

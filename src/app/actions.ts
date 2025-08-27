@@ -23,13 +23,12 @@ interface SendOrderEmailParams {
     totalPrice: number;
 }
 
-export async function sendOrderEmail({ customerDetails, selectedItems, totalPrice }: SendOrderEmailParams): Promise<{ success: boolean; message: string }> {
+export async function sendOrderEmail({ customerDetails, selectedItems, totalPrice }: SendOrderEmailParams) {
     const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_FROM_EMAIL, OWNER_EMAIL } = process.env;
 
     if (!SMTP_HOST || !SMTP_PORT || !SMTP_USER || !SMTP_PASS || !SMTP_FROM_EMAIL || !OWNER_EMAIL) {
-        const errorMessage = 'Email service is not configured on the server.';
         console.error('SMTP environment variables are not fully configured. Cannot send email.');
-        return { success: false, message: errorMessage };
+        throw new Error('Email service is not configured on the server.');
     }
 
     const transporter = nodemailer.createTransport({
@@ -44,7 +43,6 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
 
     const itemsListHtml = selectedItems.map(item => `<li>${item.name}</li>`).join('');
 
-    // --- Email to Owner ---
     const emailHtmlForOwner = `
         <h1>New CRESKI Order!</h1>
         <p>A new order has been placed.</p>
@@ -70,7 +68,6 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
         html: emailHtmlForOwner,
     };
 
-    // --- Email to Customer ---
     const emailHtmlForCustomer = `
         <h1>Your CRESKI Order is Received!</h1>
         <p>Hi ${customerDetails.name},</p>
@@ -95,14 +92,12 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
         await Promise.all([ownerEmailPromise, customerEmailPromise]);
         
         console.log("✅ Emails sent successfully.");
-        return { success: true, message: "Emails sent successfully." };
     } catch (error: any) {
         console.error('❌ Failed to send emails via SMTP.');
-        // Log detailed error information from nodemailer
         console.error('Error Code:', error.code);
         console.error('Error Response:', error.response);
         console.error('Error Response Code:', error.responseCode);
         console.error('Full Error:', error);
-        return { success: false, message: 'Failed to send order confirmation emails.' };
+        throw new Error('Failed to send order confirmation emails.');
     }
 }
