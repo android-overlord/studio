@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import data from './perfume_database_expert_balanced.json';
+import data from '../perfume-quiz/perfume_database_expert_balanced.json';
 import Image from 'next/image';
 import perfumeImages from '@/images.json';
 import { useRouter } from 'next/navigation';
