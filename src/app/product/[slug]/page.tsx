@@ -39,7 +39,10 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
         </div>
         <div className="flex flex-col justify-center">
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight">{perfume.name}</h1>
-          <p className="text-2xl font-semibold text-pink-400 mt-2 mb-4">₹{perfume.price.toFixed(2)}</p>
+          <div className="mt-2 mb-4">
+            <span className="text-2xl font-semibold text-blue-400">₹{perfume.price.toFixed(2)}</span>
+            <span className="text-sm text-neutral-400 ml-1">/ 100ml</span>
+          </div>
           
           <div className="space-y-4 my-4">
               {details.map(detail => (
@@ -73,7 +76,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               href="https://www.instagram.com/creski.shop"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full inline-flex items-center justify-center py-3 px-6 font-semibold rounded-full shadow-lg transition-colors duration-300 bg-white/10 backdrop-blur-xl border border-white/20 hover:bg-white/20 text-white"
+              className="w-full inline-flex items-center justify-center py-3 px-6 font-semibold rounded-full shadow-lg transition-colors duration-300 bg-blue-500/20 backdrop-blur-xl border border-blue-500/30 hover:bg-blue-500/30 text-white"
             >
               <ShoppingCart className="mr-2 h-5 w-5" />
               Order on Instagram
