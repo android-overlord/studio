@@ -97,19 +97,23 @@ const CheckoutContent = () => {
         }
 
         try {
-            // Original logic: call the function and assume success if it doesn't throw an error.
-            await sendOrderEmail({ customerDetails, selectedItems, totalPrice });
+            const result = await sendOrderEmail({ customerDetails, selectedItems, totalPrice });
 
-            // If it succeeds, store info and redirect.
-            sessionStorage.setItem('customerDetails', JSON.stringify(customerDetails));
-            sessionStorage.setItem('selectedItems', JSON.stringify(selectedItems));
-            sessionStorage.setItem('totalPrice', JSON.stringify(totalPrice));
-            router.push('/payment');
+            if (result.success) {
+                // If it succeeds, store info and redirect.
+                sessionStorage.setItem('customerDetails', JSON.stringify(customerDetails));
+                sessionStorage.setItem('selectedItems', JSON.stringify(selectedItems));
+                sessionStorage.setItem('totalPrice', JSON.stringify(totalPrice));
+                router.push('/payment');
+            } else {
+                // If it fails, show the error message from the server.
+                alert(result.message);
+            }
 
         } catch (error: any) {
-            // If it throws an error, show an alert.
+            // This will catch unexpected network errors or issues with the server action itself
             console.error('Failed to process order:', error);
-            alert(error.message || 'An unexpected error occurred. Please try again.');
+            alert('An unexpected error occurred. Please try again.');
         } finally {
             setIsSubmitting(false);
         }
