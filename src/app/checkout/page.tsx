@@ -142,13 +142,18 @@ const CheckoutPage = () => {
         if (verificationResult.success && verificationResult.paymentId) {
             sessionStorage.setItem('paymentId', verificationResult.paymentId);
             
-            // This will now be handled correctly, without crashing.
-            await sendOrderConfirmationEmail(fullCustomerDetails, selectedItems, verificationResult.paymentId);
-
+            // This is the critical change.
+            // 1. Immediately clear local state and redirect.
             clearCart();
             sessionStorage.removeItem('primaryRecommendation');
             sessionStorage.removeItem('alternativeRecommendations');
             router.push('/thank-you');
+            
+            // 2. Call the email action in a "fire-and-forget" manner.
+            // The user is already on the thank-you page, so they don't wait for this.
+            // A try-catch on the server will prevent crashes.
+            sendOrderConfirmationEmail(fullCustomerDetails, selectedItems, verificationResult.paymentId);
+
         } else {
             toast({
               variant: 'destructive',

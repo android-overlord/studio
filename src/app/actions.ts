@@ -81,56 +81,57 @@ export async function sendOrderConfirmationEmail(
   items: { name: string; price: number }[],
   paymentId: string
 ) {
-  if (!brevoHost || !brevoUser || !brevoKey || !emailTo || !brevoSender || !brevoPort) {
-    console.error('Missing Brevo SMTP credentials in .env file. Cannot send email.');
-    return { success: true, error: 'Email configuration is incomplete on the server.' };
-  }
-
-  const transporter = nodemailer.createTransport({
-    host: brevoHost,
-    port: Number(brevoPort),
-    secure: false, // true for 465, false for other ports
-    auth: {
-      user: brevoUser,
-      pass: brevoKey,
-    },
-  });
-
-  const itemsHtml = items.map(item => `<li>${item.name} - ₹${item.price.toFixed(2)}</li>`).join('');
-  const total = items.reduce((acc, item) => acc + item.price, 0);
-
-  const mailOptions = {
-    from: `"CRESKI Orders" <${brevoSender}>`,
-    to: emailTo,
-    subject: `New Order Received from ${customerDetails.name} - #${paymentId.slice(-6)}`,
-    html: `
-      <h1>New Order Received!</h1>
-      <p><strong>Payment ID:</strong> ${paymentId}</p>
-      <h2>Customer Details:</h2>
-      <ul>
-        <li><strong>Name:</strong> ${customerDetails.name}</li>
-        <li><strong>Email:</strong> ${customerDetails.email}</li>
-        <li><strong>Phone:</strong> ${customerDetails.phone}</li>
-        <li><strong>Address:</strong> ${customerDetails.address}</li>
-      </ul>
-      <h2>Order Items:</h2>
-      <ul>
-        ${itemsHtml}
-      </ul>
-      <h3>Total: ₹${total.toFixed(2)}</h3>
-      <hr>
-      <p>This is an automated notification. Please process the order.</p>
-    `,
-  };
-
   try {
+    if (!brevoHost || !brevoUser || !brevoKey || !emailTo || !brevoSender || !brevoPort) {
+      console.error('Missing Brevo SMTP credentials in .env file. Cannot send email.');
+      // Return success because the payment itself was not affected.
+      return { success: true, error: 'Email configuration is incomplete on the server.' };
+    }
+
+    const transporter = nodemailer.createTransport({
+      host: brevoHost,
+      port: Number(brevoPort),
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: brevoUser,
+        pass: brevoKey,
+      },
+    });
+
+    const itemsHtml = items.map(item => `<li>${item.name} - ₹${item.price.toFixed(2)}</li>`).join('');
+    const total = items.reduce((acc, item) => acc + item.price, 0);
+
+    const mailOptions = {
+      from: `"CRESKI Orders" <${brevoSender}>`,
+      to: emailTo,
+      subject: `New Order Received from ${customerDetails.name} - #${paymentId.slice(-6)}`,
+      html: `
+        <h1>New Order Received!</h1>
+        <p><strong>Payment ID:</strong> ${paymentId}</p>
+        <h2>Customer Details:</h2>
+        <ul>
+          <li><strong>Name:</strong> ${customerDetails.name}</li>
+          <li><strong>Email:</strong> ${customerDetails.email}</li>
+          <li><strong>Phone:</strong> ${customerDetails.phone}</li>
+          <li><strong>Address:</strong> ${customerDetails.address}</li>
+        </ul>
+        <h2>Order Items:</h2>
+        <ul>
+          ${itemsHtml}
+        </ul>
+        <h3>Total: ₹${total.toFixed(2)}</h3>
+        <hr>
+        <p>This is an automated notification. Please process the order.</p>
+      `,
+    };
+
     await transporter.sendMail(mailOptions);
     return { success: true };
   } catch (error: any) {
-    console.error('Error sending email:', error.message);
-    // IMPORTANT: Return success to the client even if email fails.
-    // The payment was successful, so we should not block the UI.
-    // The error is logged on the server for debugging.
-    return { success: true, error: 'Failed to send order confirmation email.' };
+    // This is the most important part.
+    // We catch ANY error during email sending, log it, and return success.
+    // This prevents the serverless function from crashing and hanging the UI.
+    console.error('CRITICAL: Failed to send order confirmation email. The payment was successful, but the email notification failed. Error:', error.message);
+    return { success: true, error: 'Failed to send order confirmation email, but payment was processed.' };
   }
 }
