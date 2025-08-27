@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import perfumeImages from '@/images.json';
-import { sendOrderEmail } from '../actions';
 
 type Perfume = {
   name: string;
@@ -86,13 +85,8 @@ const CheckoutPage = () => {
       sessionStorage.setItem('selectedItems', JSON.stringify(selectedItems));
       sessionStorage.setItem('totalPrice', JSON.stringify(totalPrice));
 
-      const emailResult = await sendOrderEmail({ customerDetails, selectedItems, totalPrice });
-
-      if (emailResult.success) {
-        router.push('/payment');
-      } else {
-        setError(emailResult.message || 'An unexpected error occurred while sending the order email.');
-      }
+      // Directly redirect to payment page without sending email
+      router.push('/payment');
 
     } catch (err: any) {
       console.error('Order submission error:', err);
