@@ -14,13 +14,21 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.417.0",
+<<<<<<< HEAD
     "next": "14.2.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+=======
+    "next": "14.2.5",
+    "qrcode": "^1.5.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+>>>>>>> 2405966 (make sure there are 0 build errors so that i can deploy all at once chec)
     "tailwind-merge": "^2.4.0"
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@types/qrcode": "^1.5.5",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "postcss": "^8",

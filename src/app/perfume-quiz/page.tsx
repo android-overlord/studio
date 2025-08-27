@@ -13,6 +13,7 @@ type Perfume = {
   personality: string[];
   occasions: string[];
   intensity: string;
+  price: number;
 };
 
 type QuizAnswers = {
@@ -42,6 +43,7 @@ const getPerfumeImage = (perfumeName: string) => {
 
 
 const PerfumeQuizPage = () => {
+  const router = useRouter();
   const [answers, setAnswers] = useState<QuizAnswers>({
     personality: null,
     occasion: null,
@@ -89,6 +91,14 @@ const PerfumeQuizPage = () => {
       setShowResults(true);
     }
   };
+
+  const handleProceedToCheckout = () => {
+    if (recommendation) {
+      sessionStorage.setItem('primaryRecommendation', JSON.stringify(recommendation.primary));
+      sessionStorage.setItem('alternativeRecommendations', JSON.stringify(recommendation.alternatives));
+      router.push('/checkout');
+    }
+  }
 
   const mapAnswersToCategory = (answers: QuizAnswers): string => {
     if (answers.personality === 'Outgoing' && answers.climate === 'Summer') return 'Fresh / Citrus / Aquatic';
@@ -205,14 +215,12 @@ const PerfumeQuizPage = () => {
               >
                 Take the Quiz Again
               </button>
-              <a
-                href="https://www.instagram.com/creski.shop"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={handleProceedToCheckout}
                 className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 inline-flex items-center"
               >
-                Order on Instagram
-              </a>
+                Proceed to Checkout
+              </button>
           </div>
         </div>
       )}
