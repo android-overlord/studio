@@ -83,8 +83,9 @@ export async function sendOrderConfirmationEmail(
 ) {
   if (!brevoHost || !brevoUser || !brevoKey || !emailTo || !brevoSender || !brevoPort) {
     console.error('Missing Brevo SMTP credentials in .env file. Cannot send email.');
-    // Return an error object but don't throw, so the client knows something went wrong.
-    return { error: 'Email configuration is incomplete on the server.' };
+    // Return a success object even if email fails, so it doesn't block the checkout flow.
+    // The main goal is to process the payment.
+    return { success: true, error: 'Email configuration is incomplete on the server.' };
   }
 
   const transporter = nodemailer.createTransport({
@@ -129,7 +130,9 @@ export async function sendOrderConfirmationEmail(
     return { success: true };
   } catch (error) {
     console.error('Error sending email:', error);
-    // Return an error so the caller can be aware, but don't crash the main thread.
-    return { error: 'Failed to send order confirmation email.' };
+    // IMPORTANT: Return success to the client even if email fails.
+    // The payment was successful, so we should not block the UI.
+    // The error is logged on the server for debugging.
+    return { success: true, error: 'Failed to send order confirmation email.' };
   }
 }
