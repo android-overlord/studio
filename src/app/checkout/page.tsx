@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import perfumeImages from '@/images.json';
 import { createRazorpayOrder, verifyRazorpayPayment } from '@/app/actions';
+import { useCart } from '@/hooks/use-cart';
+import { Trash2 } from 'lucide-react';
 
 type Perfume = {
   name: string;
@@ -29,7 +31,8 @@ const getPerfumeImage = (perfumeName: string) => {
 
 const CheckoutPage = () => {
   const router = useRouter();
-  const [recommendedItems, setRecommendedItems] = useState<Perfume[]>([]);
+  const { cart, clearCart } = useCart();
+  const [itemsFromQuiz, setItemsFromQuiz] = useState<Perfume[]>([]);
   const [selectedItems, setSelectedItems] = useState<Perfume[]>([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [customerDetails, setCustomerDetails] = useState<CustomerDetails>({
@@ -42,19 +45,27 @@ const CheckoutPage = () => {
     try {
       const primary = JSON.parse(sessionStorage.getItem('primaryRecommendation') || 'null');
       const alternatives = JSON.parse(sessionStorage.getItem('alternativeRecommendations') || '[]');
-      const allItems = [primary, ...alternatives].filter(Boolean);
-      setRecommendedItems(allItems);
-      setSelectedItems(allItems); // Pre-select all recommended items
+      const allQuizItems = [primary, ...alternatives].filter(Boolean);
+      setItemsFromQuiz(allQuizItems);
+
+      // Combine quiz items and cart items, ensuring no duplicates
+      const combinedItems = [...allQuizItems, ...cart];
+      const uniqueItems = Array.from(new Map(combinedItems.map(item => [item.name, item])).values());
+      
+      setSelectedItems(uniqueItems);
     } catch (e) {
       console.error("Failed to parse recommendations from session storage", e);
-      setError("Could not load your recommended perfumes. Please try the quiz again.");
+      // Fallback to only cart items if session storage fails
+      setSelectedItems(cart);
     }
-  }, []);
+  }, [cart]);
 
   useEffect(() => {
     const newTotalPrice = selectedItems.reduce((acc, item) => acc + (item.price || 0), 0);
     setTotalPrice(newTotalPrice);
   }, [selectedItems]);
+
+  const allAvailableItems = Array.from(new Map([...itemsFromQuiz, ...cart].map(item => [item.name, item])).values());
 
   const handleSelectionChange = (item: Perfume, isSelected: boolean) => {
     if (isSelected) {
@@ -116,6 +127,10 @@ const CheckoutPage = () => {
         const verificationResult = await verifyRazorpayPayment(response);
         if (verificationResult.success) {
             sessionStorage.setItem('paymentId', verificationResult.paymentId!);
+            // Clear only cart items, not quiz recommendations
+            clearCart();
+            sessionStorage.removeItem('primaryRecommendation');
+            sessionStorage.removeItem('alternativeRecommendations');
             router.push('/thank-you');
         } else {
             setError(verificationResult.error || 'Payment verification failed.');
@@ -143,6 +158,14 @@ const CheckoutPage = () => {
     });
     rzp.open();
   };
+  
+  const handleClearCart = () => {
+    clearCart();
+    // Also clear quiz recommendations if they are in the selected items
+    sessionStorage.removeItem('primaryRecommendation');
+    sessionStorage.removeItem('alternativeRecommendations');
+    setSelectedItems([]);
+  };
 
   if (error && !isLoading) {
     return (
@@ -160,26 +183,35 @@ const CheckoutPage = () => {
         
         {/* Items Section */}
         <div>
-          <h2 className="text-2xl font-semibold mb-4">Your Recommended Items</h2>
-          <div className="space-y-4">
-            {recommendedItems.map(item => (
-              <div key={item.name} className="flex items-center justify-between bg-neutral-800 p-4 rounded-lg">
-                <div className="flex items-center gap-4">
-                  <Image src={getPerfumeImage(item.name)} alt={item.name} width={60} height={60} className="rounded-md"/>
-                  <div>
-                    <p className="font-semibold">{item.name}</p>
-                    <p className="text-neutral-400">₹{item.price?.toFixed(2)}</p>
-                  </div>
-                </div>
-                <input
-                  type="checkbox"
-                  checked={selectedItems.some(p => p.name === item.name)}
-                  onChange={(e) => handleSelectionChange(item, e.target.checked)}
-                  className="w-5 h-5 accent-pink-500"
-                />
-              </div>
-            ))}
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-2xl font-semibold">Your Items</h2>
+            <button onClick={handleClearCart} className="flex items-center text-sm text-neutral-400 hover:text-white transition-colors">
+              <Trash2 className="h-4 w-4 mr-1"/> Clear All
+            </button>
           </div>
+          {allAvailableItems.length > 0 ? (
+            <div className="space-y-4">
+              {allAvailableItems.map(item => (
+                <div key={item.name} className="flex items-center justify-between bg-neutral-800 p-4 rounded-lg">
+                  <div className="flex items-center gap-4">
+                    <Image src={getPerfumeImage(item.name)} alt={item.name} width={60} height={60} className="rounded-md"/>
+                    <div>
+                      <p className="font-semibold">{item.name}</p>
+                      <p className="text-neutral-400">₹{item.price?.toFixed(2)}</p>
+                    </div>
+                  </div>
+                  <input
+                    type="checkbox"
+                    checked={selectedItems.some(p => p.name === item.name)}
+                    onChange={(e) => handleSelectionChange(item, e.target.checked)}
+                    className="w-5 h-5 accent-pink-500"
+                  />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-neutral-400 text-center bg-neutral-800 p-8 rounded-lg">Your cart is empty.</p>
+          )}
           <div className="mt-6 text-right">
             <p className="text-2xl font-bold">Total: ₹{totalPrice.toFixed(2)}</p>
           </div>
@@ -200,8 +232,8 @@ const CheckoutPage = () => {
             </div>
             <button
               type="submit"
-              disabled={isLoading}
-              className="w-full py-3 mt-4 bg-pink-600 text-white font-semibold rounded-full shadow-lg hover:bg-pink-700 transition-colors duration-300 disabled:bg-neutral-600"
+              disabled={isLoading || selectedItems.length === 0}
+              className="w-full py-3 mt-4 bg-pink-600 text-white font-semibold rounded-full shadow-lg hover:bg-pink-700 transition-colors duration-300 disabled:bg-neutral-600 disabled:cursor-not-allowed"
             >
               {isLoading ? 'Processing...' : 'Proceed to Payment'}
             </button>

@@ -1,3 +1,5 @@
+'use client';
+
 import perfumeData from '@/app/perfume-quiz/perfume_database_expert_balanced.json';
 import perfumeImages from '@/images.json';
 import { slugify } from '@/lib/utils';
@@ -5,6 +7,8 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Badge } from '@/components/ui/badge';
 import { ShoppingCart } from 'lucide-react';
+import { useCart } from '@/hooks/use-cart';
+import { useToast } from '@/components/ui/use-toast';
 
 type ProductPageProps = {
   params: {
@@ -13,6 +17,8 @@ type ProductPageProps = {
 };
 
 export default function ProductPage({ params }: ProductPageProps) {
+  const { addItem } = useCart();
+  const { toast } = useToast();
   const imagesMap = perfumeImages as Record<string, string>;
 
   const perfume = perfumeData.find(p => slugify(p.name) === params.slug);
@@ -20,6 +26,14 @@ export default function ProductPage({ params }: ProductPageProps) {
   if (!perfume) {
     notFound();
   }
+
+  const handleAddToCart = () => {
+    addItem(perfume);
+    toast({
+      title: "Added to cart",
+      description: `${perfume.name} has been added to your cart.`,
+    });
+  };
 
   const imagePath = Object.keys(imagesMap).find(key => imagesMap[key] === perfume.name);
   const imageUrl = imagePath ? `/images/${imagePath}` : `https://picsum.photos/seed/${perfume.name}/600/600`;
@@ -78,15 +92,13 @@ export default function ProductPage({ params }: ProductPageProps) {
           )}
           
           <div className="mt-6">
-            <a
-              href="https://www.instagram.com/creski.shop"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full inline-flex items-center justify-center py-3 px-6 font-semibold rounded-full shadow-lg transition-colors duration-300 bg-blue-500/20 backdrop-blur-xl border border-blue-500/30 hover:bg-blue-500/30 text-white"
+            <button
+              onClick={handleAddToCart}
+              className="w-full inline-flex items-center justify-center py-3 px-6 font-semibold rounded-full shadow-lg transition-colors duration-300 bg-blue-600 hover:bg-blue-700 text-white"
             >
               <ShoppingCart className="mr-2 h-5 w-5" />
-              Order on Instagram
-            </a>
+              Add to Cart
+            </button>
           </div>
         </div>
       </div>
