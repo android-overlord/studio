@@ -10,7 +10,9 @@ const keySecret = process.env.RAZORPAY_KEY_SECRET;
 const brevoHost = process.env.BREVO_SMTP_HOST;
 const brevoUser = process.env.BREVO_SMTP_USER;
 const brevoKey = process.env.BREVO_SMTP_KEY;
+const brevoSender = process.env.BREVO_SENDER_EMAIL;
 const emailTo = process.env.EMAIL_TO;
+
 
 if (!keyId || !keySecret) {
   throw new Error('Missing Razorpay API keys. Please set NEXT_PUBLIC_RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET in your .env file.');
@@ -45,6 +47,7 @@ export async function createRazorpayOrder(
         id: order.id,
         currency: order.currency,
         amount: order.amount,
+        notes: order.notes,
     };
   } catch (error) {
     console.error('Error creating Razorpay order:', error);
@@ -77,7 +80,7 @@ export async function sendOrderConfirmationEmail(
   items: { name: string; price: number }[],
   paymentId: string
 ) {
-  if (!brevoHost || !brevoUser || !brevoKey || !emailTo) {
+  if (!brevoHost || !brevoUser || !brevoKey || !emailTo || !brevoSender) {
     console.error('Missing Brevo SMTP credentials in .env file. Cannot send email.');
     return { error: 'Email configuration is incomplete on the server.' };
   }
@@ -96,7 +99,7 @@ export async function sendOrderConfirmationEmail(
   const total = items.reduce((acc, item) => acc + item.price, 0);
 
   const mailOptions = {
-    from: `"CRESKI Orders" <${brevoUser}>`,
+    from: `"CRESKI Orders" <${brevoSender}>`,
     to: emailTo,
     subject: `New Order Received from ${customerDetails.name} - #${paymentId.slice(-6)}`,
     html: `
