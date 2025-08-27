@@ -109,7 +109,13 @@ const CheckoutPage = () => {
         return;
     }
 
-    const orderData = await createRazorpayOrder(totalPrice);
+    const fullCustomerDetails = {
+      ...customerDetails,
+      address: `${customerDetails.address}, ${customerDetails.city}, ${customerDetails.state} - ${customerDetails.zip}`
+    };
+
+    const orderData = await createRazorpayOrder(totalPrice, fullCustomerDetails, selectedItems);
+
     if (orderData.error || !orderData.id) {
         setError(orderData.error || "Failed to create payment order.");
         setIsLoading(false);
@@ -141,9 +147,6 @@ const CheckoutPage = () => {
         name: customerDetails.name,
         email: customerDetails.email,
         contact: customerDetails.phone,
-      },
-      notes: {
-        address: `${customerDetails.address}, ${customerDetails.city}, ${customerDetails.state} - ${customerDetails.zip}`
       },
       theme: {
         color: '#3B82F6'

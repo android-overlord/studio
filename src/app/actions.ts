@@ -1,14 +1,13 @@
-
 'use server';
 
 import Razorpay from 'razorpay';
 import crypto from 'crypto';
 
-const keyId = process.env.RAZORPAY_KEY_ID;
+const keyId = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
 const keySecret = process.env.RAZORPAY_KEY_SECRET;
 
 if (!keyId || !keySecret) {
-  throw new Error('Missing Razorpay API keys. Please set RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET in your .env file.');
+  throw new Error('Missing Razorpay API keys. Please set NEXT_PUBLIC_RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET in your .env file.');
 }
 
 const razorpay = new Razorpay({
@@ -16,11 +15,19 @@ const razorpay = new Razorpay({
   key_secret: keySecret,
 });
 
-export async function createRazorpayOrder(amount: number) {
+export async function createRazorpayOrder(
+    amount: number, 
+    customerDetails: { [key: string]: string }, 
+    items: {name: string, price: number}[]
+) {
   const options = {
     amount: amount * 100, // Amount in the smallest currency unit (e.g., paisa for INR)
     currency: 'INR',
     receipt: `receipt_order_${new Date().getTime()}`,
+    notes: {
+        ...customerDetails,
+        items: JSON.stringify(items.map(item => item.name)), // Store item names as a JSON string
+    }
   };
 
   try {
@@ -55,4 +62,3 @@ export async function verifyRazorpayPayment(data: {
         return { success: false, error: 'Payment verification failed.' };
     }
 }
-
