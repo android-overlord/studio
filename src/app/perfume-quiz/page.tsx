@@ -54,23 +54,6 @@ const PerfumeQuizPage = () => {
   const questions: (keyof QuizAnswers)[] = ['personality', 'occasion', 'climate', 'intensity'];
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const currentQuestion = questions[currentQuestionIndex];
-  const router = useRouter();
-
-
-  const handleOrderNow = () => {
-    if (recommendation) {
-      const perfumesToOrder = [
-        recommendation.primary,
-        ...recommendation.alternatives,
-      ].filter(p => p !== null);
-
-      const params = new URLSearchParams();
-      params.set('perfumes', JSON.stringify(perfumesToOrder));
-      
-      router.push(`/checkout?${params.toString()}`);
-    }
-  };
-
 
   const handleAnswerSelect = (question: keyof QuizAnswers, answer: string) => {
     const newAnswers = { ...answers, [question]: answer };
@@ -222,12 +205,14 @@ const PerfumeQuizPage = () => {
               >
                 Take the Quiz Again
               </button>
-              <button
-                onClick={handleOrderNow}
+              <a
+                href="https://www.instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 inline-flex items-center"
               >
-                Order Now
-              </button>
+                Order on Instagram
+              </a>
           </div>
         </div>
       )}
