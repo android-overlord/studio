@@ -2,7 +2,6 @@
 'use server';
 
 import * as brevo from '@getbrevo/brevo';
-import TelegramBot from 'node-telegram-bot-api';
 
 type Perfume = {
     name: string;
@@ -24,61 +23,11 @@ interface SendOrderEmailParams {
     totalPrice: number;
 }
 
-// Helper to send notification to your Telegram bot
-async function sendTelegramNotification({ customerDetails, selectedItems, totalPrice }: SendOrderEmailParams) {
-    const { TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID } = process.env;
-
-    if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
-        console.error('Telegram bot token or chat ID is not configured.');
-        return { success: false, message: 'Telegram integration is not configured on the server.' };
-    }
-
-    const bot = new TelegramBot(TELEGRAM_BOT_TOKEN);
-    const itemsList = selectedItems.map(item => `- ${item.name}`).join('\n');
-    
-    // Make customer details directly accessible for the webhook
-    const message = `
-*New CRESKI Order!* 📦
-
-*Customer Name:* ${customerDetails.name}
-*Customer Email:* ${customerDetails.email}
-*Phone:* ${customerDetails.phone}
-*Address:* ${customerDetails.address}, ${customerDetails.city}, ${customerDetails.state} ${customerDetails.zip}
-
-*Order Items:*
-${itemsList}
-
-*Total Price: $${totalPrice.toFixed(2)}*
-
-Please verify payment. React with 👍 to send the confirmation email to the customer.
-    `;
-
-    try {
-        await bot.sendMessage(TELEGRAM_CHAT_ID, message, { parse_mode: 'Markdown' });
-        console.log('✅ Order notification sent to Telegram.');
-        return { success: true };
-    } catch (error) {
-        console.error('❌ Failed to send Telegram notification:', error);
-        return { success: false, message: 'Failed to send Telegram notification.' };
-    }
-}
-
-
 export async function sendOrderEmail({ customerDetails, selectedItems, totalPrice }: SendOrderEmailParams) {
-    // --- Step 1: Always try to send the Telegram notification first ---
-    const telegramResult = await sendTelegramNotification({ customerDetails, selectedItems, totalPrice });
-
-    // If Telegram fails, we stop here as it's the primary notification channel for the owner.
-    if (!telegramResult.success) {
-        return { success: false, message: telegramResult.message || 'Failed to send order notification.' };
-    }
-
-    // --- Step 2: Try to send the backup email notification to the owner ---
     const { BREVO_API_KEY } = process.env;
     if (!BREVO_API_KEY) {
-        console.warn('Brevo API Key is missing. Skipping owner email notification.');
-        // Return success because the main Telegram notification worked.
-        return { success: true, message: 'Order notification sent via Telegram. Owner email skipped.' };
+        console.error('Brevo API Key is missing. Cannot send email.');
+        return { success: false, message: 'Email service is not configured on the server.' };
     }
     
     const api = new brevo.TransactionalEmailsApi();
@@ -86,6 +35,7 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
 
     const itemsListHtml = selectedItems.map(item => `<li>${item.name}</li>`).join('');
     
+    // --- Email to Owner ---
     const emailHtmlForOwner = `
         <h1>New CRESKI Order!</h1>
         <p>A new order has been placed.</p>
@@ -104,67 +54,43 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
         <p>Please verify the payment and process the order.</p>
     `;
 
-    const sendSmtpEmail = new brevo.SendSmtpEmail();
-    sendSmtpEmail.sender = { name: 'CRESKI Orders', email: 'creski.help@gmail.com' };
-    sendSmtpEmail.to = [{ email: 'sahoo.adarsh@gmail.com', name: 'Adarsh Sahoo' }];
-    sendSmtpEmail.subject = `New Order from ${customerDetails.name}`;
-    sendSmtpEmail.htmlContent = emailHtmlForOwner;
+    const ownerEmail = new brevo.SendSmtpEmail();
+    ownerEmail.sender = { name: 'CRESKI Orders', email: 'creski.help@gmail.com' };
+    ownerEmail.to = [{ email: 'sahoo.adarsh@gmail.com', name: 'Adarsh Sahoo' }];
+    ownerEmail.subject = `New Order from ${customerDetails.name}`;
+    ownerEmail.htmlContent = emailHtmlForOwner;
 
-    try {
-        await api.sendTransacEmail(sendSmtpEmail);
-        console.log("✅ Backup owner email sent via Brevo.");
-    } catch (error: any) {
-        console.error('Failed to send backup email via Brevo.');
-        if (error.response) {
-            console.error("Brevo API error response:", error.response.body);
-        } else {
-            console.error("Unknown error:", error);
-        }
-    }
-    
-    // Return success as the primary notification was sent.
-    return { success: true, message: 'Order notification sent.' };
-}
-
-
-// --- This function will be called by our webhook ---
-export async function sendConfirmationEmailToCustomer({ name, email }: { name: string, email: string }) {
-    const { BREVO_API_KEY } = process.env;
-     if (!BREVO_API_KEY) {
-        console.error('Missing Brevo API Key for customer confirmation.');
-        return { success: false, message: 'Server is not configured to send emails.' };
-    }
-
-    const api = new brevo.TransactionalEmailsApi();
-    api.setApiKey(brevo.TransactionalEmailsApiApiKeys.apiKey, BREVO_API_KEY);
-
+    // --- Email to Customer ---
     const emailHtmlForCustomer = `
-        <h1>Your CRESKI Order is Confirmed!</h1>
-        <p>Hi ${name},</p>
-        <p>Thank you for your order! We have received it and will notify you as soon as it has been shipped.</p>
+        <h1>Your CRESKI Order is Received!</h1>
+        <p>Hi ${customerDetails.name},</p>
+        <p>Thank you for your order! We have received it and will notify you as soon as it has been shipped after payment verification.</p>
         <p>You can view your order details in your account.</p>
         <p>Thanks for shopping with us!</p>
         <p><strong>- The CRESKI Team</strong></p>
     `;
 
-    const sendSmtpEmail = new brevo.SendSmtpEmail();
-    sendSmtpEmail.sender = { name: 'CRESKI', email: 'creski.help@gmail.com' };
-    sendSmtpEmail.to = [{ email, name }];
-    sendSmtpEmail.subject = `Your CRESKI Order is Confirmed!`;
-    sendSmtpEmail.htmlContent = emailHtmlForCustomer;
+    const customerEmail = new brevo.SendSmtpEmail();
+    customerEmail.sender = { name: 'CRESKI', email: 'creski.help@gmail.com' };
+    customerEmail.to = [{ email: customerDetails.email, name: customerDetails.name }];
+    customerEmail.subject = `Your CRESKI Order has been received!`;
+    customerEmail.htmlContent = emailHtmlForCustomer;
 
     try {
-        console.log(`Sending confirmation email to ${email}`);
-        await api.sendTransacEmail(sendSmtpEmail);
-        console.log(`✅ Confirmation email sent to ${email}`);
+        console.log("Sending emails...");
+        await Promise.all([
+            api.sendTransacEmail(ownerEmail),
+            api.sendTransacEmail(customerEmail)
+        ]);
+        console.log("✅ Emails sent successfully.");
         return { success: true };
     } catch (error: any) {
-        console.error(`❌ Failed to send confirmation email to ${email}.`);
+        console.error('❌ Failed to send emails via Brevo.');
         if (error.response) {
             console.error("Brevo API error response:", error.response.body);
         } else {
             console.error("Unknown error:", error);
         }
-        return { success: false, message: 'Failed to send customer confirmation email.' };
+        return { success: false, message: 'Failed to send order emails.' };
     }
 }
