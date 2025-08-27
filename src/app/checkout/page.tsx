@@ -120,7 +120,6 @@ const CheckoutPage = () => {
 
     const orderData = await createRazorpayOrder(totalPrice, fullCustomerDetails, selectedItems);
 
-    // This is where we handle the structured error from the server.
     if (orderData.error || !orderData.id) {
         toast({
           variant: 'destructive',
@@ -139,14 +138,13 @@ const CheckoutPage = () => {
       description: 'Perfume Order',
       order_id: orderData.id,
       handler: async function (response: any) {
-        setIsLoading(true); // Keep loading while we verify and send email
+        setIsLoading(true);
         const verificationResult = await verifyRazorpayPayment(response);
         
         if (verificationResult.success && verificationResult.paymentId) {
             sessionStorage.setItem('paymentId', verificationResult.paymentId);
             
             // Fire-and-forget the email sending. The user doesn't wait for this.
-            // The server action has its own try/catch, so it won't crash the flow.
             sendOrderConfirmationEmail(fullCustomerDetails, selectedItems, verificationResult.paymentId);
 
             // Immediately clear local state and redirect for a fast user experience.
@@ -188,7 +186,6 @@ const CheckoutPage = () => {
     });
 
     rzp.open();
-    // After rzp.open(), the user interacts with the popup. We should stop loading here.
     setIsLoading(false);
   };
   
@@ -204,7 +201,6 @@ const CheckoutPage = () => {
       <h1 className="text-3xl md:text-4xl font-bold text-center mb-8">Your Checkout</h1>
       <div className="grid md:grid-cols-2 gap-8">
         
-        {/* Items Section */}
         <div>
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-2xl font-semibold">Your Items</h2>
@@ -240,7 +236,6 @@ const CheckoutPage = () => {
           </div>
         </div>
 
-        {/* Customer Details Form */}
         <div>
           <h2 className="text-2xl font-semibold mb-4">Shipping Details</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
