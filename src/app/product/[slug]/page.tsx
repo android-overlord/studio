@@ -6,7 +6,13 @@ import { notFound } from 'next/navigation';
 import { Badge } from '@/components/ui/badge';
 import { ShoppingCart } from 'lucide-react';
 
-export default function ProductPage({ params }: { params: { slug: string } }) {
+type ProductPageProps = {
+  params: {
+    slug: string;
+  };
+};
+
+export default function ProductPage({ params }: ProductPageProps) {
   const imagesMap = perfumeImages as Record<string, string>;
 
   const perfume = perfumeData.find(p => slugify(p.name) === params.slug);
