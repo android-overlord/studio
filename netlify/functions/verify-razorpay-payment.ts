@@ -1,3 +1,4 @@
+
 import type { Handler } from '@netlify/functions';
 import crypto from 'crypto';
 
@@ -11,7 +12,7 @@ export const handler: Handler = async (event) => {
 
   try {
     const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = JSON.parse(event.body);
-    const keySecret = process.env.RAZORPAY_KEY_SECRET!;
+    const keySecret = process.env.RAZORPAY_KEY_SECRET;
 
     if (!keySecret) {
       console.error('CRITICAL: Razorpay key secret is missing for verification.');

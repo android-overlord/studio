@@ -1,3 +1,4 @@
+
 import type { Handler } from '@netlify/functions';
 import nodemailer from 'nodemailer';
 
@@ -10,15 +11,15 @@ export const handler: Handler = async (event) => {
     const { customerDetails, items, paymentId } = JSON.parse(event.body);
     
     const emailConfig = {
-      host: process.env.BREVO_SMTP_HOST!,
-      port: Number(process.env.BREVO_SMTP_PORT!),
-      user: process.env.BREVO_SMTP_USER!,
-      key: process.env.BREVO_SMTP_KEY!,
-      sender: process.env.BREVO_SENDER_EMAIL! || 'creski.shop@gmail.com',
-      to: process.env.EMAIL_TO! || 'creski.shop@gmail.com',
+      host: process.env.BREVO_SMTP_HOST,
+      port: Number(process.env.BREVO_SMTP_PORT),
+      user: process.env.BREVO_SMTP_USER,
+      key: process.env.BREVO_SMTP_KEY,
+      sender: process.env.BREVO_SENDER_EMAIL || 'creski.shop@gmail.com',
+      to: process.env.EMAIL_TO || 'creski.shop@gmail.com',
     };
 
-    if (!emailConfig.host || !emailConfig.user || !emailConfig.key) {
+    if (!emailConfig.host || !emailConfig.port || !emailConfig.user || !emailConfig.key) {
       console.error('CRITICAL: Missing Brevo SMTP credentials.');
       // Return 200 OK to not break the user flow. Error is logged.
       return { statusCode: 200, body: JSON.stringify({ success: true, message: 'Email config missing' }) };
