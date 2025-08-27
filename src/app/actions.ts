@@ -30,27 +30,20 @@ async function sendTelegramNotification({ customerDetails, selectedItems, totalP
 
     if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
         console.error('Telegram bot token or chat ID is not configured.');
-        // Return a failure status but don't throw, to allow email to proceed if desired.
         return { success: false, message: 'Telegram integration is not configured on the server.' };
     }
 
     const bot = new TelegramBot(TELEGRAM_BOT_TOKEN);
     const itemsList = selectedItems.map(item => `- ${item.name}`).join('\n');
     
-    const metadata = {
-        customerEmail: customerDetails.email,
-        customerName: customerDetails.name
-    };
-    const hiddenMetadata = `\n\n---METADATA---\n${JSON.stringify(metadata)}`;
-
+    // Make customer details directly accessible for the webhook
     const message = `
 *New CRESKI Order!* 📦
 
-*Customer Details:*
-- *Name:* ${customerDetails.name}
-- *Email:* ${customerDetails.email}
-- *Phone:* ${customerDetails.phone}
-- *Address:* ${customerDetails.address}, ${customerDetails.city}, ${customerDetails.state} ${customerDetails.zip}
+*Customer Name:* ${customerDetails.name}
+*Customer Email:* ${customerDetails.email}
+*Phone:* ${customerDetails.phone}
+*Address:* ${customerDetails.address}, ${customerDetails.city}, ${customerDetails.state} ${customerDetails.zip}
 
 *Order Items:*
 ${itemsList}
@@ -58,7 +51,6 @@ ${itemsList}
 *Total Price: $${totalPrice.toFixed(2)}*
 
 Please verify payment. React with 👍 to send the confirmation email to the customer.
-${hiddenMetadata}
     `;
 
     try {
@@ -76,7 +68,7 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
     // --- Step 1: Always try to send the Telegram notification first ---
     const telegramResult = await sendTelegramNotification({ customerDetails, selectedItems, totalPrice });
 
-    // If Telegram fails, we can stop here as it's the primary notification channel for the owner.
+    // If Telegram fails, we stop here as it's the primary notification channel for the owner.
     if (!telegramResult.success) {
         return { success: false, message: telegramResult.message || 'Failed to send order notification.' };
     }
@@ -128,7 +120,6 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
         } else {
             console.error("Unknown error:", error);
         }
-        // Do not return failure here, as the main notification (Telegram) succeeded.
     }
     
     // Return success as the primary notification was sent.

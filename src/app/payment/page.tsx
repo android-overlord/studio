@@ -31,7 +31,7 @@ const PaymentPage = () => {
       const transactionNote = 'Creski Perfume Order';
       
       // Format the UPI string
-      const upiUri = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(upiName)}&am=${price.toFixed(2)}&cu=USD&tn=${encodeURIComponent(transactionNote)}`;
+      const upiUri = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(upiName)}&am=${price.toFixed(2)}&cu=INR&tn=${encodeURIComponent(transactionNote)}`;
       
       QRCode.toDataURL(upiUri)
         .then(url => {
