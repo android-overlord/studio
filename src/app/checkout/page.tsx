@@ -143,7 +143,7 @@ const CheckoutPage = () => {
     }
 
     const options = {
-      key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+      key: process.env.NEXT_PUBLIC_RAZORPAY_KEY,
       amount: orderData.amount,
       currency: orderData.currency,
       name: 'CRESKI',
@@ -291,3 +291,5 @@ const CheckoutPage = () => {
 };
 
 export default CheckoutPage;
+
+    
