@@ -98,7 +98,12 @@ const CheckoutContent = () => {
         }
 
         try {
-            await sendOrderEmail({ customerDetails, selectedItems, totalPrice });
+            const result = await sendOrderEmail({ customerDetails, selectedItems, totalPrice });
+
+            if (!result.success) {
+                alert(result.message || 'There was an error submitting your order. Please try again.');
+                return;
+            }
             
             // Store details and items in sessionStorage to pass to the next page
             sessionStorage.setItem('customerDetails', JSON.stringify(customerDetails));

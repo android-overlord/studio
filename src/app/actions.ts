@@ -76,7 +76,7 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
     if (!BREVO_API_KEY) {
         const errorMessage = 'Missing Brevo API Key. Please ensure BREVO_API_KEY is set in your environment.';
         console.error(errorMessage);
-        throw new Error('Server is not configured to send emails. Please check your environment configuration.');
+        return { success: false, message: 'Server is not configured to send emails. Please check your environment configuration.' };
     }
     
     // --- Step 1: Send notification to your own email and Telegram ---
@@ -125,7 +125,7 @@ export async function sendOrderEmail({ customerDetails, selectedItems, totalPric
         } else {
             console.error("Unknown error:", error);
         }
-        throw new Error("Failed to send order notification email. Please check server logs for details.");
+        return { success: false, message: 'Failed to send order notification email. Please check server logs for details.' };
     }
 }
 
@@ -135,7 +135,7 @@ export async function sendConfirmationEmailToCustomer({ name, email }: { name: s
     const { BREVO_API_KEY } = process.env;
      if (!BREVO_API_KEY) {
         console.error('Missing Brevo API Key for customer confirmation.');
-        throw new Error('Server is not configured to send emails.');
+        return { success: false, message: 'Server is not configured to send emails.' };
     }
 
     const api = new brevo.TransactionalEmailsApi();
@@ -168,6 +168,6 @@ export async function sendConfirmationEmailToCustomer({ name, email }: { name: s
         } else {
             console.error("Unknown error:", error);
         }
-        throw new Error("Failed to send customer confirmation email.");
+        return { success: false, message: 'Failed to send customer confirmation email.' };
     }
 }
