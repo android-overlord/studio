@@ -96,12 +96,16 @@ const CheckoutContent = () => {
         }
 
         try {
-            await sendOrderEmail({ customerDetails, selectedItems, totalPrice });
+            const result = await sendOrderEmail({ customerDetails, selectedItems, totalPrice });
 
-            sessionStorage.setItem('customerDetails', JSON.stringify(customerDetails));
-            sessionStorage.setItem('selectedItems', JSON.stringify(selectedItems));
-            sessionStorage.setItem('totalPrice', JSON.stringify(totalPrice));
-            router.push('/payment');
+            if (result.success) {
+                sessionStorage.setItem('customerDetails', JSON.stringify(customerDetails));
+                sessionStorage.setItem('selectedItems', JSON.stringify(selectedItems));
+                sessionStorage.setItem('totalPrice', JSON.stringify(totalPrice));
+                router.push('/payment');
+            } else {
+                alert(result.message || 'An unexpected error occurred. Please try again.');
+            }
 
         } catch (error: any) {
             console.error('Failed to process order:', error);
@@ -196,3 +200,5 @@ const CheckoutPage = () => (
 
 
 export default CheckoutPage;
+
+    
