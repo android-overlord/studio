@@ -14,25 +14,25 @@ export const handler: Handler = async (event) => {
     const { customerDetails, items, paymentId } = JSON.parse(event.body);
 
     const { 
-      BREVO_SMTP_HOST, 
-      BREVO_SMTP_KEY, 
-      BREVO_SENDER_EMAIL, 
-      OWNER_EMAIL 
+      BREVOSMTPHOST, 
+      BREVOSMTPKEY, 
+      BREVOSENDEREMAIL, 
+      OWNEREMAIL 
     } = process.env;
 
-    if (!BREVO_SMTP_HOST || !BREVO_SMTP_KEY || !BREVO_SENDER_EMAIL || !OWNER_EMAIL) {
+    if (!BREVOSMTPHOST || !BREVOSMTPKEY || !BREVOSENDEREMAIL || !OWNEREMAIL) {
       console.error('CRITICAL: Email service environment variables are not configured.');
       // Silently fail to avoid affecting user checkout experience
       return { statusCode: 200, body: JSON.stringify({ message: 'Email service not fully configured, skipping.' }) };
     }
 
     const transporter = nodemailer.createTransport({
-      host: BREVO_SMTP_HOST,
+      host: BREVOSMTPHOST,
       port: 587,
       secure: false, 
       auth: {
-        user: BREVO_SENDER_EMAIL,
-        pass: BREVO_SMTP_KEY,
+        user: BREVOSENDEREMAIL,
+        pass: BREVOSMTPKEY,
       },
     });
 
@@ -40,8 +40,8 @@ export const handler: Handler = async (event) => {
     const total = items.reduce((acc: number, item: { price: number }) => acc + item.price, 0);
 
     const mailOptions = {
-      from: `"CRESKI" <${BREVO_SENDER_EMAIL}>`,
-      to: [customerDetails.email, OWNER_EMAIL],
+      from: `"CRESKI" <${BREVOSENDEREMAIL}>`,
+      to: [customerDetails.email, OWNEREMAIL],
       subject: `Order Confirmation - #${paymentId}`,
       html: `
         <h1>Thank you for your order, ${customerDetails.name}!</h1>
