@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -215,7 +214,7 @@ const CheckoutPage = () => {
     });
 
     rzp.open();
-    setIsLoading(false);
+    // Do not set isLoading to false here, as the user is redirected or shown an error
   };
   
   const handleClearCart = () => {
@@ -292,3 +291,5 @@ const CheckoutPage = () => {
 };
 
 export default CheckoutPage;
+
+    
