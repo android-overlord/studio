@@ -1,0 +1,19 @@
+{
+  "name": "creski-functions",
+  "version": "1.0.0",
+  "description": "Serverless functions for CRESKI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@netlify/functions": "^2.8.1",
+    "@types/node": "^20",
+    "@types/nodemailer": "^6.4.15",
+    "nodemailer": "^6.9.14",
+    "razorpay": "^2.9.4",
+    "typescript": "^5"
+  }
+}

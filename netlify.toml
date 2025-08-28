@@ -1,6 +1,10 @@
 # Tells Netlify where to find the serverless functions.
 [functions]
-  directory = "netlify/functions/"
+  directory = "creski/functions/"
+  
+# Installs dependencies for the functions
+[build]
+  command = "npm install --prefix=creski && npm run build"
 
 # Redirects requests from a clean URL to the underlying function.
 [[redirects]]

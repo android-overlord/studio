@@ -13,8 +13,8 @@ export const handler: Handler = async (event) => {
   try {
     const { amount, customerDetails, items } = JSON.parse(event.body);
     
-    const keyId = process.env.RAZORPAYKEYID;
-    const keySecret = process.env.RAZORPAYKEYSECRET;
+    const keyId = process.env.RAZORPAY_KEY_ID;
+    const keySecret = process.env.RAZORPAY_KEY_SECRET;
 
     if (!keyId || !keySecret) {
       console.error('CRITICAL: Razorpay key ID or secret is missing.');
