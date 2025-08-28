@@ -32,7 +32,7 @@ const getPerfumeImage = (perfumeName: string) => {
 
 const CheckoutPage = () => {
   const router = useRouter();
-  const { cart, clearCart } = useCart();
+  const { cart, clearCart, removeItem } = useCart();
   const { toast } = useToast();
   const [selectedItems, setSelectedItems] = useState<Perfume[]>([]);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -41,6 +41,7 @@ const CheckoutPage = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [allAvailableItems, setAllAvailableItems] = useState<Perfume[]>([]);
+  const [itemsFromQuiz, setItemsFromQuiz] = useState<Perfume[]>([]);
 
   useEffect(() => {
     let quizItems: Perfume[] = [];
@@ -48,16 +49,20 @@ const CheckoutPage = () => {
       const primary = JSON.parse(sessionStorage.getItem('primaryRecommendation') || 'null');
       const alternatives = JSON.parse(sessionStorage.getItem('alternativeRecommendations') || '[]');
       quizItems = [primary, ...alternatives].filter(Boolean);
+      setItemsFromQuiz(quizItems);
     } catch (e) {
       console.error("Failed to parse recommendations from session storage", e);
     }
-    
-    const combined = [...quizItems, ...cart];
+  }, []);
+
+  useEffect(() => {
+    const combined = [...itemsFromQuiz, ...cart];
     const unique = Array.from(new Map(combined.map(item => [item.name, item])).values());
     
     setAllAvailableItems(unique);
+    // Auto-select all items by default
     setSelectedItems(unique);
-  }, [cart]);
+  }, [cart, itemsFromQuiz]);
 
   useEffect(() => {
     const newTotalPrice = selectedItems.reduce((acc, item) => acc + (item.price || 0), 0);
@@ -76,6 +81,24 @@ const CheckoutPage = () => {
     const { name, value } = e.target;
     setCustomerDetails(prev => ({ ...prev, [name]: value }));
   };
+  
+  const handleRemoveItem = (itemName: string) => {
+    // Remove from cart store
+    removeItem(itemName);
+    
+    // Remove from local state if it's there
+    setItemsFromQuiz(prev => prev.filter(p => p.name !== itemName));
+    
+    // update session storage if needed
+    const primary = JSON.parse(sessionStorage.getItem('primaryRecommendation') || 'null');
+    if (primary && primary.name === itemName) {
+      sessionStorage.removeItem('primaryRecommendation');
+    }
+    const alternatives = JSON.parse(sessionStorage.getItem('alternativeRecommendations') || '[]');
+    const updatedAlternatives = alternatives.filter((p: Perfume) => p.name !== itemName);
+    sessionStorage.setItem('alternativeRecommendations', JSON.stringify(updatedAlternatives));
+  };
+
 
   const loadRazorpayScript = () => {
     return new Promise(resolve => {
@@ -144,7 +167,7 @@ const CheckoutPage = () => {
     }
 
     const options = {
-      key: process.env.NEXT_PUBLIC_RAZORPAY_KEY,
+      key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
       amount: orderData.amount,
       currency: orderData.currency,
       name: 'CRESKI',
@@ -220,6 +243,7 @@ const CheckoutPage = () => {
   
   const handleClearCart = () => {
     clearCart();
+    setItemsFromQuiz([]);
     sessionStorage.removeItem('primaryRecommendation');
     sessionStorage.removeItem('alternativeRecommendations');
     setSelectedItems([]);
@@ -233,27 +257,32 @@ const CheckoutPage = () => {
         <div>
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-2xl font-semibold">Your Items</h2>
-            <button onClick={handleClearCart} className="flex items-center text-sm text-neutral-400 hover:text-white transition-colors">
-              <Trash2 className="h-4 w-4 mr-1"/> Clear All
-            </button>
+            {allAvailableItems.length > 0 && (
+                <button onClick={handleClearCart} className="flex items-center text-sm text-neutral-400 hover:text-white transition-colors">
+                    <Trash2 className="h-4 w-4 mr-1"/> Clear All
+                </button>
+            )}
           </div>
           {allAvailableItems.length > 0 ? (
             <div className="space-y-4">
               {allAvailableItems.map(item => (
                 <div key={item.name} className="flex items-center justify-between bg-neutral-800 p-4 rounded-lg">
                   <div className="flex items-center gap-4">
+                    <input
+                        type="checkbox"
+                        checked={selectedItems.some(p => p.name === item.name)}
+                        onChange={(e) => handleSelectionChange(item, e.target.checked)}
+                        className="w-5 h-5 accent-pink-500"
+                    />
                     <Image src={getPerfumeImage(item.name)} alt={item.name} width={60} height={60} className="rounded-md"/>
                     <div>
                       <p className="font-semibold">{item.name}</p>
                       <p className="text-neutral-400">₹{item.price?.toFixed(2)}</p>
                     </div>
                   </div>
-                  <input
-                    type="checkbox"
-                    checked={selectedItems.some(p => p.name === item.name)}
-                    onChange={(e) => handleSelectionChange(item, e.target.checked)}
-                    className="w-5 h-5 accent-pink-500"
-                  />
+                   <button onClick={() => handleRemoveItem(item.name)} className="text-neutral-500 hover:text-red-500 transition-colors">
+                      <Trash2 className="h-5 w-5" />
+                   </button>
                 </div>
               ))}
             </div>
