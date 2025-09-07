@@ -187,17 +187,6 @@ const CheckoutPage = () => {
         
         if (verificationResult.success && verificationResult.paymentId) {
             sessionStorage.setItem('paymentId', verificationResult.paymentId);
-
-            // Fire-and-forget the email sending
-            fetch('/api/send-order-confirmation-email', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                customerDetails: fullCustomerDetails,
-                items: selectedItems,
-                paymentId: verificationResult.paymentId,
-              }),
-            });
             
             // Immediately clear local state and redirect for a fast user experience.
             clearCart();
