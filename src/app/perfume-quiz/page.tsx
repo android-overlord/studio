@@ -147,7 +147,7 @@ const PerfumeQuizPage = () => {
           {options.map(option => (
             <button
               key={option}
-              className={`w-full py-4 px-6 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-xl
+              className={`w-full py-4 px-6 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-xl
                 ${answers[currentQuestion] === option 
                   ? 'bg-pink-500 text-white shadow-lg scale-105' 
                   : 'bg-neutral-800 text-neutral-200 hover:bg-neutral-700'}`}
@@ -241,4 +241,5 @@ const PerfumeQuizPage = () => {
 
 export default PerfumeQuizPage;
 
+    
     
