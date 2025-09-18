@@ -36,7 +36,6 @@ const getPerfumeImage = (perfumeName: string) => {
     return `/images/${imageName}`;
   }
 
-  // Fallback if no image is found in the JSON
   const seed = perfumeName.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
   return `https://picsum.photos/seed/${seed}/100/100`;
 };
@@ -56,42 +55,46 @@ const PerfumeQuizPage = () => {
   const questions: (keyof QuizAnswers)[] = ['personality', 'occasion', 'climate', 'intensity'];
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const currentQuestion = questions[currentQuestionIndex];
+  const [isExiting, setIsExiting] = useState(false);
 
   const handleAnswerSelect = (question: keyof QuizAnswers, answer: string) => {
-    const newAnswers = { ...answers, [question]: answer };
-    setAnswers(newAnswers);
+    setIsExiting(true);
+    setTimeout(() => {
+        const newAnswers = { ...answers, [question]: answer };
+        setAnswers(newAnswers);
 
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-    } else {
-      // Final question answered, calculate recommendations
-      const matchedCategory = mapAnswersToCategory(newAnswers);
-      const filteredPerfumes = data.filter(perfume => perfume.family === matchedCategory || perfume.personality.includes(matchedCategory) || perfume.occasions.includes(matchedCategory));
+        if (currentQuestionIndex < questions.length - 1) {
+            setCurrentQuestionIndex(currentQuestionIndex + 1);
+        } else {
+            const matchedCategory = mapAnswersToCategory(newAnswers);
+            const filteredPerfumes = data.filter(perfume => perfume.family === matchedCategory || perfume.personality.includes(matchedCategory) || perfume.occasions.includes(matchedCategory));
 
-      if (filteredPerfumes.length > 0) {
-        const uniquePerfumes = Array.from(new Map(filteredPerfumes.map(p => [p.name, p])).values());
-        
-        const primaryIndex = Math.floor(Math.random() * uniquePerfumes.length);
-        const primary = uniquePerfumes[primaryIndex];
-        
-        const alternatives: Perfume[] = [];
-        const alternativeIndices: Set<number> = new Set([primaryIndex]);
-        while (alternatives.length < Math.min(uniquePerfumes.length - 1, 3)) {
-            const randomIndex = Math.floor(Math.random() * uniquePerfumes.length);
-            if (!alternativeIndices.has(randomIndex)) {
-                alternatives.push(uniquePerfumes[randomIndex]);
-                alternativeIndices.add(randomIndex);
+            if (filteredPerfumes.length > 0) {
+                const uniquePerfumes = Array.from(new Map(filteredPerfumes.map(p => [p.name, p])).values());
+                
+                const primaryIndex = Math.floor(Math.random() * uniquePerfumes.length);
+                const primary = uniquePerfumes[primaryIndex];
+                
+                const alternatives: Perfume[] = [];
+                const alternativeIndices: Set<number> = new Set([primaryIndex]);
+                while (alternatives.length < Math.min(uniquePerfumes.length - 1, 3)) {
+                    const randomIndex = Math.floor(Math.random() * uniquePerfumes.length);
+                    if (!alternativeIndices.has(randomIndex)) {
+                        alternatives.push(uniquePerfumes[randomIndex]);
+                        alternativeIndices.add(randomIndex);
+                    }
+                }
+                
+                setRecommendation({ primary, alternatives });
+            } else {
+                setRecommendation({ primary: null, alternatives: [] });
             }
+            setShowResults(true);
         }
-        
-        setRecommendation({ primary, alternatives });
-      } else {
-        setRecommendation({ primary: null, alternatives: [] });
-      }
-      setShowResults(true);
-    }
+        setIsExiting(false);
+    }, 300);
   };
-
+  
   const handleProceedToCheckout = () => {
     if (recommendation) {
       sessionStorage.setItem('primaryRecommendation', JSON.stringify(recommendation.primary));
@@ -135,16 +138,18 @@ const PerfumeQuizPage = () => {
         return null;
     }
 
+    const questionAnimation = isExiting ? 'animate-out fade-out slide-out-to-left-1/2' : 'animate-in fade-in slide-in-from-right-1/2';
+
     return (
-      <div className="w-full max-w-2xl text-center">
+      <div className={`w-full max-w-2xl text-center duration-300 ${questionAnimation}`}>
         <h2 className="text-2xl md:text-3xl font-bold mb-8">{questionText}</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {options.map(option => (
             <button
               key={option}
-              className={`w-full py-4 px-6 rounded-full text-lg font-semibold transition-transform transform hover:scale-105
+              className={`w-full py-4 px-6 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-xl
                 ${answers[currentQuestion] === option 
-                  ? 'bg-pink-500 text-white shadow-lg' 
+                  ? 'bg-pink-500 text-white shadow-lg scale-105' 
                   : 'bg-neutral-800 text-neutral-200 hover:bg-neutral-700'}`}
               onClick={() => handleAnswerSelect(currentQuestion, option)}
             >
@@ -163,7 +168,10 @@ const PerfumeQuizPage = () => {
       
       {!showResults && (
         <div className="w-full max-w-2xl">
-          <div className="w-full bg-neutral-700 rounded-full h-2.5 mb-8">
+          <div className="mb-4">
+            <span className="text-sm font-semibold text-pink-400">Step {currentQuestionIndex + 1} of {questions.length}</span>
+          </div>
+          <div className="w-full bg-neutral-700 rounded-full h-2.5 mb-10">
             <div className="bg-pink-500 h-2.5 rounded-full" style={{ width: `${progress}%`, transition: 'width 0.5s ease-in-out' }}></div>
           </div>
           {renderQuestion()}
@@ -171,26 +179,27 @@ const PerfumeQuizPage = () => {
       )}
 
       {showResults && (
-        <div className="w-full max-w-3xl text-center bg-neutral-800 p-8 rounded-lg shadow-2xl">
+        <div className="w-full max-w-4xl text-center bg-neutral-800 p-8 rounded-xl shadow-2xl animate-in fade-in zoom-in-95 duration-500">
           <h2 className="text-3xl font-bold mb-6 text-pink-400">Your Personalised Recommendations</h2>
           {recommendation?.primary ? (
-            <div>
-              <div className="mb-8">
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div className="flex flex-col items-center">
                 <h3 className="text-2xl font-semibold mb-4 border-b border-neutral-700 pb-2">✨ Your Perfect Match</h3>
-                <div className="flex items-center justify-center gap-4 bg-neutral-700 p-4 rounded-lg">
-                   <Image src={getPerfumeImage(recommendation.primary.name)} alt={recommendation.primary.name} width={80} height={80} className="rounded-md" />
-                   <p className="text-xl font-bold">{recommendation.primary.name}</p>
+                <div className="flex flex-col items-center justify-center gap-4 bg-neutral-700 p-6 rounded-lg w-full max-w-xs">
+                   <Image src={getPerfumeImage(recommendation.primary.name)} alt={recommendation.primary.name} width={150} height={150} className="rounded-md shadow-lg" />
+                   <p className="text-xl font-bold mt-2">{recommendation.primary.name}</p>
+                   <p className="text-lg font-semibold text-blue-400">₹{recommendation.primary.price.toFixed(2)}</p>
                 </div>
               </div>
 
               {recommendation.alternatives.length > 0 && (
-                 <div>
+                 <div className="flex flex-col items-center">
                    <h3 className="text-2xl font-semibold mb-4 border-b border-neutral-700 pb-2">🌿 Alternatives You’ll Love</h3>
-                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
                      {recommendation.alternatives.map(p => (
                        <div key={p.name} className="flex flex-col items-center gap-2 bg-neutral-700 p-4 rounded-lg">
-                         <Image src={getPerfumeImage(p.name)} alt={p.name} width={60} height={60} className="rounded-md" />
-                         <p className="text-md font-semibold text-center">{p.name}</p>
+                         <Image src={getPerfumeImage(p.name)} alt={p.name} width={80} height={80} className="rounded-md" />
+                         <p className="text-md font-semibold text-center mt-2">{p.name}</p>
                        </div>
                      ))}
                    </div>
@@ -203,7 +212,7 @@ const PerfumeQuizPage = () => {
               <p>Based on your answers, we couldn't find a perfect match. Please try the quiz again with different preferences.</p>
             </div>
           )}
-           <div className="flex justify-center gap-4 mt-8">
+           <div className="flex flex-wrap justify-center gap-4 mt-10">
             <button 
                 onClick={() => {
                   setShowResults(false);
@@ -215,12 +224,14 @@ const PerfumeQuizPage = () => {
               >
                 Take the Quiz Again
               </button>
-              <button
-                onClick={handleProceedToCheckout}
-                className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 inline-flex items-center"
-              >
-                Proceed to Checkout
-              </button>
+              {recommendation?.primary &&
+                <button
+                  onClick={handleProceedToCheckout}
+                  className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 inline-flex items-center"
+                >
+                  Add to Cart & Checkout
+                </button>
+              }
           </div>
         </div>
       )}
@@ -229,3 +240,5 @@ const PerfumeQuizPage = () => {
 };
 
 export default PerfumeQuizPage;
+
+    
